@@ -28,7 +28,6 @@ def main(argv):
 		print_args(argv)
 	else:
 		region = Region(argv[6])
-		print region.tostring()
 
 if __name__ == "__main__":
 	main(sys.argv)
