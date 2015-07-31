@@ -1,1 +1,1 @@
-# lapig-time-series
+# Satellite Image Time Series
