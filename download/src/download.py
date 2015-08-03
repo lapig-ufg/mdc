@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 # ------------------------------------------
-# Init script to download module
-#
 # Marcelo Perini Veloso
 # <marcelo.perini.veloso@gmail.com>
-# (c) Copyright Marcelo Perini Veloso 2015
+#
+# (c) Copyright Lapig UFG 2015
+# http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import sys
 from downloadModis import DownloadModis
@@ -37,8 +37,9 @@ def print_usage(argv):
 
 def mapDict(argv):
     """This function get the arguments by parameters and put all
-    system arguments in a dict variable considering the description
-    of usage"""
+        system arguments in a dict variable considering the description
+        of usage
+    """
     map = {}
 
     for i in range(len(argv)):
@@ -84,7 +85,7 @@ def main(argv):
     else:
         if args_dict["-d"].upper() == "MODIS":
             imgDownload = DownloadModis(product=args_dict["-p"],
-                    name=args_dict["-r"], start=args_dict["-s"],
+                    region=args_dict["-r"], start=args_dict["-s"],
                     end=args_dict["-e"])
         elif args_dict["-d"].upper() == "LANDSAT":
             imgDownload = DownloadLandsat(product=args_dict["-p"],

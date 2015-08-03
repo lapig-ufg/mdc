@@ -3,10 +3,14 @@
 # ------------------------------------------
 # Marcelo Perini Veloso
 # <marcelo.perini.veloso@gmail.com>
-# (c) Copyright Marcelo Perini Veloso 2015
+#
+# (c) Copyright Lapig UFG 2015
+# http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 
 class Region:
+    """ A class which create a list of tiles IDs """
+
     def __init__(self, name):
         self.name = name
         self.ids = self.__selectIds(name)
@@ -15,6 +19,7 @@ class Region:
         return "Region name: '" + self.name + "', ids: " + str(self.ids)
 
     def printIds(self):
+        # return a string of IDs tiles separated by commas
         str = ""
         for i in range(len(self.ids) - 1):
             str += self.ids[i] + ','
@@ -24,6 +29,7 @@ class Region:
 
 
     def __selectIds(self, name):
+        # return a list of IDs tiles by region name
         if name.upper() == "BRASIL" or name.upper() == "BRAZIL":
             return ["h13v11", "h12v08", "h14v09", "h14v10", "h13v12",
                     "h10v08", "h10v09", "h11v08", "h11v09", "h11v10", "h12v11",
