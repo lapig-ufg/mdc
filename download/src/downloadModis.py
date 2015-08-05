@@ -31,7 +31,7 @@ class DownloadModis:
         self.product = product
         self.start = start
         self.end = end
-        self.target_path = self.__makePath(target_path)
+        self.target_path = target_path
         # return an object which have all tiles of the region
         self.region = Region(region)
 
@@ -41,9 +41,6 @@ class DownloadModis:
             self.conn.set("download", '{ "archives" : [] }')
         except :
             exit("-> Error: Connection refused to localhost:6379")
-
-    def __makePath(self, path):
-        return os.path.join(path, "Maps")
 
     def __finishDownload(self, path_one, path_two):
         listArchives = os.listdir(path_one)
@@ -91,6 +88,7 @@ class DownloadModis:
     def run(self):
         """ Method which run download of modis data """
 
+        print self.target_path
         """ verify if the directory exist if not try to create """
         if not path.exists(self.target_path):
             try:
@@ -103,6 +101,7 @@ class DownloadModis:
         downloading_path = os.path.join(self.target_path, "downloading")
         downloaded_path = os.path.join(self.target_path, "downloaded")
 
+        print downloading_path
         if not path.exists(downloading_path):
             try:
                 makedirs(downloading_path)
@@ -110,6 +109,7 @@ class DownloadModis:
                 exit("-> Error: Directory %s does " % downloading_path \
                         + "not exist and it is impossible to create")
 
+        print downloaded_path
         if not path.exists(downloaded_path):
             try:
                 makedirs(downloaded_path)
