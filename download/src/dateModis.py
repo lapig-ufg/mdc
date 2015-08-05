@@ -52,7 +52,9 @@ class DateModis:
                 "end" : end.strftime("%Y-%m-%d")})
 
             # add 1 day to end date and put into start date
-            start = end + datetime.timedelta(days=1)
+            # start = end + datetime.timedelta(days=1)
+            start = end
+
 
         return dateList
 
