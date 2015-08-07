@@ -3,7 +3,9 @@
 # ------------------------------------------
 # Marcelo Perini Veloso
 # <marcelo.perini.veloso@gmail.com>
-# (c) Copyright Marcelo Perini Veloso 2015
+#
+# (c) Copyright Lapig UFG 2015
+# http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import getpass
 from sys import exit
