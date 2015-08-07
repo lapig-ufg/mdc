@@ -96,7 +96,10 @@ def main(argv):
         if "-t" in args_dict:
             imgDownload.target = args_dict["-t"]
 
-        imgDownload.run()
+        if imgDownload.run() == True:
+            print "-> Finish download module"
+        else:
+            print "-> Was not possible to make the download"
 
 if __name__ == "__main__":
     main(sys.argv)
