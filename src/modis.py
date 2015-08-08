@@ -17,6 +17,8 @@ class Modis:
         self.__generateModis()
 
     def __generateModis(self):
+        self.exist = True
+
         if self.product.upper() == "MOD09A1.005":
             self.temporalColect = 8
             self.initDateProgram = datetime.datetime.strptime("2000-02-24",
@@ -311,3 +313,4 @@ class Modis:
             self.initDateProgram = None
             self.endDateProgram = None
             self.nBand = None
+            self.exist = False

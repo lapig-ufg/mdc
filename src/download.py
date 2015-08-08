@@ -91,15 +91,16 @@ def main(argv):
             imgDownload = DownloadLandsat(product=args_dict["-p"],
                     name=args_dict["-r"], start=args_dict["-s"],
                     end=args_dict["-e"])
-
+        else:
+            print_usage(argv)
 
         if "-t" in args_dict:
             imgDownload.target = args_dict["-t"]
 
         if imgDownload.run() == True:
-            print "-> Finish download module"
+            print "--> Finish download module"
         else:
-            print "-> Was not possible to make the download"
+            print "--> Was not possible to make the download"
 
 if __name__ == "__main__":
     main(sys.argv)

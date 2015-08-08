@@ -8,13 +8,13 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import os
-import redis
 import shutil
 import json
 import datetime
 from sys import exit
 from os import path
 from os import makedirs
+from dbServer import createConnection
 from pymodis import downmodis
 from region import Region
 from modis import Modis
@@ -37,7 +37,7 @@ class DownloadModis:
         self.region = Region(region)
 
         # make a connection with redis server
-        self.conn = redis.StrictRedis(host="localhost", port=6379, db=0)
+        self.conn = createConnection()
 
     def __finishDownload(self, path_one, path_two, initDate, endDate):
         """Function which move all finished archives to downloaded directory"""
@@ -52,12 +52,13 @@ class DownloadModis:
             # move all archives in path_one to path_two
             for archive in listArchives:
                 try:
-                    shutil.move(os.path.join(path_one, archive), path_two)
+                    shutil.move(os.path.join(path_one, archive),
+                            os.path.join(path_two, archive))
                     archDict["archives"].append(archive)
                 except IOError as msg:
-                    print(" |-> Error: %s" % msg)
+                    print(" |-> Error: Was not possible to move %s" % msg)
 
-            baseKey = "MODIS_" + self.product.upper() + "_" + initDate + "-" \
+            baseKey = "MODIS_" + self.product.upper() + "_" + initDate + "_" \
                     + endDate
 
             jsonTxt = json.dumps(archDict)
