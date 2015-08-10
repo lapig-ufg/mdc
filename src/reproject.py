@@ -8,14 +8,20 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import sys
+import json
+import os
 from time import sleep
 from dbServer import createConnection
 from modis import Modis
 
+home_path = os.path.expanduser("~")
+default_path = os.path.join(home_path, "Maps")
+default_path = os.path.join(default_path, "downloaded")
+
 def print_usage(args):
     #Print usage and exit
     sys.exit("Usage: %s -d {Program Specification} -p {Product} " %
-            argv[0] \
+            args[0] \
                     + "[-t {Target path}]\n" \
                     + "PROGRAM SPECIFICATION:\n" \
                     + "  A name of satellite observation program, ex:\n" \
@@ -53,28 +59,64 @@ def mapDict(args):
 
     return argd
 
-def main(args):
-    argDict = mapDict(args)
+def convert(files):
+    for file in files:
+        file_path = os.path.join(default_path, file)
 
-    if "-d" not in args_dict or "-p":
+        print file_path
+
+def main(args):
+    args_dict = mapDict(args)
+
+    if "-d" not in args_dict or "-p" not in args_dict:
         print_usage(args)
     else:
-        if argDict["-d"].upper() == "MODIS":
+        if args_dict["-d"].upper() == "MODIS":
             baseKey = "MODIS_"
-        elif argDict["-d"].upper() == "LANDSAT":
+
+            product = Modis(args_dict["-p"])
+        elif args_dict["-d"].upper() == "LANDSAT":
             baseKey = "LANDSAT_"
+
+            sys.exit("Landsat was not implemented yet.")
         else:
             print_usage(args)
 
-        modis = Modis(argDict["-p"])
 
-        if(modis.exists):
+        if(product.exist):
+            baseKey += product.product + '*'
+
             while(True):
                 conn = createConnection()
 
-                sleep(10)
+                lKeys = conn.keys(pattern=baseKey)
+                lKeys.sort()
+
+                archDict = None
+                for key in lKeys:
+                    try:
+                        jsonTxt = conn.get(key)
+                    except:
+                        sys.exit(" |-> Problem with redis connection")
+
+                    try:
+                        conn.delete(key)
+                    except:
+                        sys.exit(" |-> Problem with redis connection")
+
+                    try:
+                        archDict = json.loads(jsonTxt)
+                        break
+                    except:
+                        print(" |-> The value of key %s have a bad format" %
+                                key)
+
+                if archDict != None:
+                    convert(archDict["archives"])
+
+                sleep(3)
         else:
             print_usage(args)
 
 if __name__ == "__main__":
-    mains(sys.args)
+    main(sys.argv)

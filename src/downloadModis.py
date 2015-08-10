@@ -39,6 +39,9 @@ class DownloadModis:
         # make a connection with redis server
         self.conn = createConnection()
 
+    def __isHdf(self, name):
+        return name.split('.')[-1] == "hdf"
+
     def __finishDownload(self, path_one, path_two, initDate, endDate):
         """Function which move all finished archives to downloaded directory"""
 
@@ -49,14 +52,15 @@ class DownloadModis:
         if path.exists(path_one) and path.exists(path_two):
             archDict = { "archives" : [] }
 
-            # move all archives in path_one to path_two
+            # move HDFs archives in path_one to path_two
             for archive in listArchives:
-                try:
-                    shutil.move(os.path.join(path_one, archive),
-                            os.path.join(path_two, archive))
-                    archDict["archives"].append(archive)
-                except IOError as msg:
-                    print(" |-> Error: Was not possible to move %s" % msg)
+                if self.__isHdf(archive):
+                    try:
+                        shutil.move(os.path.join(path_one, archive),
+                                os.path.join(path_two, archive))
+                        archDict["archives"].append(archive)
+                    except IOError as msg:
+                        print(" |-> Error: Was not possible to move %s" % msg)
 
             baseKey = "MODIS_" + self.product.upper() + "_" + initDate + "_" \
                     + endDate
