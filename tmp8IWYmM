@@ -1,0 +1,57 @@
+******************************************************************************
+
+MODIS Reprojection Tool (v4.1 March 2009)
+Start Time:  Fri Aug 14 17:32:32 2015
+
+------------------------------------------------------------------
+
+
+Input image and reprojection info
+---------------------------------
+input_filename:          /home/marcelo/Maps/downloaded/MOD11A1.A2014015.h11v10.005.2014016104549.hdf
+output_filename:         /home/marcelo/Maps/converted/MOD11A1.A2014015.h11v10.005.2014016104549.tif
+input_filetype:          HDF-EOS
+output_filetype:         GEOTIFF
+input_projection_type:   SIN
+input_datum:             WGS84
+output_projection_type:  GEO
+output_datum:            WGS84
+resampling_type:         NN
+input projection parameters:  6371007.18 0.00 0.00 0.00 0.00 0.00 0.00 0.00 86400.00 0.00 0.00 0.00 0.00 0.00 0.00 
+output projection parameters: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 
+
+input image corners (lat/lon):
+    UL:  -10.00 -71.08 
+    UR:  -10.00 -60.93 
+    LL:  -20.00 -74.49 
+    LR:  -20.00 -63.85 
+
+input image spatial subset corners (lat/lon):
+    UL:  -10.00 -74.49 
+    UR:  -10.00 -60.94 
+    LL:  -20.00 -74.49 
+    LR:  -20.00 -60.94 
+
+     band          select   type lines smpls pixsiz      min    max   fill
+  1) LST_Day_1km        0 UINT16  1200  1200 926.6254   7500  65535      0
+  2) QC_Day             0  UINT8  1200  1200 926.6254      0    255      0
+  3) Day_view_time      0  UINT8  1200  1200 926.6254      0    240    255
+  4) Day_view_angl      1  UINT8  1200  1200 926.6254      0    130    255
+  5) LST_Night_1km      0 UINT16  1200  1200 926.6254   7500  65535      0
+  6) QC_Night           0  UINT8  1200  1200 926.6254      0    255      0
+  7) Night_view_time    0  UINT8  1200  1200 926.6254      0    240    255
+  8) Night_view_angl    0  UINT8  1200  1200 926.6254      0    130    255
+  9) Emis_31            0  UINT8  1200  1200 926.6254      1    255      0
+ 10) Emis_32            0  UINT8  1200  1200 926.6254      1    255      0
+ 11) Clear_day_cov      0 UINT16  1200  1200 926.6254      1  65535      0
+ 12) Clear_night_cov    0 UINT16  1200  1200 926.6254      1  65535      0
+
+
+SINUSOIDAL PROJECTION PARAMETERS:
+
+   Radius of Sphere:     6371007.181000 meters
+   Longitude of Center:     0.000000 degrees
+   False Easting:      0.000000 meters 
+   False Northing:     0.000000 meters 
+
+NNResample : processing band Day_view_angl

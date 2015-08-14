@@ -43,6 +43,9 @@ class convert:
     def __createTifName(self, archive):
         return archive.replace("hdf", "tif")
 
+    def __finishConvert(self):
+        print "Here"
+
     def run(self):
         print("--> Start the reprojection...")
 
@@ -78,26 +81,35 @@ class convert:
 
             if modis.exist:
                 for archive in self.archive_list:
+                    archive_path = path.join(self.downloaded_path, archive)
+                    #cont_band = 1
 
-                    cont_band = 1
-                    for base in baseStr:
-                        archive_path = path.join(self.downloaded_path, archive)
-                        output_path = path.join(self.target_path,
-                                self.__createTifName(str(cont_band) \
-                                        + "_" + archive))
+                    if path.exists(archive_path):
+                        for base in baseStr:
 
-                        modisParse = parsemodis.parseModis(archive_path)
-                        confname = modisParse.confResample(spectral = base,
-                                output = output_path)
+                            #output_path = path.join(self.target_path,
+                            #        self.__createTifName(str(cont_band) \
+                            #                + "_" + archive))
 
-                        modisCover = convertmodis.convertModis(
-                                hdfname=archive_path, confile=confname,
-                                mrtpath=self.mrt_path)
+                            output_path = path.join(self.target_path,
+                                    self.__createTifName(archive))
 
-                        cont_band += 1
+                            modisParse = parsemodis.parseModis(archive_path)
+                            confname = modisParse.confResample(spectral = base,
+                                    output = output_path)
 
-                        modisCover.run()
+                            modisCover = convertmodis.convertModis(
+                                    hdfname=archive_path, confile=confname,
+                                    mrtpath=self.mrt_path)
+
+                            #cont_band += 1
+
+                            modisCover.run()
+                    else:
+                        exit(" |-> Error: %s does not exist" % archive_path)
             else:
                 exit(" |-> Error: %s product does not supported" % self.product)
         else:
             exit(" |-> Error: The archive list are empty")
+
+        print(" |-> Finish convert process...")

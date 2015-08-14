@@ -68,8 +68,8 @@ class DownloadModis:
                     except IOError as msg:
                         print(" |-> Error: Was not possible to move %s" % msg)
 
-            baseKey = "MODIS_" + self.product.upper() + "_" + initDate + "_" \
-                    + endDate
+            baseKey = "DOWNLOAD_MODIS_" + self.product.upper() + "_" \
+                    + initDate + "_" + endDate
 
             jsonTxt = json.dumps(archDict)
 
