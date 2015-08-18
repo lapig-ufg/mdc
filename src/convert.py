@@ -19,19 +19,29 @@ from modis import Modis
 from dbServer import createConnection
 
 def createDefaultPath():
+    """ Function which create a string of $HOME/Maps path """
+
     # default work directory
     home_path = path.expanduser("~")
     default_path = path.join(home_path, "Maps")
     return default_path
 
 def createMrtPath():
+    """ Function which create a string of $HOME/.mrt path """
+
     home_path = path.expanduser("~")
     mrt_path = path.join(home_path, ".mrt")
     return mrt_path
 
 class convert:
+    """ Class which receive a list of hdf archives and convert to tif
+      " format
+      """
+
     def __init__(self, product, archive_list, start_date, end_date,
             default_path = createDefaultPath(), mrt_path = createMrtPath()):
+        """ Constructor method """
+
         self.product = product
         self.archive_list = archive_list
         self.startDate = start_date
@@ -40,19 +50,31 @@ class convert:
         self.target_path = self.__makeTargetPath(default_path)
         self.mrt_path = mrt_path
 
+        # make a connection with redis server
         self.conn = createConnection()
 
-
     def __makeDownloadedPath(self, tpath):
+        """ Method which create a string of downloaded path """
+
         return path.join(tpath, "downloaded")
 
     def __makeTargetPath(self, tpath):
+        """ Method which create a string of converted path """
+
         return path.join(tpath, "converted")
 
     def __createTifName(self, archive):
+        """ This method receive a string name and replace the hdf
+          "  extencion to tif
+          """
+
         return archive.replace("hdf", "tif")
 
     def __createPath(self, tpath):
+        """ This method try to create the path passed by parameter if
+          " not exist
+          """
+
         if not path.exists(tpath):
             try:
                 makedirs(tpath)
@@ -61,15 +83,27 @@ class convert:
                         + "not exist and it is impossible to create")
 
     def __isTif(self, archive):
+        """ This method verify if archive have a tif extensin """
+
         return archive.split('.')[-1] == "tif"
 
     def __finishConvert(self, converting_path):
+        """ This method read all archives in converted_path add than in
+          " a dictionary, convert into a json text and push to redis
+          " database
+          """
+
         if path.exists(converting_path):
+            # read all files in converting_path
             listArchives = listdir(converting_path)
 
             archDict = { "archives" : [] }
 
+            """ move all archives in converting path to converted path
+              " and apend into archDict
+              """
             for archive in listArchives:
+                # if the archive is tif format
                 if self.__isTif(archive):
                     try:
                         shutil.move(path.join(converting_path, archive),
@@ -97,6 +131,10 @@ class convert:
                     + "not exist")
 
     def run(self):
+        """ This method read the hdf files in archive_list and convert
+          " to tif format
+          """
+
         print("--> Start the reprojection...")
 
         self.__createPath(self.target_path)
@@ -107,38 +145,33 @@ class convert:
 
         if self.archive_list != None:
             modis = Modis(self.product)
-
-            baseLayer = []
-            for i in range(modis.nBand):
-                baseLayer.append('0')
-
-            baseStr = []
-            for i in range(modis.nBand):
-                aux = list(baseLayer)
-                aux[i] = '1'
-                txt = "( "
-
-                for letter in aux:
-                    txt += letter + ' '
-
-                txt += ')'
-                baseStr.append(txt)
-
             if modis.exist:
+                # create the spectral to convert the image of all band
+                baseLayer = []
+                for i in range(modis.nBand):
+                    baseLayer.append('0')
+
+                baseStr = []
+                for i in range(modis.nBand):
+                    aux = list(baseLayer)
+                    aux[i] = '1'
+                    txt = "( "
+
+                    for letter in aux:
+                        txt += letter + ' '
+
+                    txt += ')'
+                    baseStr.append(txt)
+
                 converting_path = path.join(self.target_path, "converting")
 
                 self.__createPath(converting_path)
 
                 for archive in self.archive_list:
                     archive_path = path.join(self.downloaded_path, archive)
-                    #cont_band = 1
 
                     if path.exists(archive_path):
                         for base in baseStr:
-
-                            #output_path = path.join(self.target_path,
-                            #        self.__createTifName(str(cont_band) \
-                            #                + "_" + archive))
 
                             output_path = path.join(converting_path,
                                     self.__createTifName(archive))
@@ -150,8 +183,6 @@ class convert:
                             modisCover = convertmodis.convertModis(
                                     hdfname=archive_path, confile=confname,
                                     mrtpath=self.mrt_path)
-
-                            #cont_band += 1
 
                             modisCover.run()
                     else:
