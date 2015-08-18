@@ -43,43 +43,63 @@ def mapDict(args):
 def main(args):
     args_dict = mapDict(args)
 
+    # make the pattern key to search in redis
     baseKey = "DOWNLOAD_MODIS_*"
 
     print("--> Start reading redis database...")
+
+    # repeat this
     while(True):
         conn = createConnection()
 
+        # search the database by pattern key
         lKeys = conn.keys(pattern=baseKey)
+        # sort list keys
         lKeys.sort()
 
         archDict = None
+        # if have one or more key
         if len(lKeys):
+            key = lKeys[0]
+
             try:
-                jsonTxt = conn.get(lKeys[0])
+                # get the content of the first key
+                jsonTxt = conn.get(key)
             except:
                 sys.exit(" |-> Problem with redis connection")
 
             try:
-                conn.delete(lKeys[0])
+                # delete the first key
+                conn.delete(key)
             except:
                 sys.exit(" |-> Problem with redis connection")
 
             try:
+                # convert json text to python dictionary
                 archDict = json.loads(jsonTxt)
             except:
                 print(" |-> The value of key %s have a bad format" %
                         key)
 
+        # if have content
         if archDict != None:
             print(" |-> Convert requisition founded...")
-            convertPrt = convert(archDict["product"],
-                    archDict["archives"])
 
+            startDate = key.split('_')[-2]
+            endDate = key.split('_')[-1]
+
+            # create a object of specific product and list of archives
+            convertPrt = convert(archDict["product"], archDict["archives"],
+                    startDate, endDate)
+
+            # if have a diferent work path of the default change the attribute
             if "-t" in args_dict:
                 convertPrt.default_path = args_dict["-t"]
 
+            # convert all archives of specific list
             convertPrt.run()
 
+        # wait 3 seconds
         sleep(3)
 
 if __name__ == "__main__":
