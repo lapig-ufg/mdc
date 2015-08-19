@@ -16,6 +16,603 @@ class Modis:
         self.product = product
         self.__generateModis()
 
+    def __createLayers(self, name):
+        listLayers = []
+
+        if name == "MOD09A1.005":
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "4294967295" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "65535" })
+
+            listLayers.append({ "fill" : "65535" })
+
+        elif name == "MOD09CMG.005":
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD09GA.005":
+            listLayers.append({ "fill" : "-1" })
+
+            listLayers.append({ "fill" : "65535" })
+
+            listLayers.append({ "fill" : "-32767" })
+
+            listLayers.append({ "fill" : "-32767" })
+
+            listLayers.append({ "fill" : "65535" })
+
+            listLayers.append({ "fill" : "-32767" })
+
+            listLayers.append({ "fill" : "-32767" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "-1" })
+
+            listLayers.append({ "fill" : "-1" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "787410671" })
+
+            listLayers.append({ "fill" : "-1" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+        elif name == "MOD09GQ.005":
+            listLayers.append({ "fill" : "-1" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "2995" })
+
+            listLayers.append({ "fill" : "-1" })
+
+        elif name == "MOD09Q1.005":
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "-28672" })
+
+            listLayers.append({ "fill" : "65535" })
+
+        elif name == "MOD11_L2.004" or name == "MOD11_L2.041":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "-999" })
+
+            listLayers.append({ "fill" : "-999" })
+
+        elif name == "MOD11_L2.005":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "-999" })
+
+            listLayers.append({ "fill" : "-999" })
+
+        elif name == "MOD11A1.004" or name == "MOD11A1.041":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11A1.005":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11A2.005":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" }) # See QA NOTE
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" }) # See QA NOTE
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11B1.004" or name == "MOD11B1.041":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11B1.005":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11C1.004" or name == "MOD11C1.041":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11C1.005":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11C2.004" or name == "MOD11C2.041":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11C2.005":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD11C3.004" or name == "MOD11C3.041":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name ==" MOD11C3.005":
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "255" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : "0" })
+
+            listLayers.append({ "fill" : None })
+
+            listLayers.append({ "fill" : "0" })
+
+        elif name == "MOD13A1.005":
+            listLayers.append({ "fill" : "-3000" })
+
+            listLayers.append({ "fill" : "-3000" })
+
+            listLayers.append({ "fill" : "65535" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-10000" })
+
+            listLayers.append({ "fill" : "-10000" })
+
+            listLayers.append({ "fill" : "-4000" })
+
+            listLayers.append({ "fill" : "-1" })
+
+            listLayers.append({ "fill" : "-1" })
+
+        elif name == "MOD13A2.005":
+            listLayers.append({ "fill" : "-3000" })
+
+            listLayers.append({ "fill" : "-3000" })
+
+            listLayers.append({ "fill" : "65535" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-10000" })
+
+            listLayers.append({ "fill" : "-10000" })
+
+            listLayers.append({ "fill" : "-4000" })
+
+            listLayers.append({ "fill" : "-1" })
+
+            listLayers.append({ "fill" : "-1" })
+
+        elif name == "MOD13A3":
+            listLayers.append({ "fill" : "-3000" })
+
+            listLayers.append({ "fill" : "-3000" })
+
+            listLayers.append({ "fill" : "65535" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-1000" })
+
+            listLayers.append({ "fill" : "-10000" })
+
+            listLayers.append({ "fill" : "-10000" })
+
+            listLayers.append({ "fill" : "-4000" })
+
+            listLayers.append({ "fill" : "-1" })
+
+
+        return listLayers
+
     def __generateModis(self):
         self.exist = True
 
@@ -25,6 +622,7 @@ class Modis:
                     "%Y-%m-%d")
             self.endDateProgram = None
             self.nBand = 13
+            self.layers = self.__createLayers("MOD09A1.005")
 
         elif self.product.upper() == "MOD09CMG.005":
             self.temporalColect = 1
@@ -38,7 +636,7 @@ class Modis:
             self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                     "%Y-%m-%d")
             self.endDateProgram = None
-            self.nBand = 9
+            self.nBand = 21
 
         elif self.product.upper() == "MOD09GQ.005":
             self.temporalColect = 1
@@ -207,7 +805,7 @@ class Modis:
             self.endDateProgram = None
             self.nBand = 12
 
-        elif self.product.upper() == "MOD13A3.005":
+        elif self.product.upper() == "MOD13A3":
             self.temporalColect = 30
             self.initDateProgram = datetime.datetime.strptime("2000-02-18",
                     "%Y-%m-%d")
