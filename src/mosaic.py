@@ -9,17 +9,13 @@
 # ------------------------------------------
 import json
 from sys import argv
-from commun import mapDict
+from time import sleep
+from common import mapDict
+from common import createDefaultPath
+from mosaicImage import MosaicImage
 from dbServer import createConnection
 
-usage = """\
-Usage: %s [OPTIONS]
-    [-t]    path to directory where the files will be stored
-""" % argv[0]
-
-def main():
-    args_dict = mapDict(argv, usage)
-
+def mosaic(targetPath = createDefaultPath()):
     baseKey = "REPROJECT_*"
 
     print("--> Start reading redis database...")
@@ -56,7 +52,19 @@ def main():
         if archDict is not None:
             print(" |-> Mosaic requisition founded...")
 
-        sleep(3)
+            keyAux = key.split('_')
+            program = keyAux[1]
+            product = keyAux[2]
+            startDate = keyAux[3]
+            endDate = keyAux[4]
 
-if __name__ == "__main__":
-    main()
+            mosaic = MosaicImage(program=program, product=product,
+                    bands_archive_list=archDict, startDate=startDate,
+                    endDate=endDate, default_path=targetPath)
+
+            if mosaic.run():
+                print " |-> Finish mosaic conversation"
+            else:
+                print " |-> Impossible to create the mosaic"
+
+        sleep(3)

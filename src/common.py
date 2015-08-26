@@ -8,46 +8,72 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 
-def printUsage(usage):
-    exit(usage)
+from sys import exit
+from os import path
+from os import makedirs
 
-def mapDict(args, usage):
+def createDefaultPath():
+    """ Function which create a string of $HOME/Maps path """
+
+    # default work directory
+    home_path = path.expanduser("~")
+    default_path = path.join(home_path, "Maps")
+    return default_path
+
+def createPath(tpath):
+    """ This method try to create the path passed by parameter if
+        " not exist
+        """
+
+    if not path.exists(tpath):
+        try:
+            makedirs(tpath)
+        except:
+            exit(" |-> Error: Directory %s does " % tpath \
+                    + "not exist and it is impossible to create")
+
+def mapDict(argv, msg):
     """ This function get the arguments by parameters and put all
       " system arguments in a dict variable considering the description
       " of usage
       """
     argd = { }
 
-    for i in range(len(args)):
-        if args[i] == "-d": # program specification
+    for i in range(len(argv)):
+        if argv[i] == "-d": # program specification
             try:
-                argd["-d"] = args[i + 1]
+                argd["-d"] = argv[i + 1]
             except:
-                printUsage(usage)
-        elif args[i] == "-p": # product
+                exit(msg)
+        elif argv[i] == "-p": # product
             try:
-                argd["-p"] = args[i + 1]
+                argd["-p"] = argv[i + 1]
             except:
-                printUsage(usage)
-        elif args[i] == "-r": # region
+                exit(msg)
+        elif argv[i] == "-r": # region
             try:
-                argd["-r"] = args[i + 1]
+                argd["-r"] = argv[i + 1]
             except:
-                printUsage(usage)
-        elif args[i] == "-s": # start date
+                exit(msg)
+        elif argv[i] == "-s": # start date
             try:
-                argd["-s"] = args[i + 1]
+                argd["-s"] = argv[i + 1]
             except:
-                printUsage(usage)
-        elif args[i] == "-e": # end date
+                exit(msg)
+        elif argv[i] == "-e": # end date
             try:
-                argd["-e"] = args[i + 1]
+                argd["-e"] = argv[i + 1]
             except:
-                printUsage(usage)
-        elif args[i] == "-t": # target path
+                exit(msg)
+        elif argv[i] == "-i": # index
             try:
-                argd["-t"] = args[i + 1]
+                argd["-i"] = argv[i + 1]
             except:
-                printUsage(usage)
+                exit(msg)
+        elif argv[i] == "-t": # target path
+            try:
+                argd["-t"] = argv[i + 1]
+            except:
+                exit(msg)
 
     return argd

@@ -55,7 +55,6 @@ class convert:
 
     def __makeDownloadedPath(self, tpath):
         """ Method which create a string of downloaded path """
-
         return path.join(tpath, "downloaded")
 
     def __makeTargetPath(self, tpath):
@@ -87,6 +86,9 @@ class convert:
 
         return archive.split('.')[-1] == "tif"
 
+    def __getBand(self, archive):
+        return archive.split('.')[-2]
+
     def __finishConvert(self, converting_path):
         """ This method read all archives in converted_path add than in
           " a dictionary, convert into a json text and push to redis
@@ -97,7 +99,7 @@ class convert:
             # read all files in converting_path
             listArchives = listdir(converting_path)
 
-            archDict = { "archives" : [] }
+            archDict = { "bands" : { } }
 
             """ move all archives in converting path to converted path
               " and apend into archDict
@@ -109,7 +111,13 @@ class convert:
                         shutil.move(path.join(converting_path, archive),
                                 path.join(self.target_path, archive))
 
-                        archDict["archives"].append(archive)
+                        band = self.__getBand(archive)
+
+                        try:
+                            archDict["bands"][band].append(archive)
+                        except KeyError:
+                            archDict["bands"][band] = []
+                            archDict["bands"][band].append(archive)
 
                     except IOError as msg:
                         print(" |-> Error: Was not possible to move %s" % msg)
@@ -140,7 +148,7 @@ class convert:
         self.__createPath(self.target_path)
 
         if not path.exists(self.downloaded_path):
-            exit(" |-> Error: Directory %s does " % downloaded_path \
+            exit(" |-> Error: Directory %s does " % self.downloaded_path \
                     + "not exist.")
 
         if self.archive_list != None:
@@ -148,11 +156,11 @@ class convert:
             if modis.exist:
                 # create the spectral to convert the image of all band
                 baseLayer = []
-                for i in range(modis.nBand):
+                for i in range(len(modis.layers)):
                     baseLayer.append('0')
 
                 baseStr = []
-                for i in range(modis.nBand):
+                for i in range(len(modis.layers)):
                     aux = list(baseLayer)
                     aux[i] = '1'
                     txt = "( "
