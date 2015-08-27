@@ -45,15 +45,15 @@ def main():
 
         pDown = Process(target=download, args=downParams)
         pDown.start()
-        pDown.join()
+#        pDown.join()
 
         pRepr = Process(target=reproject, args=repParams)
         pRepr.start()
-        pRepr.join()
+#        pRepr.join()
 
         pMos = Process(target=mosaic, args=mosParams)
         pMos.start()
-        pMos.join()
+#        pMos.join()
 
     else:
         exit(usage)

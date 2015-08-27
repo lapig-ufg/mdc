@@ -21,26 +21,19 @@ class Modis:
         self.layers = {}
 
         if name == "MOD09A1.005":
-            self.layers["500m Surface Reflectance Band 1 (620-670 nm)"] = \
-                    "-28672"
-            self.layers["500m Surface Reflectance Band 2 (841–876 nm)"] = \
-                    "-28672"
-            self.layers["500m Surface Reflectance Band 3 (459–479 nm)"] = \
-                    "-28672"
-            self.layers["500m Surface Reflectance Band 4 (545–565 nm)"] = \
-                    "-28672"
-            self.layers["500m Surface Reflectance Band 5 (1230–1250 nm)"] = \
-                    "-28672"
-            self.layers["500m Surface Reflectance Band 6 (1628–1652 nm)"] = \
-                    "-28672"
-            self.layers["500m Surface Reflectance Band 7 (2105–2155 nm)"] = \
-                    "-28672"
-            self.layers["500m Reflectance Band Quality"] = "4294967295"
-            self.layers["Solar Zenith Angle"] = "0"
-            self.layers["View Zenith Angle"] = "0"
-            self.layers["Relative Azimuth Angle"] = "0"
-            self.layers["500m State Flags"] = "65535"
-            self.layers["Day of Year"] = "65535"
+            self.layers["sur_refl_b01"] = "-28672"
+            self.layers["sur_refl_b02"] = "-28672"
+            self.layers["sur_refl_b03"] = "-28672"
+            self.layers["sur_refl_b04"] = "-28672"
+            self.layers["sur_refl_b05"] = "-28672"
+            self.layers["sur_refl_b06"] = "-28672"
+            self.layers["sur_refl_b07"] = "-28672"
+            self.layers["sur_refl_qc_500m"] = "4294967295"
+            self.layers["sur_refl_szen"] = "0"
+            self.layers["sur_refl_vzen"] = "0"
+            self.layers["sur_refl_raz"] = "0"
+            self.layers["sur_refl_state_500m"] = "65535"
+            self.layers["sur_refl_day_of_year"] = "65535"
 
         elif name == "MOD09CMG.005":
             self.layers["Coarse Resolution Surface Reflectance Band 1 " \
@@ -61,14 +54,14 @@ class Modis:
             self.layers["Coarse Resolution View Zenith Angle"] = "0"
             self.layers["Coarse Resolution Relative Azimuth Angle"] = "0"
             self.layers["Coarse Resolution Ozone"] = "0"
-            self.layers["Coarse Resolution Brightness Temperature Band 20"] = \
-                    + "0"
-            self.layers["Coarse Resolution Brightness Temperature Band 21"] = \
-                    + "0"
-            self.layers["Coarse Resolution Brightness Temperature Band 31"] = \
-                    + "0"
-            self.layers["Coarse Resolution Brightness Temperature Band 32"] = \
-                    + "0"
+            self.layers["Coarse Resolution Brightness Temperature Band " \
+                    + "20"] = "0"
+            self.layers["Coarse Resolution Brightness Temperature Band " \
+                    + "21"] = "0"
+            self.layers["Coarse Resolution Brightness Temperature Band " \
+                    + "31"] = "0"
+            self.layers["Coarse Resolution Brightness Temperature Band " \
+                    + "32"] = "0"
             self.layers["Coarse Resolution Granule Time"] = "0"
             self.layers["Coarse Resolution Band 3 Path Radiance"] = "-28672"
             self.layers["Coarse Resolution QA"] = "0"
@@ -78,42 +71,38 @@ class Modis:
 
         elif name == "MOD09GA.005":
             self.layers["num_observations_1km"] = "-1"
-            self.layers["State_1km"] = "65535"
-            self.layers["SensorZenith"] = "-32767"
-            self.layers["SensorAzimuth"] = "-32767"
-            self.layers["Range"] = "65535"
-            self.layers["SolarZenith"] = "-32767"
-            self.layers["SolarAzimuth"] = "-32767"
-            self.layers["gflags"] = "255"
-            self.layers["orbit_pnt"] = "-1"
+            self.layers["state_1km_1"] = "65535"
+            self.layers["SensorZenith_1"] = "-32767"
+            self.layers["SensorAzimuth_1"] = "-32767"
+            self.layers["Range_1"] = "65535"
+            self.layers["SolarZenith_1"] = "-32767"
+            self.layers["SolarAzimuth_1"] = "-32767"
+            self.layers["gflags_1"] = "255"
+            self.layers["orbit_pnt_1"] = "-1"
             self.layers["num_observations_500m"] = "-1"
-            self.layers["sur_refl_b01"] = "-28672"
-            self.layers["sur_refl_b02"] = "-28672"
-            self.layers["sur_refl_b03"] = "-28672"
-            self.layers["sur_refl_b04"] = "-28672"
-            self.layers["sur_refl_b05"] = "-28672"
-            self.layers["sur_refl_b06"] = "-28672"
-            self.layers["sur_refl_b07"] = "-28672"
-            self.layers["QC_500m"] = "787410671"
-            self.layers["Obs_cov_500m"] = "-1"
-            self.layers["iobs_res"] = "255"
-            self.layers["q_scan"] = "255"
+            self.layers["sur_refl_b01_1"] = "-28672"
+            self.layers["sur_refl_b02_2"] = "-28672"
+            self.layers["sur_refl_b03_3"] = "-28672"
+            self.layers["sur_refl_b04_4"] = "-28672"
+            self.layers["sur_refl_b05_5"] = "-28672"
+            self.layers["sur_refl_b06_6"] = "-28672"
+            self.layers["sur_refl_b07_7"] = "-28672"
+            self.layers["QC_500m_1"] = "787410671"
+            self.layers["obscov_500m_1"] = "-1"
+            self.layers["iobs_res_1"] = "255"
+            self.layers["q_scan_1"] = "255"
 
         elif name == "MOD09GQ.005":
             self.layers["num_observations"] = "-1"
-            self.layers["250m Surface Reflectance Band 1 (620-670 nm)"] = \
-                    + "-28672"
-            self.layers["250m Surface Reflectance Band 2 (841-876 nm)"] = \
-                    + "-28672"
-            self.layers["250m Reflectance Band Quality"] = "2995"
-            self.layers["obs_cov"] = "-1"
+            self.layers["sur_refl_b01_1"] = "-28672"
+            self.layers["sur_refl_b02_1"] = "-28672"
+            self.layers["QC_250m_1"] = "2995"
+            self.layers["obscov_1"] = "-1"
 
         elif name == "MOD09Q1.005":
-            self.layers["250m Surface Reflectance Band 1 (620–670 nm)"] = \
-                    + "-28672"
-            self.layers["250m Surface Reflectance Band 2 (841–876 nm)"] = \
-                    + "-28672"
-            self.layers["250m Reflectance Band Quality"] = "65535"
+            self.layers["sur_refl_b01"] = "-28672"
+            self.layers["sur_refl_b02"] = "-28672"
+            self.layers["sur_refl_qc_250m"] = "65535"
 
         elif name == "MOD11_L2.004" or name == "MOD11_L2.041":
             self.layers["Land Surface Temperature"] = "0"
@@ -260,8 +249,8 @@ class Modis:
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
             self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Days with clear-sky conditions and validated LSTs"] = \
-                    + "0"
+            self.layers["Days with clear-sky conditions and validated " \
+                    + "LSTs"] = "0"
             self.layers["Nighttime land surface temperature"] = "0"
             self.layers["Nighttime LSTE quality control"] = "0"
             self.layers["Nighttime LST view zenith angle"] = "255"
@@ -279,8 +268,8 @@ class Modis:
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
             self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Days with clear-sky conditions and validated LSTs"] = \
-                    + "0"
+            self.layers["Days with clear-sky conditions and validated " \
+                    + "LSTs"] = "0"
             self.layers["Nighttime land surface temperature"] = "0"
             self.layers["Nighttime LSTE quality control"] = "0"
             self.layers["Nighttime LST view zenith angle"] = "255"
@@ -299,8 +288,8 @@ class Modis:
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
             self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Days with clear-sky conditions and validated LSTs"] = \
-                    + "0"
+            self.layers["Days with clear-sky conditions and validated " \
+                    + "LSTs"] = "0"
             self.layers["Nighttime land surface temperature"] = "0"
             self.layers["Nighttime LSTE quality control"] = "0"
             self.layers["Nighttime LST observation time"] = "0"
@@ -319,8 +308,8 @@ class Modis:
             self.layers["Daytime LSTE quality control"] = None
             self.layers["Daytime LST observation time (UTC)"] = "255"
             self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Days with clear-sky conditions and validated LSTs"] = \
-                    + "0"
+            self.layers["Days with clear-sky conditions and validated " \
+                    + "LSTs"] = "0"
             self.layers["Nighttime land surface temperature"] = "0"
             self.layers["Nighttime LSTE quality control"] = None
             self.layers["Nighttime LST observation time (UTC)"] = "255"
@@ -378,171 +367,118 @@ class Modis:
             self.layers["1km monthly pixel reliability summary QA"] = "-1"
 
         elif name == "MOD13C1.005":
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "65535" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-10000" })
-
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "255" })
-
-            listLayers.append({ "fill" : "255" })
-
-            listLayers.append({ "fill" : "-1" })
+            self.layers["CMG 0.05 Deg 16 days NDVI"] = "-3000"
+            self.layers["CMG 0.05 Deg 16 days EVI"] = "-3000"
+            self.layers["CMG 0.05 Deg 16 days VI Quality"] = "65535"
+            self.layers["CMG 0.05 Deg 16 days red reflectance " \
+                    + "(Band 1)"] = "-1000"
+            self.layers["CMG 0.05 Deg 16 days NIR reflectance " \
+                    + "(Band 2)"] = "-1000"
+            self.layers["CMG 0.05 Deg 16 days blue reflectance " \
+                    + "(Band 3)"] = "-1000"
+            self.layers["CMG 0.05 Deg 16 days MIR reflectance " \
+                    + "(Band 7)"] = "-1000"
+            self.layers["CMG 0.05 Deg 16 days Avg sun zenith angle"] = "-10000"
+            self.layers["CMG 0.05 Deg 16 days NDVI std dev"] = "-3000"
+            self.layers["CMG 0.05 Deg 16 days EVI std dev"] = "-3000"
+            self.layers["CMG 0.05 Deg 16 days #1km pix used"] = "255"
+            self.layers["CMG 0.05 Deg 16 days #1km pix +-30deg VZ"] = "255"
+            self.layers["CMG 0.05 Deg 16 days pixel reliability"] = "-1"
 
         elif name == "MOD13C2.005":
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "65535" })
-
-            listlayers.append({ "fill" : "-1000" })
-
-            listlayers.append({ "fill" : "-1000" })
-
-            listlayers.append({ "fill" : "-1000" })
-
-            listlayers.append({ "fill" : "-1000" })
-
-            listlayers.append({ "fill" : "-10000" })
-
-            listlayers.append({ "fill" : "-3000" })
-
-            listlayers.append({ "fill" : "-3000" })
-
-            listlayers.append({ "fill" : "255" })
-
-            listlayers.append({ "fill" : "255" })
-
-            listlayers.append({ "fill" : "-1" })
+            self.layers["CMG 0.05 Deg Monthly NDVI"] = "-3000"
+            self.layers["CMG 0.05 Deg Monthly EVI"] = "-3000"
+            self.layers["CMG 0.05 Deg Monthly VI Quality"] = "65535"
+            self.layers["CMG 0.05 Deg Monthly red reflectance " \
+                    + "(Band 1)"] = "-1000"
+            self.layers["CMG 0.05 Deg Monthly NIR reflectance " \
+                    + "(Band 2)"] = "-1000"
+            self.layers["CMG 0.05 Deg Monthly blue reflectance " \
+                    + "(Band 3)"] = "-1000"
+            self.layers["CMG 0.05 Deg Monthly MIR reflectance " \
+                    + "(Band 7)"] = "-1000"
+            self.layers["CMG 0.05 Deg Monthly Avg sun zenith angle"] = "-1000"
+            self.layers["CMG 0.05 Deg Monthly NDVI std dev"] = "-3000"
+            self.layers["CMG 0.05 Deg Monthly EVI std dev"] = "-3000"
+            self.layers["CMG 0.05 Deg Monthly #1km pix used"] = "255"
+            self.layers["CMG 0.05 Deg Monthly #1km pix +-30deg VZ"] = "255"
+            self.layers["CMG 0.05 Deg Monthly pixel reliability"] = "-1"
 
         elif name == "MOD13Q1.005":
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "-3000" })
-
-            listLayers.append({ "fill" : "65535" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-1000" })
-
-            listLayers.append({ "fill" : "-10000" })
-
-            listLayers.append({ "fill" : "-10000" })
-
-            listLayers.append({ "fill" : "-4000" })
-
-            listLayers.append({ "fill" : "-1" })
-
-            listLayers.append({ "fill" : "-1" })
+            self.layers["250m 16 days NDVI"] = "-3000"
+            self.layers["250m 16 days EVI"] = "-3000"
+            self.layers["250m 16 days VI Quality detailed QA"] = "65535"
+            self.layers["250m 16 days red reflectance (Band 1)"] = "-1000"
+            self.layers["250m 16 days NIR reflectance (Band 2)"] = "-1000"
+            self.layers["250m 16 days blue reflectance (Band 3)"] = "-1000"
+            self.layers["250m 16 days MIR reflectance (Band 7)"] = "-1000"
+            self.layers["250m 16 days view zenith angle"] = "-10000"
+            self.layers["250m 16 days sun zenith angle"] = "-10000"
+            self.layers["250m 16 days relative azimuth angle"] = "-4000"
+            self.layers["250m 16 days composite day of the year"] = "-1"
+            self.layers["250m 16 days pixel reliability summary QA"] = "-1"
 
         elif name == "MOD14.005":
-            listLayers.append({ "fill" : "0" })
-
-            listLayers.append({ "fill" : "294967295" })
-
-            listLayers.append({ "fill" : None })
+            self.layers["Fire mask"] = "0"
+            self.layers["Algorithm QA"] = "294967295"
+            self.layers["Fire Pixel Table"] = None
 
         elif name == "MOD14A1.005":
-            listLayers.append({ "fill" : "0" })
-
-            listLayers.append({ "fill" : None })
-
-            listLayers.append({ "fill" : "0" })
-
-            listLayers.append({ "fill" : None })
-
-            listLayers.append({ "fill" : None })
+            self.layers["Fire mask"] = "0"
+            self.layers["QA"] = None
+            self.layers["MaxFRP: Maximum Fire Radiative Power"] = "0"
+            self.layers["Sample"] = None
+            self.layers["Fire Pixel Table"] = None
 
         elif name == "MOD14A2.005":
-            listLayers.append({ "fill" : "0" })
-
-            listLayers.append({ "fill" : None })
+            self.layers["Fire mask"] = "0"
+            self.layers["QA"] = None
 
         elif name == "MOD15A2.005":
-            listLayers.append({ "fill" : "249-255" })
-
-            listLayers.append({ "fill" : "249-255" })
-
-            listLayers.append({ "fill" : "255" })
-
-            listLayers.append({ "fill" : "255" })
-
-            listLayers.append({ "fill" : "248-255" })
-
-            listLayers.append({ "fill" : "248-255" })
+            self.layers["Fpar_1km"] = "249-255"
+            self.layers["Lai_1km"] = "249-255"
+            self.layers["FparLai_QC"] = "255"
+            self.layers["FparExtra_QC"] = "255"
+            self.layers["FparStdDev_1km"] = "248-255"
+            self.layers["LaiStdDev_1km"] = "248-255"
 
         elif name == "MOD17A2.005" or name == "MOD17A2.055":
-            listLayers.append({ "fill" : "32761-32767" })
-
-            listLayers.append({ "fill" : "32761-32767" })
-
-            listLayers.append({ "fill" : "255" })
+            self.layers["Gpp_1km: Gross Primary Production"] = "32761-32767"
+            self.layers["PsnNet_1km: Net Photosynthesis (GPP – " \
+                    + "maintenance respiration)"] = "32761-32767"
+            self.layers["PSN_QC_1km: QC for GPP/PSN"] = "255"
 
         elif name == "MOD17A3.055":
-            listLayers.append({ "fill" : "0–65500" })
-
-            listLayers.append({ "fill" : "65530–65535" })
-
-            listLayers.append({ "fill" : "255-250" })
+            self.layers["Gridded 1 Km Annual Gross Primary " \
+                    + "Productivity"] = "0–65500"
+            self.layers["Gridded 1 Km Annual Net Primary " \
+                    + "Productivity"] = "65530–65535"
+            self.layers["Gpp_Npp_QC_1km"] = "250-255"
 
         elif name == "MOD44A.004":
-            listLayers.append({ "fill" : "0" })
-
-            listLayers.append({ "fill" : "255" })
-
-            listLayers.append({ "fill" : "255" })
-
-            listLayers.append({ "fill" : "0" })
+            self.layers["Land Cover Change Metrics Past 1 Year"] = "0"
+            self.layers["Labeled Land Cover Change Past 1 Year"] = "255"
+            self.layers["Labeled Land Cover Change Past 1 Year QA"] = "255"
+            self.layers["Algorithm Path Past 1 Year"] = "0"
 
         elif name == "MOD44B.005":
-            listLayers.append({ "fill" : "253" })
-
-            listLayers.append({ "fill" : None })
-
-            listLayers.append({ "fill" : "-100" })
-
-            listLayers.append({ "fill" : None })
+            self.layers["Percent Tree Cover"] = "253"
+            self.layers["Quality"] = None
+            self.layers["Percent Tree Cover SD"] = "-100"
+            self.layers["Cloud"] = None
 
         elif name == "MOD44B.051":
-            listLayers.append({ "fill" : "253" })
-
-            listLayers.append({ "fill" : "253" })
-
-            listLayers.append({ "fill" : "253" })
-
-            listLayers.append({ "fill" : None })
-
-            listLayers.append({ "fill" : "-100" })
-
-            listLayers.append({ "fill" : "-100" })
-
-            listLayers.append({ "fill" : None })
+            self.layers["Percent Tree Cover"] = "253"
+            self.layers["Percent Non Tree Vegetation"] = "253"
+            self.layers["Percent Non Vegetated"] = "253"
+            self.layers["Quality"] = None
+            self.layers["Percent Tree Cover SD"] = "-100"
+            self.layers["Percent Non Vegetated SD"] = "-100"
+            self.layers["Cloud"] = None
 
         elif name == "MOD44W.005":
-            listLayers.append({ "fill" : "255" })
-
-            listLayers.append({ "fill" : "255" })
+            self.layers["Water Mask"] = "255"
+            self.layers["Water Mask QA"] = "255"
 
     def __generateModis(self):
         self.exist = True
