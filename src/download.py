@@ -31,49 +31,8 @@ def download(program, product, region, startDate, endDate,
             imgDownload.target = targetPath
 
         if imgDownload.run() == True:
-            print "--> Finish download module"
+            print "[DOWNLOAD MODULE]--> Finish download module"
         else:
-            print "--> Was not possible to make the download"
+            print "[DOWNLOAD MODULE]--> Was not possible to make the download"
 
         return True
-
-usage = """\
-Usage: %s [OPTIONS]
-    -d      name of satellite observation program
-    -p      product name
-    -r      download specifics tiles of this region
-    -s      start date of image that will be download
-    -e      end date of images that will be download
-    [-t]    path to directory where the files will be stored
-""" % argv[0]
-
-"""
-def main():
-    args_dict = mapDict(usage)
-
-    if "-d" not in args_dict or "-p" not in args_dict or "-s" not in args_dict \
-            or "-e" not in args_dict or "-r" not in args_dict:
-        exit(usage)
-    else:
-        if args_dict["-d"].upper() == "MODIS":
-            imgDownload = DownloadModis(product=args_dict["-p"],
-                    region=args_dict["-r"], start=args_dict["-s"],
-                    end=args_dict["-e"])
-        elif args_dict["-d"].upper() == "LANDSAT":
-            imgDownload = DownloadLandsat(product=args_dict["-p"],
-                    name=args_dict["-r"], start=args_dict["-s"],
-                    end=args_dict["-e"])
-        else:
-            printUsage()
-
-        if "-t" in args_dict:
-            imgDownload.target = args_dict["-t"]
-
-        if imgDownload.run() == True:
-            print "--> Finish download module"
-        else:
-            print "--> Was not possible to make the download"
-
-if __name__ == "__main__":
-    main()
-"""

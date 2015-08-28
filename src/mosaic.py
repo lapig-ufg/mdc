@@ -8,7 +8,6 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import json
-from sys import argv
 from time import sleep
 from common import mapDict
 from common import createDefaultPath
@@ -18,7 +17,7 @@ from dbServer import createConnection
 def mosaic(targetPath = createDefaultPath()):
     baseKey = "REPROJECT_*"
 
-    print("--> Start reading redis database...")
+    print("[MOSAIC MODULE]--> Start reading redis database...")
 
     while(True):
         conn = createConnection()
@@ -34,23 +33,23 @@ def mosaic(targetPath = createDefaultPath()):
                 # get the content of the first key
                 jsonTxt = conn.get(key)
             except:
-                exit(" |-> Problem with redis connection")
+                exit("[MOSAIC MODULE] |-> Problem with redis connection")
 
             try:
                 # delete the first key
                 conn.delete(key)
             except:
-                exit(" |-> Problem with redis connection")
+                exit("[MOSAIC MODULE] |-> Problem with redis connection")
 
             try:
                 # convert json text to python dictionary
                 archDict = json.loads(jsonTxt)
             except:
-                print(" |-> The value of key %s have a bad format" %
-                        key)
+                print("[MOSAIC MODULE] |-> The value of key %s have a bad " \
+                        + "format" % key)
 
         if archDict is not None:
-            print(" |-> Mosaic requisition founded...")
+            print("[MOSAIC MODULE] |-> Mosaic requisition founded...")
 
             keyAux = key.split('_')
             program = keyAux[1]
@@ -63,8 +62,8 @@ def mosaic(targetPath = createDefaultPath()):
                     endDate=endDate, default_path=targetPath)
 
             if mosaic.run():
-                print " |-> Finish mosaic conversation"
+                print "[MOSAIC MODULE] |-> Finish mosaic conversation"
             else:
-                print " |-> Impossible to create the mosaic"
+                print "[MOSAIC MODULE] |-> Impossible to create the mosaic"
 
         sleep(3)

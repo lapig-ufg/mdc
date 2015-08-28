@@ -78,8 +78,8 @@ class convert:
             try:
                 makedirs(tpath)
             except:
-                exit(" |-> Error: Directory %s does " % tpath \
-                        + "not exist and it is impossible to create")
+                exit("[REPROJECT MODULE] |-> Error: Directory %s does "
+                        % tpath + "not exist and it is impossible to create")
 
     def __isTif(self, archive):
         """ This method verify if archive have a tif extensin """
@@ -120,7 +120,8 @@ class convert:
                             archDict["bands"][band].append(archive)
 
                     except IOError as msg:
-                        print(" |-> Error: Was not possible to move %s" % msg)
+                        print("[REPROJECT MODULE] |-> Error: Was not " \
+                                + "possible to move %s" % msg)
 
             baseKey = "REPROJECT_MODIS_" + self.product.upper() + "_" \
                     + self.startDate + "_" + self.endDate
@@ -130,26 +131,26 @@ class convert:
             try:
                 self.conn.set(baseKey, jsonTxt)
             except:
-                print(" |-> Error: Problem with redis database connection...")
+                print("[REPROJECT MODULE] |-> Error: Problem with redis " \
+                        + "database connection...")
 
-
-            print(" |-> Finish convert process...")
+            print("[REPROJECT MODULE] |-> Finish convert process...")
         else:
-            exit(" |-> Error: Directory %s does " % converting_path \
-                    + "not exist")
+            exit("[REPROJECT MODULE] |-> Error: Directory %s does "
+                    % converting_path + "not exist")
 
     def run(self):
         """ This method read the hdf files in archive_list and convert
           " to tif format
           """
 
-        print("--> Start the reprojection...")
+        print("[REPROJECT MODULE]--> Start the reprojection...")
 
         self.__createPath(self.target_path)
 
         if not path.exists(self.downloaded_path):
-            exit(" |-> Error: Directory %s does " % self.downloaded_path \
-                    + "not exist.")
+            exit("[REPROJECT MODULE] |-> Error: Directory %s does "
+                    % self.downloaded_path + "not exist.")
 
         if self.archive_list != None:
             modis = Modis(self.product)
@@ -194,10 +195,15 @@ class convert:
 
                             modisCover.run()
                     else:
-                        exit(" |-> Error: %s does not exist" % archive_path)
+                        print("[REPROJECT MODULE] |-> Error: %s does not exist"
+                            % archive_path)
+                        exit(1)
 
                 self.__finishConvert(converting_path)
             else:
-                exit(" |-> Error: %s product does not supported" % self.product)
+                print("[REPROJECT MODULE] |-> Error: %s product does not " \
+                        + "supported" % self.product)
+                exit(1)
         else:
-            exit(" |-> Error: The archive list are empty")
+            print "[REPROJECT MODULE] |-> Error: The archive list are empty"
+            exit(1)

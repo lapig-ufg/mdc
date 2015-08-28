@@ -35,7 +35,7 @@ class Modis:
             self.layers["sur_refl_state_500m"] = "65535"
             self.layers["sur_refl_day_of_year"] = "65535"
 
-        elif name == "MOD09CMG.005":
+        elif name == "MOD09CMG.005": # Não aceita tiles
             self.layers["Coarse Resolution Surface Reflectance Band 1 " \
                     + "(620–670 nm)"] = "-28672"
             self.layers["Coarse Resolution Surface Reflectance Band 2 " \
@@ -104,7 +104,7 @@ class Modis:
             self.layers["sur_refl_b02"] = "-28672"
             self.layers["sur_refl_qc_250m"] = "65535"
 
-        elif name == "MOD11_L2.004" or name == "MOD11_L2.041":
+        elif name == "MOD11_L2.004" or name == "MOD11_L2.041": # não aceita tiles
             self.layers["Land Surface Temperature"] = "0"
             self.layers["Daytime LSTE QC"] = "0"
             self.layers["LST Error"] = "0"
@@ -115,7 +115,7 @@ class Modis:
             self.layers["Latitude (every 5 scan lines/pixels"] = "-999"
             self.layers["Longitude (every 5 scan lines/pixels"] = "-999"
 
-        elif name == "MOD11_L2.005":
+        elif name == "MOD11_L2.005": # não aceita tiles
             self.layers["Land Surface Temperature"] = "0"
             self.layers["Daytime LSTE QC"] = None
             self.layers["LST Error"] = "0"
@@ -127,32 +127,32 @@ class Modis:
             self.layers["Longitude (every 5 scan lines/pixels"] = "-999"
 
         elif name == "MOD11A1.004" or name == "MOD11A1.041":
-            self.layers["Daytime land surface temperature"] = "0"
-            self.layers["Daytime LSTE quality control"] = "0"
-            self.layers["Daytime LST observation time"] = "0"
-            self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Nighttime land surface temperature"] = "0"
-            self.layers["Nighttime LSTE quality control"] = "0"
-            self.layers["Nighttime LST observation time"] = "0"
-            self.layers["Nighttime LST view zenith angle"] = "255"
-            self.layers["Band 31 Emissivity"] = "0"
-            self.layers["Band 32 Emissivity"] = "0"
-            self.layers["Daytime clear-sky coverage"] = "0"
-            self.layers["Nighttime clear-sky coverage"] = "0"
+            self.layers["LST_Day_1km"] = "0"
+            self.layers["QC_Day"] = "0"
+            self.layers["Day_view_time"] = "0"
+            self.layers["Day_view_angl"] = "255"
+            self.layers["LST_Night_1km"] = "0"
+            self.layers["QC_Night"] = "0"
+            self.layers["Night_view_time"] = "0"
+            self.layers["Night_view_angl"] = "255"
+            self.layers["Emis_31"] = "0"
+            self.layers["Emis_32"] = "0"
+            self.layers["Clear_day_cov"] = "0"
+            self.layers["Clear_night_cov"] = "0"
 
         elif name == "MOD11A1.005":
-            self.layers["Daytime land surface temperature"] = "0"
-            self.layers["Daytime LSTE quality control"] = None
-            self.layers["Daytime LST observation time"] = "0"
-            self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Nighttime land surface temperature"] = "0"
-            self.layers["Nighttime LSTE quality control"] = None
-            self.layers["Nighttime LST observation time"] = "0"
-            self.layers["Nighttime LST view zenith angle"] = "255"
-            self.layers["Band 31 Emissivity"] = "0"
-            self.layers["Band 32 Emissivity"] = "0"
-            self.layers["Daytime clear-sky coverage"] = "0"
-            self.layers["Nighttime clear-sky coverage"] = "0"
+            self.layers["LST_Day_1km"] = "0"
+            self.layers["QC_Day"] = None
+            self.layers["Day_view_time"] = "0"
+            self.layers["Day_view_angl"] = "255"
+            self.layers["LST_Night_1km"] = "0"
+            self.layers["QC_Night"] = None
+            self.layers["Night_view_time"] = "0"
+            self.layers["Night_view_angl"] = "255"
+            self.layers["Emis_31"] = "0"
+            self.layers["Emis_32"] = "0"
+            self.layers["Clear_day_cov"] = "0"
+            self.layers["Clear_night_cov"] = "0"
 
         elif name == "MOD11A2.005":
             self.layers["LST_Day_1km"] = "0"
@@ -169,45 +169,45 @@ class Modis:
             self.layers["Clear_sky_nights"] = "0"
 
         elif name == "MOD11B1.004" or name == "MOD11B1.041":
-            self.layers["Daytime land surface temperature"] = "0"
-            self.layers["Daytime LSTE quality control"] = "0"
-            self.layers["Daytime LST observation time"] = "0"
-            self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Nighttime land surface temperature"] = "0"
-            self.layers["Nighttime LSTE quality control"] = "0"
-            self.layers["Nighttime LST observation time"] = "0"
-            self.layers["Nighttime LST view zenith angle"] = "255"
-            self.layers["Band 20 Emissivity"] = "0"
-            self.layers["Band 22 Emissivity"] = "0"
-            self.layers["Band 23 Emissivity"] = "0"
-            self.layers["Band 29 Emissivity"] = "0"
-            self.layers["Band 31 Emissivity"] = "0"
-            self.layers["Band 32 Emissivity"] = "0"
-            self.layers["Daytime 5-Km LST aggregated from 1-Km"] = "0"
-            self.layers["Nighttime 5-Km LST aggregated from 1-Km"] = "0"
-            self.layers["Quality control for retrieved emissivities"] = "0"
+            self.layers["LST_Day_5km"] = "0"
+            self.layers["QC_Day"] = "0"
+            self.layers["Day_view_time"] = "0"
+            self.layers["Day_view_angl"] = "255"
+            self.layers["LST_Night_5km"] = "0"
+            self.layers["QC_Night"] = "0"
+            self.layers["Night_view_time"] = "0"
+            self.layers["Night_view_angl"] = "255"
+            self.layers["Emis_20"] = "0"
+            self.layers["Emis_22"] = "0"
+            self.layers["Emis_23"] = "0"
+            self.layers["Emis_29"] = "0"
+            self.layers["Emis_31"] = "0"
+            self.layers["Emis_32"] = "0"
+            self.layers["LST_Day_5km_Aggregated_from_1km"] = "0"
+            self.layers["LST_Night_5km_Aggregated_from_1km"] = "0"
+            self.layers["QC_Emis"] = "0"
 
         elif name == "MOD11B1.005":
-            self.layers["Daytime land surface temperature"] = "0"
-            self.layers["Daytime LSTE quality control"] = None
-            self.layers["Daytime LST observation time"] = "255"
-            self.layers["Daytime LST view zenith angle"] = "255"
-            self.layers["Nighttime land surface temperature"] = "0"
-            self.layers["Nighttime LSTE quality control"] = None
-            self.layers["Nighttime LST observation time"] = "255"
-            self.layers["Nighttime LST view zenith angle"] = "255"
-            self.layers["Band 20 Emissivity"] = "0"
-            self.layers["Band 22 Emissivity"] = "0"
-            self.layers["Band 23 Emissivity"] = "0"
-            self.layers["Band 29 Emissivity"] = "0"
-            self.layers["Band 31 Emissivity"] = "0"
-            self.layers["Band 32 Emissivity"] = "0"
-            self.layers["Daytime 6-Km LST aggregated from 1-Km"] = "0"
-            self.layers["Nighttime 5-Km LST aggregated from 1-Km"] = "0"
-            self.layers["Quality control for retrieved emissivities"] = None
-            self.layers["Land percentage in the grid"] = "0"
+            self.layers["LST_Day_5km"] = "0"
+            self.layers["QC_Day"] = None
+            self.layers["Day_view_time"] = "255"
+            self.layers["Day_view_angl"] = "255"
+            self.layers["LST_Night_5km"] = "0"
+            self.layers["QC_Night"] = None
+            self.layers["Night_view_time"] = "255"
+            self.layers["Night_view_angl"] = "255"
+            self.layers["Emis_20"] = "0"
+            self.layers["Emis_22"] = "0"
+            self.layers["Emis_23"] = "0"
+            self.layers["Emis_29"] = "0"
+            self.layers["Emis_31"] = "0"
+            self.layers["Emis_32"] = "0"
+            self.layers["LST_Day_5km_Aggregated_from_1km"] = "0"
+            self.layers["LST_Night_5km_Aggregated_from_1km"] = "0"
+            self.layers["QC_Emis"] = None
+            self.layers["Percent_land_in_grid"] = "0"
 
-        elif name == "MOD11C1.004" or name == "MOD11C1.041":
+        elif name == "MOD11C1.004" or name == "MOD11C1.041": # não aceita tiles
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -226,7 +226,7 @@ class Modis:
             self.layers["Nighttime 5-Km LST aggregated from 1-Km"] = "0"
             self.layers["Quality control for retrieved emissivities"] = "0"
 
-        elif name == "MOD11C1.005":
+        elif name == "MOD11C1.005": # não aceita tiles
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = None
             self.layers["Daytime LST observation time (UTC)"] = "255"
@@ -244,7 +244,7 @@ class Modis:
             self.layers["Quality control for retrieved emissivities"] = None
             self.layers["Land percentage in the grid"] = "0"
 
-        elif name == "MOD11C2.004" or name == "MOD11C2.041":
+        elif name == "MOD11C2.004" or name == "MOD11C2.041": # não aceita tiles
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -263,7 +263,7 @@ class Modis:
             self.layers["Band 31 Emissivity"] = "0"
             self.layers["Band 32 Emissivity"] = "0"
 
-        elif name == "MOD11C2.005":
+        elif name == "MOD11C2.005": # não aceita tiles
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -283,7 +283,7 @@ class Modis:
             self.layers["Band 32 Emissivity"] = "0"
             self.layers["Land percentage in the grid"] = "0"
 
-        elif name == "MOD11C3.004" or name == "MOD11C3.041":
+        elif name == "MOD11C3.004" or name == "MOD11C3.041": # não aceita tiles
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -303,7 +303,7 @@ class Modis:
             self.layers["Band 31 Emissivity"] = "0"
             self.layers["Band 32 Emissivity"] = "0"
 
-        elif name ==" MOD11C3.005":
+        elif name ==" MOD11C3.005": # não aceita tiles
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = None
             self.layers["Daytime LST observation time (UTC)"] = "255"
@@ -326,18 +326,18 @@ class Modis:
             self.layers["Land percentage in the grid"] = 0
 
         elif name == "MOD13A1.005":
-            self.layers["500m 16 days NDVI"] = "-3000"
-            self.layers["500m 16 days EVI"] = "-3000"
-            self.layers["500m 16 days VI Quality detailed QA"] = "65535"
-            self.layers["500m 16 days red reflectance (Band 1)"] = "-1000"
-            self.layers["500m 16 days NIR reflectance (Band 2)"] = "-1000"
-            self.layers["500m 16 days blue reflectance (Band 3)"] = "-1000"
-            self.layers["500m 16 days MIR reflectance (Band 7)"] = "-1000"
-            self.layers["500m 16 days view zenith angle"] = "-10000"
-            self.layers["500m 16 days sun zenith angle"] = "-10000"
-            self.layers["500m 16 days relative azimuth angle"] = "-4000"
-            self.layers["500m 16 days composite day of the year"] = "-1"
-            self.layers["500m 16 days pixel reliability summary QA"] = "-1"
+            self.layers["500m_16_days_NDVI"] = "-3000"
+            self.layers["500m_16_days_EVI"] = "-3000"
+            self.layers["500m_16_days_VI_Quality"] = "65535"
+            self.layers["500m_16_days_red_reflectance"] = "-1000"
+            self.layers["500m_16_days_NIR_reflectance"] = "-1000"
+            self.layers["500m_16_days_blue_reflectance"] = "-1000"
+            self.layers["500m_16_days_MIR_reflectance"] = "-1000"
+            self.layers["500m_16_days_view_zenith_angle"] = "-10000"
+            self.layers["500m_16_days_sun_zenith_angle"] = "-10000"
+            self.layers["500m_16_days_relative_azimuth_angle"] = "-4000"
+            self.layers["500m_16_days_composite_day_of_the_year"] = "-1"
+            self.layers["500m_16_days_pixel_reliability"] = "-1"
 
         elif name == "MOD13A2.005":
             self.layers["1km 16 days NDVI"] = "-3000"

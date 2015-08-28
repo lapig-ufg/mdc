@@ -8,10 +8,12 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import subprocess
+import json
 from sys import exit
 from os import path
 from common import createPath
 from modis import Modis
+from dbServer import createConnection
 
 class MosaicImage:
     def __init__(self, program, product, bands_archive_list, startDate, endDate,
@@ -25,11 +27,29 @@ class MosaicImage:
         self.converted_path = self.__makeConvertedPath(default_path)
         self.target_path = self.__makeTargetPath(default_path)
 
+        # make a connection with redis server
+        self.conn = createConnection()
+
     def __makeConvertedPath(self, tpath):
         return path.join(tpath, "converted")
 
     def __makeTargetPath(self, tpath):
         return path.join(tpath, "mosaic")
+
+    def __finishMosaic(self, out_files):
+        baseKey = "MOSAIC_" + self.program.upper() + "_" \
+                + self.product.upper() + "_" + self.startDate \
+                + "_" + self.endDate
+
+        archDict = { "archives" : out_files }
+
+        jsonTxt = json.dumps(archDict)
+
+        try:
+            self.conn.set(baseKey, jsonTxt)
+        except:
+            print("[MOSAIC MODULE] |-> Error: Problem with redis database " \
+                    + "connection...")
 
     def run(self):
         if self.program and self.product and self.archive_list \
@@ -38,20 +58,22 @@ class MosaicImage:
             createPath(self.target_path)
 
             if not path.exists(self.converted_path):
-                exit(" |-> Error: Directory %s does " % self.converted_path \
-                        + "not exist.")
+                exit("[MOSAIC MODULE] |-> Error: Directory %s does "
+                        % self.converted_path + "not exist.")
 
             if self.program.upper() == "MODIS":
                 product = Modis(self.product)
 
 
             if product.exist:
+                out_files = []
+
                 for band in self.archive_list["bands"]:
                     filenames = []
 
                     file = self.program + "_" + self.product + "_" \
-                            + self.startDate + "_" + self.endDate + "_" + band \
-                            + ".tif"
+                            + self.startDate + "_" + self.endDate + "_" \
+                            + band + ".tif"
 
                     out_file = path.join(self.target_path, file)
 
@@ -72,8 +94,14 @@ class MosaicImage:
 
                         print " |-> Start mosaic of %s" % band
                         subprocess.call(args)
+
+                        out_files.append(file)
+
+                if len(out_files) > 0:
+                    self.__finishMosaic(out_files)
             else:
-                print " |-> Error: %s product does not supported" % self.product
+                print "[MOSAIC MODULE] |-> Error: %s product does not " \
+                        + "supported" % self.product
                 return False
         else:
             return False
