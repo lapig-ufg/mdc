@@ -86,6 +86,8 @@ class MosaicImage:
                     if band in product.layers:
                         args = ["gdal_merge.py"]
 
+                        # encontrar uma forma de utilizar uma range
+                        # de fill
                         if product.layers[band] is not None:
                             args += ["-n", product.layers[band]]
 

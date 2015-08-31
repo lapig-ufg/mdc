@@ -340,33 +340,33 @@ class Modis:
             self.layers["500m_16_days_pixel_reliability"] = "-1"
 
         elif name == "MOD13A2.005":
-            self.layers["1km 16 days NDVI"] = "-3000"
-            self.layers["1km 16 days EVI"] = "-3000"
-            self.layers["1km 16 days VI Quality detailed QA"] = "65535"
-            self.layers["1km 16 days red reflectance (Band 1)"] = "-1000"
-            self.layers["1km 16 days NIR reflectance (Band 2)"] = "-1000"
-            self.layers["1km 16 days blue reflectance (Band 3)"] = "-1000"
-            self.layers["1km 16 days MIR reflectance (Band 7)"] = "-1000"
-            self.layers["1km 16 days view zenith angle"] = "-10000"
-            self.layers["1km 16 days sun zenith angle"] = "-10000"
-            self.layers["1km 16 days relative azimuth angle"] = "-4000"
-            self.layers["1km 16 days composite day of the year"] = "-1"
-            self.layers["1km 16 days pixel reliability summary QA"] = "-1"
+            self.layers["1_km_16_days_NDVI"] = "-3000"
+            self.layers["1_km_16_days_EVI"] = "-3000"
+            self.layers["1_km_16_days_VI_Quality"] = "65535"
+            self.layers["1_km_16_days_red_reflectance"] = "-1000"
+            self.layers["1_km_16_days_NIR_reflectance"] = "-1000"
+            self.layers["1_km_16_days_blue_reflectance"] = "-1000"
+            self.layers["1_km_16_days_MIR_reflectance"] = "-1000"
+            self.layers["1_km_16_days_view_zenith_angle"] = "-10000"
+            self.layers["1_km_16_days_sun_zenith_angle"] = "-10000"
+            self.layers["1_km_16_days_relative_azimuth_angle"] = "-4000"
+            self.layers["1_km_16_days_composite_day_of_the_year"] = "-1"
+            self.layers["1_km_16_days_pixel_reliability"] = "-1"
 
-        elif name == "MOD13A3":
-            self.layers["1km monthly NDVI"] = "-3000"
-            self.layers["1km monthly EVI"] = "-3000"
-            self.layers["1km monthly VI Quality detailed QA"] = "65535"
-            self.layers["1km monthly red reflectance (Band 1)"] = "-1000"
-            self.layers["1km monthly NIR reflectance (Band 2)"] = "-1000"
-            self.layers["1km monthly blue reflectance (Band 3)"] = "-1000"
-            self.layers["1km monthly MIR reflectance (Band 7)"] = "-1000"
-            self.layers["1km monthly view zenith angle"] = "-10000"
-            self.layers["1km monthly sun zenith angle"] = "-10000"
-            self.layers["1km monthly relative azimuth angle"] = "-4000"
-            self.layers["1km monthly pixel reliability summary QA"] = "-1"
+        elif name == "MOD13A3.005":
+            self.layers["1_km_monthly_NDVI"] = "-3000"
+            self.layers["1_km_monthly_EVI"] = "-3000"
+            self.layers["1_km_monthly_VI_Quality"] = "65535"
+            self.layers["1_km_monthly_red_reflectance"] = "-1000"
+            self.layers["1_km_monthly_NIR_reflectance"] = "-1000"
+            self.layers["1_km_monthly_blue_reflectance"] = "-1000"
+            self.layers["1_km_monthly_MIR_reflectance"] = "-1000"
+            self.layers["1_km_monthly_view_zenith_angle"] = "-10000"
+            self.layers["1_km_monthly_sun_zenith_angle"] = "-10000"
+            self.layers["1_km_monthly_relative_azimuth_angle"] = "-4000"
+            self.layers["1_km_monthly_pixel_raliability"] = "-1"
 
-        elif name == "MOD13C1.005":
+        elif name == "MOD13C1.005": # não aceita tiles
             self.layers["CMG 0.05 Deg 16 days NDVI"] = "-3000"
             self.layers["CMG 0.05 Deg 16 days EVI"] = "-3000"
             self.layers["CMG 0.05 Deg 16 days VI Quality"] = "65535"
@@ -385,7 +385,7 @@ class Modis:
             self.layers["CMG 0.05 Deg 16 days #1km pix +-30deg VZ"] = "255"
             self.layers["CMG 0.05 Deg 16 days pixel reliability"] = "-1"
 
-        elif name == "MOD13C2.005":
+        elif name == "MOD13C2.005": # não aceita tiles
             self.layers["CMG 0.05 Deg Monthly NDVI"] = "-3000"
             self.layers["CMG 0.05 Deg Monthly EVI"] = "-3000"
             self.layers["CMG 0.05 Deg Monthly VI Quality"] = "65535"
@@ -405,33 +405,33 @@ class Modis:
             self.layers["CMG 0.05 Deg Monthly pixel reliability"] = "-1"
 
         elif name == "MOD13Q1.005":
-            self.layers["250m 16 days NDVI"] = "-3000"
-            self.layers["250m 16 days EVI"] = "-3000"
-            self.layers["250m 16 days VI Quality detailed QA"] = "65535"
-            self.layers["250m 16 days red reflectance (Band 1)"] = "-1000"
-            self.layers["250m 16 days NIR reflectance (Band 2)"] = "-1000"
-            self.layers["250m 16 days blue reflectance (Band 3)"] = "-1000"
-            self.layers["250m 16 days MIR reflectance (Band 7)"] = "-1000"
-            self.layers["250m 16 days view zenith angle"] = "-10000"
-            self.layers["250m 16 days sun zenith angle"] = "-10000"
-            self.layers["250m 16 days relative azimuth angle"] = "-4000"
-            self.layers["250m 16 days composite day of the year"] = "-1"
-            self.layers["250m 16 days pixel reliability summary QA"] = "-1"
+            self.layers["250m_16_days_NDVI"] = "-3000"
+            self.layers["250m_16_days_EVI"] = "-3000"
+            self.layers["250m_16_days_VI_Quality"] = "65535"
+            self.layers["250m_16_days_red_reflectance"] = "-1000"
+            self.layers["250m_16_days_NIR_reflectance"] = "-1000"
+            self.layers["250m_16_days_blue_reflectance"] = "-1000"
+            self.layers["250m_16_days_MIR_reflectance"] = "-1000"
+            self.layers["250m_16_days_view_zenith_angle"] = "-10000"
+            self.layers["250m_16_days_sun_zenith_angle"] = "-10000"
+            self.layers["250m_16_days_relative_azimuth_angle"] = "-4000"
+            self.layers["250m_16_days_composite_day_of_the_year"] = "-1"
+            self.layers["250m_16_days_pixel_reliability"] = "-1"
 
-        elif name == "MOD14.005":
+        elif name == "MOD14.005": # problemas com os tiles
             self.layers["Fire mask"] = "0"
             self.layers["Algorithm QA"] = "294967295"
             self.layers["Fire Pixel Table"] = None
 
         elif name == "MOD14A1.005":
-            self.layers["Fire mask"] = "0"
-            self.layers["QA"] = None
-            self.layers["MaxFRP: Maximum Fire Radiative Power"] = "0"
-            self.layers["Sample"] = None
-            self.layers["Fire Pixel Table"] = None
+            self.layers["Number_of_Days_01"] = "0"
+            self.layers["Number_of_Days_02"] = None
+            self.layers["Number_of_Days_03"] = "0"
+            self.layers["Number_of_Days_04"] = None
+            self.layers["Number_of_Days_05"] = None
 
         elif name == "MOD14A2.005":
-            self.layers["Fire mask"] = "0"
+            self.layers["FireMask"] = "0"
             self.layers["QA"] = None
 
         elif name == "MOD15A2.005":
@@ -439,7 +439,7 @@ class Modis:
             self.layers["Lai_1km"] = "249-255"
             self.layers["FparLai_QC"] = "255"
             self.layers["FparExtra_QC"] = "255"
-            self.layers["FparStdDev_1km"] = "248-255"
+            self.layers["FparStdDev_1k"] = "248-255"
             self.layers["LaiStdDev_1km"] = "248-255"
 
         elif name == "MOD17A2.005" or name == "MOD17A2.055":
@@ -645,7 +645,7 @@ class Modis:
                     "%Y-%m-%d")
             self.endDateProgram = None
 
-        elif self.product.upper() == "MOD13A3":
+        elif self.product.upper() == "MOD13A3.005":
             self.temporalColect = 30
             self.initDateProgram = datetime.datetime.strptime("2000-02-18",
                     "%Y-%m-%d")

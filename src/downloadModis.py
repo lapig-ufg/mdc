@@ -121,8 +121,8 @@ class DownloadModis:
         try:
             return datetime.datetime.strptime(strDate, "%Y-%m-%d")
         except:
-            exit("[DOWNLOAD MODULE] |-> Error: '%s' have a wrong date " \
-                    + "format, use YYYY-MM-DD" % strDate)
+            exit("[DOWNLOAD MODULE] |-> Error: '%s' have a " % strDate \
+                    + "wrong date format, use YYYY-MM-DD")
 
     def run(self):
         """ Method which run download of modis data """
