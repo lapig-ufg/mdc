@@ -55,7 +55,6 @@ class convert:
 
     def __makeDownloadedPath(self, tpath):
         """ Method which create a string of downloaded path """
-
         return path.join(tpath, "downloaded")
 
     def __makeTargetPath(self, tpath):
@@ -79,13 +78,16 @@ class convert:
             try:
                 makedirs(tpath)
             except:
-                exit(" |-> Error: Directory %s does " % tpath \
-                        + "not exist and it is impossible to create")
+                exit("[REPROJECT MODULE] |-> Error: Directory %s does "
+                        % tpath + "not exist and it is impossible to create")
 
     def __isTif(self, archive):
         """ This method verify if archive have a tif extensin """
 
         return archive.split('.')[-1] == "tif"
+
+    def __getBand(self, archive):
+        return archive.split('.')[-2]
 
     def __finishConvert(self, converting_path):
         """ This method read all archives in converted_path add than in
@@ -97,7 +99,7 @@ class convert:
             # read all files in converting_path
             listArchives = listdir(converting_path)
 
-            archDict = { "archives" : [] }
+            archDict = { "bands" : { } }
 
             """ move all archives in converting path to converted path
               " and apend into archDict
@@ -109,10 +111,17 @@ class convert:
                         shutil.move(path.join(converting_path, archive),
                                 path.join(self.target_path, archive))
 
-                        archDict["archives"].append(archive)
+                        band = self.__getBand(archive)
+
+                        try:
+                            archDict["bands"][band].append(archive)
+                        except KeyError:
+                            archDict["bands"][band] = []
+                            archDict["bands"][band].append(archive)
 
                     except IOError as msg:
-                        print(" |-> Error: Was not possible to move %s" % msg)
+                        print("[REPROJECT MODULE] |-> Error: Was not " \
+                                + "possible to move %s" % msg)
 
             baseKey = "REPROJECT_MODIS_" + self.product.upper() + "_" \
                     + self.startDate + "_" + self.endDate
@@ -122,37 +131,37 @@ class convert:
             try:
                 self.conn.set(baseKey, jsonTxt)
             except:
-                print(" |-> Error: Problem with redis database connection...")
+                print("[REPROJECT MODULE] |-> Error: Problem with redis " \
+                        + "database connection...")
 
-
-            print(" |-> Finish convert process...")
+            print("[REPROJECT MODULE] |-> Finish convert process...")
         else:
-            exit(" |-> Error: Directory %s does " % converting_path \
-                    + "not exist")
+            exit("[REPROJECT MODULE] |-> Error: Directory %s does "
+                    % converting_path + "not exist")
 
     def run(self):
         """ This method read the hdf files in archive_list and convert
           " to tif format
           """
 
-        print("--> Start the reprojection...")
+        print("[REPROJECT MODULE]--> Start the reprojection...")
 
         self.__createPath(self.target_path)
 
         if not path.exists(self.downloaded_path):
-            exit(" |-> Error: Directory %s does " % downloaded_path \
-                    + "not exist.")
+            exit("[REPROJECT MODULE] |-> Error: Directory %s does "
+                    % self.downloaded_path + "not exist.")
 
         if self.archive_list != None:
             modis = Modis(self.product)
             if modis.exist:
                 # create the spectral to convert the image of all band
                 baseLayer = []
-                for i in range(modis.nBand):
+                for i in range(len(modis.layers)):
                     baseLayer.append('0')
 
                 baseStr = []
-                for i in range(modis.nBand):
+                for i in range(len(modis.layers)):
                     aux = list(baseLayer)
                     aux[i] = '1'
                     txt = "( "
@@ -186,10 +195,15 @@ class convert:
 
                             modisCover.run()
                     else:
-                        exit(" |-> Error: %s does not exist" % archive_path)
+                        print("[REPROJECT MODULE] |-> Error: %s does not exist"
+                            % archive_path)
+                        exit(1)
 
                 self.__finishConvert(converting_path)
             else:
-                exit(" |-> Error: %s product does not supported" % self.product)
+                print("[REPROJECT MODULE] |-> Error: %s product does not " \
+                        + "supported" % self.product)
+                exit(1)
         else:
-            exit(" |-> Error: The archive list are empty")
+            print "[REPROJECT MODULE] |-> Error: The archive list are empty"
+            exit(1)
