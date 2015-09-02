@@ -17,7 +17,6 @@ from dbServer import createConnection
 class ClipImage:
     def __init__(self, program, product, archives_list, startDate, endDate,
             region, default_path):
-
         self.program = program
         self.product = product
         self.archives_list = archives_list
@@ -61,11 +60,11 @@ class ClipImage:
             createPath(self.target_path)
 
             if not path.exists(self.mosaic_path):
-                exit("[CLIP MODULE] |-> Error: Directory %s does "
+                exit("[CLIP MODULE     ] |-> Error: Directory %s does "
                     % self.mosaic_path + "not exist")
 
             if not path.exists(self.shapefiles_path):
-                exit("[CLIP MODULE] |-> Error: Directory %s does "
+                exit("[CLIP MODULE     ] |-> Error: Directory %s does "
                     % self.shapefiles_path + "not exist")
 
             if self.program.upper() == "MODIS":
@@ -88,10 +87,13 @@ class ClipImage:
                                     in_path, out_file]
 
                             subprocess.call(args)
+                    else:
+                        print("[CLIP MODULE     ] |-> Error: %s shapefile does"
+                                % (region + ".shp") + " not exist")
                 else:
-                    print("[CLIP MODULE] |-> Error: %s path does not exist"
+                    print("[CLIP MODULE     ] |-> Error: %s path does not exist"
                             % self.shapefiles_path)
             else:
-                print("[CLIP MODULE] |-> Error: %s product does not "
+                print("[CLIP MODULE     ] |-> Error: %s product does not "
                     % self.product + "supported")
                 return False

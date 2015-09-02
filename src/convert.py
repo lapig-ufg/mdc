@@ -200,6 +200,8 @@ class convert:
                         exit(1)
 
                 self.__finishConvert(converting_path)
+
+                return True
             else:
                 print("[REPROJECT MODULE] |-> Error: %s product does not " \
                         + "supported" % self.product)

@@ -13,6 +13,7 @@ from common import mapDict
 from download import download
 from reproject import reproject
 from mosaic import mosaic
+from clip import clip
 
 usage = """\
 Usage: %s [OPTIONS]
@@ -38,10 +39,13 @@ def main():
 
         mosParams = []
 
+        clipParams = [argDict["-r"]]
+
         if "-t" in argDict:
             downParams.append(argDict["-t"])
             repParams.append(argDict["-t"])
             mosParams.append(argDict["-t"])
+            clipParams.append(argDict["-t"])
 
         pDown = Process(target=download, args=downParams)
         pDown.start()
@@ -54,6 +58,9 @@ def main():
         pMos = Process(target=mosaic, args=mosParams)
         pMos.start()
 #        pMos.join()
+
+        pCli = Process(target=clip, args=clipParams)
+        pCli.start()
 
     else:
         exit(usage)

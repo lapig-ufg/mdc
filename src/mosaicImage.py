@@ -48,7 +48,7 @@ class MosaicImage:
         try:
             self.conn.set(baseKey, jsonTxt)
         except:
-            print("[MOSAIC MODULE] |-> Error: Problem with redis database " \
+            print("[MOSAIC MODULE   ] |-> Error: Problem with redis database " \
                     + "connection...")
 
     def run(self):
@@ -58,7 +58,7 @@ class MosaicImage:
             createPath(self.target_path)
 
             if not path.exists(self.converted_path):
-                exit("[MOSAIC MODULE] |-> Error: Directory %s does "
+                exit("[MOSAIC MODULE   ] |-> Error: Directory %s does "
                         % self.converted_path + "not exist.")
 
             if self.program.upper() == "MODIS":
@@ -94,7 +94,7 @@ class MosaicImage:
                         args += ["-o", out_file]
                         args += filenames
 
-                        print " |-> Start mosaic of %s" % band
+                        print "[MOSAIC MODULE   ] |-> Start mosaic of %s" % band
                         subprocess.call(args)
 
                         out_files.append([band, file])
@@ -102,7 +102,7 @@ class MosaicImage:
                 if len(out_files) > 0:
                     self.__finishMosaic(out_files)
             else:
-                print "[MOSAIC MODULE] |-> Error: %s product does not " \
+                print "[MOSAIC MODULE   ] |-> Error: %s product does not " \
                         + "supported" % self.product
                 return False
         else:

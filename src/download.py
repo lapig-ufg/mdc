@@ -31,8 +31,8 @@ def download(program, product, region, startDate, endDate,
             imgDownload.target = targetPath
 
         if imgDownload.run() == True:
-            print "[DOWNLOAD MODULE]--> Finish download module"
+            print "[DOWNLOAD MODULE ]--> Finish download module"
         else:
-            print "[DOWNLOAD MODULE]--> Was not possible to make the download"
+            print "[DOWNLOAD MODULE ]--> Was not possible to make the download"
 
         return True
