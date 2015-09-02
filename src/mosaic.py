@@ -9,7 +9,6 @@
 # ------------------------------------------
 import json
 from time import sleep
-from common import mapDict
 from common import createDefaultPath
 from mosaicImage import MosaicImage
 from dbServer import createConnection
@@ -17,9 +16,9 @@ from dbServer import createConnection
 def mosaic(targetPath = createDefaultPath()):
     baseKey = "REPROJECT_*"
 
-    print("[MOSAIC MODULE]--> Start reading redis database...")
+    print("[MOSAIC MODULE]-----> Start reading redis database...")
 
-    while(True):
+    while True:
         conn = createConnection()
 
         lKeys = conn.keys(pattern = baseKey)
@@ -45,8 +44,8 @@ def mosaic(targetPath = createDefaultPath()):
                 # convert json text to python dictionary
                 archDict = json.loads(jsonTxt)
             except:
-                print("[MOSAIC MODULE] |-> The value of key %s have a bad " \
-                        + "format" % key)
+                print("[MOSAIC MODULE] |-> The value of key %s" % key \
+                        + " have a bad format")
 
         if archDict is not None:
             print("[MOSAIC MODULE] |-> Mosaic requisition founded...")

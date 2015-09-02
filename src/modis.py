@@ -19,6 +19,7 @@ class Modis:
 
     def __createLayers(self, name):
         self.layers = {}
+        self.no_tiles = False
 
         if name == "MOD09A1.005":
             self.layers["sur_refl_b01"] = "-28672"
@@ -36,6 +37,8 @@ class Modis:
             self.layers["sur_refl_day_of_year"] = "65535"
 
         elif name == "MOD09CMG.005": # Não aceita tiles
+            self.no_tiles = True
+
             self.layers["Coarse Resolution Surface Reflectance Band 1 " \
                     + "(620–670 nm)"] = "-28672"
             self.layers["Coarse Resolution Surface Reflectance Band 2 " \
@@ -105,6 +108,8 @@ class Modis:
             self.layers["sur_refl_qc_250m"] = "65535"
 
         elif name == "MOD11_L2.004" or name == "MOD11_L2.041": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Land Surface Temperature"] = "0"
             self.layers["Daytime LSTE QC"] = "0"
             self.layers["LST Error"] = "0"
@@ -116,6 +121,8 @@ class Modis:
             self.layers["Longitude (every 5 scan lines/pixels"] = "-999"
 
         elif name == "MOD11_L2.005": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Land Surface Temperature"] = "0"
             self.layers["Daytime LSTE QC"] = None
             self.layers["LST Error"] = "0"
@@ -208,6 +215,8 @@ class Modis:
             self.layers["Percent_land_in_grid"] = "0"
 
         elif name == "MOD11C1.004" or name == "MOD11C1.041": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -227,6 +236,8 @@ class Modis:
             self.layers["Quality control for retrieved emissivities"] = "0"
 
         elif name == "MOD11C1.005": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = None
             self.layers["Daytime LST observation time (UTC)"] = "255"
@@ -245,6 +256,8 @@ class Modis:
             self.layers["Land percentage in the grid"] = "0"
 
         elif name == "MOD11C2.004" or name == "MOD11C2.041": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -264,6 +277,8 @@ class Modis:
             self.layers["Band 32 Emissivity"] = "0"
 
         elif name == "MOD11C2.005": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -284,6 +299,8 @@ class Modis:
             self.layers["Land percentage in the grid"] = "0"
 
         elif name == "MOD11C3.004" or name == "MOD11C3.041": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = "0"
             self.layers["Daytime LST observation time (UTC)"] = "0"
@@ -304,6 +321,8 @@ class Modis:
             self.layers["Band 32 Emissivity"] = "0"
 
         elif name ==" MOD11C3.005": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["Daytime land surface temperature"] = "0"
             self.layers["Daytime LSTE quality control"] = None
             self.layers["Daytime LST observation time (UTC)"] = "255"
@@ -367,6 +386,8 @@ class Modis:
             self.layers["1_km_monthly_pixel_raliability"] = "-1"
 
         elif name == "MOD13C1.005": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["CMG 0.05 Deg 16 days NDVI"] = "-3000"
             self.layers["CMG 0.05 Deg 16 days EVI"] = "-3000"
             self.layers["CMG 0.05 Deg 16 days VI Quality"] = "65535"
@@ -386,6 +407,8 @@ class Modis:
             self.layers["CMG 0.05 Deg 16 days pixel reliability"] = "-1"
 
         elif name == "MOD13C2.005": # não aceita tiles
+            self.no_tiles = True
+
             self.layers["CMG 0.05 Deg Monthly NDVI"] = "-3000"
             self.layers["CMG 0.05 Deg Monthly EVI"] = "-3000"
             self.layers["CMG 0.05 Deg Monthly VI Quality"] = "65535"
@@ -419,6 +442,8 @@ class Modis:
             self.layers["250m_16_days_pixel_reliability"] = "-1"
 
         elif name == "MOD14.005": # problemas com os tiles
+            self.no_tiles = True
+
             self.layers["Fire mask"] = "0"
             self.layers["Algorithm QA"] = "294967295"
             self.layers["Fire Pixel Table"] = None
@@ -443,42 +468,39 @@ class Modis:
             self.layers["LaiStdDev_1km"] = "248-255"
 
         elif name == "MOD17A2.005" or name == "MOD17A2.055":
-            self.layers["Gpp_1km: Gross Primary Production"] = "32761-32767"
-            self.layers["PsnNet_1km: Net Photosynthesis (GPP – " \
-                    + "maintenance respiration)"] = "32761-32767"
-            self.layers["PSN_QC_1km: QC for GPP/PSN"] = "255"
+            self.layers["Gpp_1km"] = "32761-32767"
+            self.layers["PsnNet_1km"] = "32761-32767"
+            self.layers["Psn_QC_1km"] = "255"
 
         elif name == "MOD17A3.055":
-            self.layers["Gridded 1 Km Annual Gross Primary " \
-                    + "Productivity"] = "0–65500"
-            self.layers["Gridded 1 Km Annual Net Primary " \
-                    + "Productivity"] = "65530–65535"
+            self.layers["Gpp_1km"] = "0–65500"
+            self.layers["Npp_1km"] = "65530–65535"
             self.layers["Gpp_Npp_QC_1km"] = "250-255"
 
         elif name == "MOD44A.004":
-            self.layers["Land Cover Change Metrics Past 1 Year"] = "0"
-            self.layers["Labeled Land Cover Change Past 1 Year"] = "255"
-            self.layers["Labeled Land Cover Change Past 1 Year QA"] = "255"
-            self.layers["Algorithm Path Past 1 Year"] = "0"
+            self.layers["Metrics_01"] = "0"
+            self.layers["Metrics_02"] = "255"
+            self.layers["Metrics_03"] = "255"
+            self.layers["Metrics_04"] = "0"
 
         elif name == "MOD44B.005":
-            self.layers["Percent Tree Cover"] = "253"
+            self.layers["Percent_Tree_Cover"] = "253"
             self.layers["Quality"] = None
-            self.layers["Percent Tree Cover SD"] = "-100"
+            self.layers["Percent_Tree_Cover_SD"] = "-100"
             self.layers["Cloud"] = None
 
         elif name == "MOD44B.051":
-            self.layers["Percent Tree Cover"] = "253"
-            self.layers["Percent Non Tree Vegetation"] = "253"
-            self.layers["Percent Non Vegetated"] = "253"
+            self.layers["Percent_Tree_Cover"] = "253"
+            self.layers["Percent_NonTree_Vegetation"] = "253"
+            self.layers["Percent_NonVegetated"] = "253"
             self.layers["Quality"] = None
-            self.layers["Percent Tree Cover SD"] = "-100"
-            self.layers["Percent Non Vegetated SD"] = "-100"
+            self.layers["Percent_Tree_Cover_SD"] = "-100"
+            self.layers["Percent_NonVegetated_SD"] = "-100"
             self.layers["Cloud"] = None
 
         elif name == "MOD44W.005":
-            self.layers["Water Mask"] = "255"
-            self.layers["Water Mask QA"] = "255"
+            self.layers["water_mask"] = "255"
+            self.layers["water_mask_QA"] = "255"
 
     def __generateModis(self):
         self.exist = True
@@ -707,17 +729,17 @@ class Modis:
                     "%Y-%m-%d")
 
         elif self.product.upper() == "MOD44A.004":
-            self.temporalColect = 365
+            self.temporalColect = 96
             self.initDateProgram = datetime.datetime.strptime("2002-01-01",
                     "%Y-%m-%d")
-            self.endDateProgram = datetime.datetime.strptime("2002-12-31",
+            self.endDateProgram = datetime.datetime.strptime("2002-10-16",
                     "%Y-%m-%d")
 
         elif self.product.upper() == "MOD44B.005":
             self.temporalColect = 365
-            self.initDateProgram = datetime.datetime.strptime("2000-01-01",
+            self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                     "%Y-%m-%d")
-            self.endDateProgram = datetime.datetime.strptime("2010-12-31",
+            self.endDateProgram = datetime.datetime.strptime("2010-03-06",
                     "%Y-%m-%d")
 
         elif self.product.upper() == "MOD44B.051":
@@ -728,10 +750,11 @@ class Modis:
                     "%Y-%m-%d")
 
         elif self.product.upper() == "MOD44W.005":
-            self.temporalColect = 365
-            self.initDateProgram = None
-            self.endDateProgram = None
-
+            self.temporalColect = 1
+            self.initDateProgram = datetime.datetime.strptime("2000-02-24",
+                    "%Y-%m-%d")
+            self.endDateProgram = datetime.datetime.strptime("2000-02-25",
+                    "%Y-%m-%d")
         else:
             self.temporalColect = None
             self.initDateProgram = None

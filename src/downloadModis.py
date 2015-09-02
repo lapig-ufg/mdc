@@ -189,13 +189,25 @@ class DownloadModis:
                     print "[DOWNLOAD MODULE] |-> Preparing download " \
                             + "data between " + date["start"] + " and " + date["end"] + "..."
 
-                    # create a download modis object
-                    modisObj = downmodis.downModis(
-                            url="http://e4ftl01.cr.usgs.gov", user="anonymous",
-                            password=None, path="MOLT", delta=10, timeout=30,
-                            destinationFolder=down_path, jpg=False, debug=False,
-                            tiles=self.region.printIds(), today=date["start"],
-                            enddate=date["end"], product=self.product)
+                    if modis.no_tiles:
+                        # create a download modis object
+                        modisObj = downmodis.downModis(
+                                url="http://e4ftl01.cr.usgs.gov",
+                                user="anonymous", password=None, path="MOLT",
+                                delta=10, timeout=30,
+                                destinationFolder=down_path, jpg=False,
+                                debug=False, today=date["start"],
+                                enddate=date["end"], product=self.product)
+                    else:
+                        # create a download modis object
+                        modisObj = downmodis.downModis(
+                                url="http://e4ftl01.cr.usgs.gov",
+                                user="anonymous", password=None, path="MOLT",
+                                delta=10, timeout=30,
+                                destinationFolder=down_path, jpg=False,
+                                debug=False, tiles=self.region.printIds(),
+                                today=date["start"], enddate=date["end"],
+                                product=self.product)
 
                     # try to make the download
                     try:

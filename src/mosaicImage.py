@@ -17,7 +17,7 @@ from dbServer import createConnection
 
 class MosaicImage:
     def __init__(self, program, product, bands_archive_list, startDate, endDate,
-            default_path):
+        default_path):
         self.program = program
         self.product = product
         self.archive_list = bands_archive_list
@@ -97,7 +97,7 @@ class MosaicImage:
                         print " |-> Start mosaic of %s" % band
                         subprocess.call(args)
 
-                        out_files.append(file)
+                        out_files.append([band, file])
 
                 if len(out_files) > 0:
                     self.__finishMosaic(out_files)
