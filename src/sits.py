@@ -47,16 +47,16 @@ def main():
             mosParams.append(argDict["-t"])
             clipParams.append(argDict["-t"])
 
-        pDown = Process(target=download, args=downParams)
-        pDown.start()
+#        pDown = Process(target=download, args=downParams)
+#        pDown.start()
 #        pDown.join()
 
-        pRepr = Process(target=reproject, args=repParams)
-        pRepr.start()
+#        pRepr = Process(target=reproject, args=repParams)
+#        pRepr.start()
 #        pRepr.join()
 
-        pMos = Process(target=mosaic, args=mosParams)
-        pMos.start()
+#        pMos = Process(target=mosaic, args=mosParams)
+#        pMos.start()
 #        pMos.join()
 
         pCli = Process(target=clip, args=clipParams)

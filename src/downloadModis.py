@@ -66,7 +66,7 @@ class DownloadModis:
                             archDict["archives"].append(archive)
 
                     except IOError as msg:
-                        print("[DOWNLOAD MODULE] |-> Error: Was not possible " \
+                        print("[DOWNLOAD MODULE ] |-> Error: Was not possible " \
                                 + "to move %s" % msg)
 
             baseKey = "DOWNLOAD_MODIS_" + self.product.upper() + "_" \
@@ -77,10 +77,10 @@ class DownloadModis:
             try:
                 self.conn.set(baseKey, jsonTxt)
             except:
-                print("[DOWNLOAD MODULE] |-> Error: Problem with redis " \
+                print("[DOWNLOAD MODULE ] |-> Error: Problem with redis " \
                         + "database connection...")
 
-            print "[DOWNLOAD MODULE] |-> Download finished..."
+            print "[DOWNLOAD MODULE ] |-> Download finished..."
 
     def __makeDateList(self, tmpColect, initProgram = None, endProgram = None):
         """ create a list of dates """
@@ -121,7 +121,7 @@ class DownloadModis:
         try:
             return datetime.datetime.strptime(strDate, "%Y-%m-%d")
         except:
-            exit("[DOWNLOAD MODULE] |-> Error: '%s' have a " % strDate \
+            exit("[DOWNLOAD MODULE ] |-> Error: '%s' have a " % strDate \
                     + "wrong date format, use YYYY-MM-DD")
 
     def run(self):
@@ -132,7 +132,7 @@ class DownloadModis:
             try:
                 makedirs(self.target_path)
             except:
-                exit("[DOWNLOAD MODULE] |-> Error: Directory " \
+                exit("[DOWNLOAD MODULE ] |-> Error: Directory " \
                         + "%s does " % self.target_path + "not exist and it " \
                         + "is impossible to create")
 
@@ -144,7 +144,7 @@ class DownloadModis:
             try:
                 makedirs(downloading_path)
             except:
-                exit("[DOWNLOAD MODULE] |-> Error: Directory " \
+                exit("[DOWNLOAD MODULE ] |-> Error: Directory " \
                         + "%s does " % downloading_path + "not exist and it " \
                         + "is impossible to create")
 
@@ -152,7 +152,7 @@ class DownloadModis:
             try:
                 makedirs(downloaded_path)
             except:
-                exit("[DOWNLOAD MODULE] |-> Error: Directory " \
+                exit("[DOWNLOAD MODULE ] |-> Error: Directory " \
                         + "%s does " % downloaded_path + "not exist and it " \
                         + "is impossible to create")
 
@@ -178,7 +178,7 @@ class DownloadModis:
                         try:
                             makedirs(down_path)
                         except:
-                            print("[DOWNLOAD MODULE] |-> Error: Directory " \
+                            print("[DOWNLOAD MODULE ] |-> Error: Directory " \
                                     + "%s does " % down_path + "not exist " \
                                     + "and it is impossible to create. The " \
                                     + "download %s product " % self.product \
@@ -186,7 +186,7 @@ class DownloadModis:
                                     + "%s will not be done" % date["end"])
                             break
 
-                    print "[DOWNLOAD MODULE] |-> Preparing download " \
+                    print "[DOWNLOAD MODULE ] |-> Preparing download " \
                             + "data between " + date["start"] + " and " + date["end"] + "..."
 
                     if modis.no_tiles:
@@ -214,22 +214,22 @@ class DownloadModis:
                         modisObj.connect()
 
                         if modisObj.nconnection <= 20:
-                            print "[DOWNLOAD MODULE] |-> Start download..."
+                            print "[DOWNLOAD MODULE ] |-> Start download..."
                             modisObj.downloadsAllDay(clean=True, allDays=False)
                             self.__finishDownload(down_path, downloaded_path,
                                     date["start"], date["end"])
                         else:
-                            print "[DOWNLOAD MODULE] |-> Error: Problem with " \
+                            print "[DOWNLOAD MODULE ] |-> Error: Problem with " \
                                     + "the connection!"
                     except:
-                        print "[DOWNLOAD MODULE] |-> Error: Problem with " \
+                        print "[DOWNLOAD MODULE ] |-> Error: Problem with " \
                                 + "download..."
 
                     if path.exists(down_path):
                         try:
                             shutil.rmtree(down_path)
                         except OSError:
-                            print("[DOWNLOAD MODULE] |-> Error: Impossible " \
+                            print("[DOWNLOAD MODULE ] |-> Error: Impossible " \
                                     + "to remove %s", path_one)
 
                 return True

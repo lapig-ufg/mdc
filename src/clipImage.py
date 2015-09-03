@@ -11,6 +11,7 @@ import subprocess
 from sys import exit
 from os import path
 from os import listdir
+from modis import Modis
 from common import createPath
 from dbServer import createConnection
 
@@ -22,7 +23,7 @@ class ClipImage:
         self.archives_list = archives_list
         self.startDate = startDate
         self.endDate = endDate
-        self.region = region
+        self.region = region.upper()
         self.default_path = default_path
         self.mosaic_path = self.__makeMosaicPath(default_path)
         self.target_path = self.__makeTargetPath(default_path)
@@ -53,6 +54,11 @@ class ClipImage:
         else:
             return False
 
+    def __finishClip(self):
+        print "finish here"
+
+
+
     def run(self):
         if self.program and self.product and self.archives_list \
             and self.startDate and self.endDate and self.target_path \
@@ -72,28 +78,43 @@ class ClipImage:
 
             if product.exist:
                 if path.exists(self.shapefiles_path):
-                    if self.__shapefileVerify(region):
-                        for archive in self.archive_list:
-
-                            out_file = self.program + "_" + self.product + "_" \
+                    if self.__shapefileVerify(self.region):
+                        for archive in self.archives_list:
+                            out_file = self.program + "_" + self.product \
                                     + "_" + self.startDate + "_" \
                                     + self.endDate + "_" + archive[0] + "_" \
                                     + self.region + ".tif"
 
+                            shapefile = self.region + ".shp"
+
                             in_path = path.join(self.mosaic_path, archive[1])
                             out_path = path.join(self.target_path, out_file)
+                            shape_path = path.join(self.shapefiles_path,
+                                    shapefile)
 
-                            args =["gdalwarp", "-cutline", region + ".shp",
-                                    in_path, out_file]
+                            args = ["gdalwarp", "-cutline", shape_path, in_path,
+                                    out_path]
 
                             subprocess.call(args)
+
+                        self.__finishClip()
+
+                        return True
                     else:
                         print("[CLIP MODULE     ] |-> Error: %s shapefile does"
-                                % (region + ".shp") + " not exist")
+                                % (self.region + ".shp") + " not exist")
+
+                        print "here1"
+                        return False
                 else:
                     print("[CLIP MODULE     ] |-> Error: %s path does not exist"
                             % self.shapefiles_path)
+
+                    print "here2"
+                    return False
             else:
                 print("[CLIP MODULE     ] |-> Error: %s product does not "
                     % self.product + "supported")
+
+                print "here3"
                 return False
