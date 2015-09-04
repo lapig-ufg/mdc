@@ -133,8 +133,6 @@ class convert:
             except:
                 print("[REPROJECT MODULE] |-> Error: Problem with redis " \
                         + "database connection...")
-
-            print("[REPROJECT MODULE] |-> Finish convert process...")
         else:
             exit("[REPROJECT MODULE] |-> Error: Directory %s does "
                     % converting_path + "not exist")

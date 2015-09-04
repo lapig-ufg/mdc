@@ -89,7 +89,8 @@ class MosaicImage:
                         # encontrar uma forma de utilizar uma range
                         # de fill
                         if product.layers[band] is not None:
-                            args += ["-n", product.layers[band]]
+                            args += ["-n", product.layers[band], "-a_nodata",
+                                    product.layers[band]]
 
                         args += ["-o", out_file]
                         args += filenames

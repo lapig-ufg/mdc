@@ -92,8 +92,17 @@ class ClipImage:
                             shape_path = path.join(self.shapefiles_path,
                                     shapefile)
 
-                            args = ["gdalwarp", "-cutline", shape_path, in_path,
-                                    out_path]
+                            args = ["gdalwarp", "-cutline", shape_path]
+
+                            if product.layers[archive[0]] is not None:
+                                args += ["-srcnodata",
+                                        product.layers[archive[0]],
+                                        "-dstnodata",
+                                        product.layers[archive[0]]]
+
+                            args += [in_path, out_path]
+
+                            print args
 
                             subprocess.call(args)
 
