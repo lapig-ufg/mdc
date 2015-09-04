@@ -8,6 +8,7 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import subprocess
+import json
 from sys import exit
 from os import path
 from os import listdir
@@ -55,10 +56,20 @@ class ClipImage:
         else:
             return False
 
-    def __finishClip(self):
-        print "finish here"
+    def __finishClip(self, out_files):
+        baseKey = "CLIP_" + self.program.upper() + "_" \
+                + self.product.upper() + "_" + self.startDate \
+                + "_" + self.endDate
 
+        archDict = { "archives" : out_files }
 
+        jsonTxt = json.dumps(archDict)
+
+        try:
+            self.conn.set(baseKey, jsonTxt)
+        except:
+            print("[CLIP MODULE   ] |-> Error: Problem with redis database " \
+                    + "connection...")
 
     def run(self):
         if self.program and self.product and self.archives_list \
@@ -80,11 +91,16 @@ class ClipImage:
             if product.exist:
                 if path.exists(self.shapefiles_path):
                     if self.__shapefileVerify(self.region):
+
+                        out_files = []
+
                         for archive in self.archives_list:
                             out_file = self.program + "_" + self.product \
                                     + "_" + self.startDate + "_" \
                                     + self.endDate + "_" + archive[0] + "_" \
                                     + self.region + ".tif"
+
+                            out_files.append(out_file)
 
                             shapefile = self.region + ".shp"
 
@@ -97,6 +113,11 @@ class ClipImage:
 
                             args = ["gdalwarp", "-cutline", shape_path]
 
+                            args += ["-co", "COMPRESS=LZW",
+                                    "-co", "INTERLEAVE=BAND",
+                                    "-co", "TILED=YES",
+                                    "-co", "BIGTIFF=IF_NEEDED"]
+
                             if product.layers[archive[0]] is not None:
                                 args += ["-srcnodata",
                                         product.layers[archive[0]],
@@ -105,26 +126,24 @@ class ClipImage:
 
                             args += [in_path, out_path]
 
-                            subprocess.call(args)
+                            print("[CLIP MODULE     ]  |-> Start clip of %s"
+                                    % out_file)
+                            subprocess.call(args, stdout=subprocess.PIPE)
+                            print("[CLIP MODULE     ]   |-> Finish clip of %s"
+                                    % out_file)
 
-                        self.__finishClip()
+                        self.__finishClip(out_files)
 
                         return True
                     else:
                         print("[CLIP MODULE     ] |-> Error: %s shapefile does"
                                 % (self.region + ".shp") + " not exist")
-
-                        print "here1"
                         return False
                 else:
                     print("[CLIP MODULE     ] |-> Error: %s path does not exist"
                             % self.shapefiles_path)
-
-                    print "here2"
                     return False
             else:
                 print("[CLIP MODULE     ] |-> Error: %s product does not "
                     % self.product + "supported")
-
-                print "here3"
                 return False

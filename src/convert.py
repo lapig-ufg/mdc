@@ -16,15 +16,8 @@ from os import listdir
 from pymodis import parsemodis
 from pymodis import convertmodis
 from modis import Modis
+from common import createDefaultPath
 from dbServer import createConnection
-
-def createDefaultPath():
-    """ Function which create a string of $HOME/Maps path """
-
-    # default work directory
-    home_path = path.expanduser("~")
-    default_path = path.join(home_path, "Maps")
-    return default_path
 
 def createMrtPath():
     """ Function which create a string of $HOME/.mrt path """

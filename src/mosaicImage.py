@@ -19,7 +19,7 @@ from dbServer import createConnection
 
 class MosaicImage:
     def __init__(self, program, product, bands_archive_list, startDate, endDate,
-        default_path):
+            default_path):
         self.program = program
         self.product = product
         self.archive_list = bands_archive_list
@@ -97,10 +97,19 @@ class MosaicImage:
                                     product.layers[band]]
 
                         args += ["-o", out_file]
+
+                        args += ["-co", "COMPRESS=LZW",
+                                "-co", "INTERLEAVE=BAND",
+                                "-co", "TILED=YES",
+                                "-co","BIGTIFF=IF_NEEDED"]
+
                         args += filenames
 
-                        print "[MOSAIC MODULE   ] |-> Start mosaic of %s" % band
-                        subprocess.call(args)
+                        print("[MOSAIC MODULE   ]  |-> Start mosaic of %s"
+                                % band)
+                        subprocess.call(args, stdout=subprocess.PIPE)
+                        print("[MOSAIC MODULE   ]   |-> End mosaic of %s"
+                                % band)
 
                         out_files.append([band, file])
 

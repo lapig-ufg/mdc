@@ -37,7 +37,7 @@ def clip(region, targetPath = createDefaultPath()):
                         + e)
 
             try:
-                # delete the first key
+#                # delete the first key
                 conn.delete(key)
             except Exception as e:
                 exit("[CLIP MODULE     ] |-> Problem with redis connection: " \

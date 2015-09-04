@@ -659,7 +659,8 @@ class Modis:
                         + "(Band 3)"] = "-1000"
                 self.layers["CMG 0.05 Deg 16 days MIR reflectance " \
                         + "(Band 7)"] = "-1000"
-                self.layers["CMG 0.05 Deg 16 days Avg sun zenith angle"] = "-10000"
+                self.layers["CMG 0.05 Deg 16 days Avg sun zenith " \
+                        + "angle"] = "-10000"
                 self.layers["CMG 0.05 Deg 16 days NDVI std dev"] = "-3000"
                 self.layers["CMG 0.05 Deg 16 days EVI std dev"] = "-3000"
                 self.layers["CMG 0.05 Deg 16 days #1km pix used"] = "255"
@@ -685,7 +686,8 @@ class Modis:
                         + "(Band 3)"] = "-1000"
                 self.layers["CMG 0.05 Deg Monthly MIR reflectance " \
                         + "(Band 7)"] = "-1000"
-                self.layers["CMG 0.05 Deg Monthly Avg sun zenith angle"] = "-1000"
+                self.layers["CMG 0.05 Deg Monthly Avg sun zenith " \
+                        + "angle"] = "-1000"
                 self.layers["CMG 0.05 Deg Monthly NDVI std dev"] = "-3000"
                 self.layers["CMG 0.05 Deg Monthly EVI std dev"] = "-3000"
                 self.layers["CMG 0.05 Deg Monthly #1km pix used"] = "255"
