@@ -11,7 +11,9 @@ import subprocess
 import json
 from sys import exit
 from os import path
+from os import remove
 from common import createPath
+from common import ifExistRemoveFile
 from modis import Modis
 from dbServer import createConnection
 
@@ -84,6 +86,8 @@ class MosaicImage:
                             filenames.append(filename)
 
                     if band in product.layers:
+                        ifExistRemoveFile(out_file)
+
                         args = ["gdal_merge.py"]
 
                         # encontrar uma forma de utilizar uma range

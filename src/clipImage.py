@@ -13,6 +13,7 @@ from os import path
 from os import listdir
 from modis import Modis
 from common import createPath
+from common import ifExistRemoveFile
 from dbServer import createConnection
 
 class ClipImage:
@@ -92,6 +93,8 @@ class ClipImage:
                             shape_path = path.join(self.shapefiles_path,
                                     shapefile)
 
+                            ifExistRemoveFile(out_path)
+
                             args = ["gdalwarp", "-cutline", shape_path]
 
                             if product.layers[archive[0]] is not None:
@@ -101,8 +104,6 @@ class ClipImage:
                                         product.layers[archive[0]]]
 
                             args += [in_path, out_path]
-
-                            print args
 
                             subprocess.call(args)
 

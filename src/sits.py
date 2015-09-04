@@ -56,8 +56,8 @@ def main():
         pMos = Process(target=mosaic, args=mosParams)
         pMos.start()
 
-#        pCli = Process(target=clip, args=clipParams)
-#        pCli.start()
+        pCli = Process(target=clip, args=clipParams)
+        pCli.start()
     else:
         exit(usage)
 
