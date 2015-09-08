@@ -8,6 +8,7 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import json
+from os import path
 from sys import exit
 from time import sleep
 from dbServer import createConnection
@@ -16,7 +17,15 @@ from convert import convert
 from common import mapDict
 from common import createDefaultPath
 
-def reproject(targetPath = createDefaultPath()):
+def createMrtPath():
+    """ Function which create a string of $HOME/.mrt path """
+
+    home_path = path.expanduser("~")
+    mrt_path = path.join(home_path, ".mrt")
+    return mrt_path
+
+
+def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
     # make the pattern key to search in redis
     baseKey = "DOWNLOAD_MODIS_*"
 
@@ -65,7 +74,8 @@ def reproject(targetPath = createDefaultPath()):
             # create a object of specific product and list of archives
             convertPrt = convert(product=archDict["product"],
                     archive_list=archDict["archives"], start_date=startDate,
-                    end_date=endDate, default_path=targetPath)
+                    end_date=endDate, default_path=default_path,
+                    mrt_path=mrt_path)
 
             # convert all archives of specific list
             if convertPrt.run():

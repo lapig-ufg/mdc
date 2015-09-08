@@ -11,6 +11,7 @@
 from sys import exit
 from os import path
 from os import makedirs
+from os import remove
 
 def createDefaultPath():
     """ Function which create a string of $HOME/Maps path """
@@ -24,13 +25,17 @@ def createPath(tpath):
     """ This method try to create the path passed by parameter if
         " not exist
         """
-
     if not path.exists(tpath):
         try:
             makedirs(tpath)
         except:
-            exit(" |-> Error: Directory %s does " % tpath \
-                    + "not exist and it is impossible to create")
+            return False
+
+    return True
+
+def ifExistRemoveFile(tpath):
+    if path.exists(tpath):
+        remove(tpath)
 
 def mapDict(argv, msg):
     """ This function get the arguments by parameters and put all
@@ -73,6 +78,11 @@ def mapDict(argv, msg):
         elif argv[i] == "-t": # target path
             try:
                 argd["-t"] = argv[i + 1]
+            except:
+                exit(msg)
+        elif argv[i] == "-m": # mrt path
+            try:
+                argd["-m"] = argv[i + 1]
             except:
                 exit(msg)
 
