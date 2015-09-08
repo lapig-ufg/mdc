@@ -14,21 +14,18 @@ from common import mapDict
 from common import createDefaultPath
 
 def download(program, product, region, startDate, endDate,
-        targetPath = createDefaultPath()):
+        default_path = createDefaultPath()):
     if program and product and region and startDate and endDate:
         if program.upper() == "MODIS":
             imgDownload = DownloadModis(product=product,
                     region=region, start=startDate,
-                    end=endDate)
+                    end=endDate, default_path=default_path)
         elif program.upper() == "LANDSAT":
             imgDownload = DownloadLandsat(product=product,
                     region=region, start=startDate,
-                    end=endDate)
+                    end=endDate, default_path=default_path)
         else:
             return False
-
-        if targetPath:
-            imgDownload.target = targetPath
 
         if imgDownload.run() == True:
             print "[DOWNLOAD MODULE ]--> Finish download module"

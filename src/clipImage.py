@@ -26,18 +26,14 @@ class ClipImage:
         self.startDate = startDate
         self.endDate = endDate
         self.region = region.upper()
+
         self.default_path = default_path
-        self.mosaic_path = self.__makeMosaicPath(default_path)
-        self.target_path = self.__makeTargetPath(default_path)
+        self.mosaic_path = path.join(default_path, "mosaic")
+        self.target_path = path.join(default_path, "clip")
+
         self.shapefiles_path = self.__makeShapefilesPath()
 
         self.conn = createConnection()
-
-    def __makeMosaicPath(self, tpath):
-        return path.join(tpath, "mosaic")
-
-    def __makeTargetPath(self, tpath):
-        return path.join(tpath, "clip")
 
     def __makeShapefilesPath(self):
         aux = path.split(path.dirname(path.abspath(__file__)))

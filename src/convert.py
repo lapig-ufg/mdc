@@ -16,15 +16,8 @@ from os import listdir
 from pymodis import parsemodis
 from pymodis import convertmodis
 from modis import Modis
-from common import createDefaultPath
+from common import createPath
 from dbServer import createConnection
-
-def createMrtPath():
-    """ Function which create a string of $HOME/.mrt path """
-
-    home_path = path.expanduser("~")
-    mrt_path = path.join(home_path, ".mrt")
-    return mrt_path
 
 class convert:
     """ Class which receive a list of hdf archives and convert to tif
@@ -32,28 +25,23 @@ class convert:
       """
 
     def __init__(self, product, archive_list, start_date, end_date,
-            default_path = createDefaultPath(), mrt_path = createMrtPath()):
+            default_path, mrt_path):
         """ Constructor method """
 
         self.product = product
         self.archive_list = archive_list
         self.startDate = start_date
         self.endDate = end_date
-        self.downloaded_path = self.__makeDownloadedPath(default_path)
-        self.target_path = self.__makeTargetPath(default_path)
+
+        self.default_path = default_path
+        self.target_path = path.join(self.default_path, "reproject")
+        self.reprojecting_path = path.join(self.target_path, "reprojecting")
+        self.download_path = path.join(self.default_path, "download")
+
         self.mrt_path = mrt_path
 
         # make a connection with redis server
         self.conn = createConnection()
-
-    def __makeDownloadedPath(self, tpath):
-        """ Method which create a string of downloaded path """
-        return path.join(tpath, "downloaded")
-
-    def __makeTargetPath(self, tpath):
-        """ Method which create a string of converted path """
-
-        return path.join(tpath, "converted")
 
     def __createTifName(self, archive):
         """ This method receive a string name and replace the hdf
@@ -61,18 +49,6 @@ class convert:
           """
 
         return archive.replace("hdf", "tif")
-
-    def __createPath(self, tpath):
-        """ This method try to create the path passed by parameter if
-          " not exist
-          """
-
-        if not path.exists(tpath):
-            try:
-                makedirs(tpath)
-            except:
-                exit("[REPROJECT MODULE] |-> Error: Directory %s does "
-                        % tpath + "not exist and it is impossible to create")
 
     def __isTif(self, archive):
         """ This method verify if archive have a tif extensin """
@@ -82,15 +58,15 @@ class convert:
     def __getBand(self, archive):
         return archive.split('.')[-2]
 
-    def __finishConvert(self, converting_path):
+    def __finishConvert(self):
         """ This method read all archives in converted_path add than in
           " a dictionary, convert into a json text and push to redis
           " database
           """
 
-        if path.exists(converting_path):
+        if path.exists(self.reprojecting_path):
             # read all files in converting_path
-            listArchives = listdir(converting_path)
+            listArchives = listdir(self.reprojecting_path)
 
             archDict = { "bands" : { } }
 
@@ -101,7 +77,7 @@ class convert:
                 # if the archive is tif format
                 if self.__isTif(archive):
                     try:
-                        shutil.move(path.join(converting_path, archive),
+                        shutil.move(path.join(self.reprojecting_path, archive),
                                 path.join(self.target_path, archive))
 
                         band = self.__getBand(archive)
@@ -128,7 +104,7 @@ class convert:
                         + "database connection...")
         else:
             exit("[REPROJECT MODULE] |-> Error: Directory %s does "
-                    % converting_path + "not exist")
+                    % self.reprojecting_path + "not exist")
 
     def run(self):
         """ This method read the hdf files in archive_list and convert
@@ -137,14 +113,17 @@ class convert:
 
         print("[REPROJECT MODULE]--> Start the reprojection...")
 
-        self.__createPath(self.target_path)
+        if not createPath(self.reprojecting_path):
+            exit("[REPROJECT MODULE ] |-> Error: Directory %s does not exist "
+                    % self.reprojecting_path + "and it is impossible to create")
 
-        if not path.exists(self.downloaded_path):
+        if not path.exists(self.download_path):
             exit("[REPROJECT MODULE] |-> Error: Directory %s does "
-                    % self.downloaded_path + "not exist.")
+                    % self.download_path + "not exist.")
 
         if self.archive_list != None:
             modis = Modis(self.product)
+
             if modis.exist:
                 # create the spectral to convert the image of all band
                 baseLayer = []
@@ -163,17 +142,13 @@ class convert:
                     txt += ')'
                     baseStr.append(txt)
 
-                converting_path = path.join(self.target_path, "converting")
-
-                self.__createPath(converting_path)
-
                 for archive in self.archive_list:
-                    archive_path = path.join(self.downloaded_path, archive)
+                    archive_path = path.join(self.download_path, archive)
 
                     if path.exists(archive_path):
                         for base in baseStr:
 
-                            output_path = path.join(converting_path,
+                            output_path = path.join(self.reprojecting_path,
                                     self.__createTifName(archive))
 
                             modisParse = parsemodis.parseModis(archive_path)
@@ -190,7 +165,7 @@ class convert:
                             % archive_path)
                         exit(1)
 
-                self.__finishConvert(converting_path)
+                self.__finishConvert()
 
                 return True
             else:

@@ -17,7 +17,7 @@ class Modis:
         self.__generateModis()
 
     def __generateModis(self):
-        self.exist = True
+        self.exist = False
         self.layers = {}
         self.no_tiles = False
 
@@ -32,6 +32,7 @@ class Modis:
 
         if product_name == "MOD09A1":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 8
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -53,6 +54,7 @@ class Modis:
 
         elif product_name == "MOD09CMG":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 1
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -95,6 +97,7 @@ class Modis:
 
         elif product_name == "MOD09GA":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 1
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -124,6 +127,7 @@ class Modis:
 
         elif product_name == "MOD09GQ":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 1
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -137,6 +141,7 @@ class Modis:
 
         elif product_name == "MOD09Q1":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 8
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -150,6 +155,7 @@ class Modis:
             self.temporalColect = 1
 
             if product_version == "004":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2007-01-03",
@@ -169,6 +175,7 @@ class Modis:
                 self.layers["Clear_night_cov"] = "0"
 
             elif product_version == "041":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2007-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -187,6 +194,7 @@ class Modis:
                 self.layers["Clear_night_cov"] = "0"
 
             elif product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -206,6 +214,7 @@ class Modis:
 
         elif product_name == "MOD11A2":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 8
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
@@ -228,6 +237,7 @@ class Modis:
             self.temporalColect = 1
 
             if product_version == "004":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2007-01-04",
@@ -252,6 +262,7 @@ class Modis:
                 self.layers["QC_Emis"] = "0"
 
             elif product_version == "041":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2007-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -275,6 +286,7 @@ class Modis:
                 self.layers["QC_Emis"] = "0"
 
             elif product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -302,6 +314,7 @@ class Modis:
             self.temporalColect = 1
 
             if product_version == "004":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2007-01-03",
@@ -328,6 +341,7 @@ class Modis:
                 self.layers["Quality control for retrieved emissivities"] = "0"
 
             elif product_version == "041":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2007-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -353,6 +367,7 @@ class Modis:
                 self.layers["Quality control for retrieved emissivities"] = "0"
 
             elif product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -381,6 +396,7 @@ class Modis:
             self.no_tiles = True
 
             if product_version == "004":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2006-12-31",
@@ -405,6 +421,7 @@ class Modis:
                 self.layers["Band 32 Emissivity"] = "0"
 
             elif product_version == "041":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2007-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -428,6 +445,7 @@ class Modis:
                 self.layers["Band 32 Emissivity"] = "0"
 
             elif product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -456,6 +474,7 @@ class Modis:
             self.no_tiles = True
 
             if product_version == "004":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2006-12-31",
@@ -481,6 +500,7 @@ class Modis:
                 self.layers["Band 32 Emissivity"] = "0"
 
             elif product_version == "041":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2007-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -505,6 +525,7 @@ class Modis:
                 self.layers["Band 32 Emissivity"] = "0"
 
             elif product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -535,6 +556,7 @@ class Modis:
             self.no_tiles = True
 
             if product_version == "004":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2007-01-03",
@@ -551,6 +573,7 @@ class Modis:
                 self.layers["Longitude (every 5 scan lines/pixels"] = "-999"
 
             elif product_version == "041":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2007-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -566,6 +589,7 @@ class Modis:
                 self.layers["Longitude (every 5 scan lines/pixels"] = "-999"
 
             elif product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -582,6 +606,7 @@ class Modis:
 
         elif product_name == "MOD13A1":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 16
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -602,6 +627,7 @@ class Modis:
 
         elif product_name == "MOD13A2":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 16
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -622,6 +648,7 @@ class Modis:
 
         elif product_name == "MOD13A3":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 30
                 self.initDateProgram = datetime.datetime.strptime("2000-02-18",
                         "%Y-%m-%d")
@@ -641,6 +668,7 @@ class Modis:
 
         elif product_name == "MOD13C1":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 16
                 self.initDateProgram = datetime.datetime.strptime("2000-02-18",
                         "%Y-%m-%d")
@@ -669,6 +697,7 @@ class Modis:
 
         elif product_name == "MOD13C2.005":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 30
                 self.initDateProgram = datetime.datetime.strptime("2000-02-18",
                         "%Y-%m-%d")
@@ -696,6 +725,7 @@ class Modis:
 
         elif product_name == "MOD13Q1.005":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 16
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -716,6 +746,7 @@ class Modis:
 
         elif product_name == "MOD14":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 1
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -729,6 +760,7 @@ class Modis:
 
         elif product_name == "MOD14A1":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 1
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -742,6 +774,7 @@ class Modis:
 
         elif product_name == "MOD14A2":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 8
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")
@@ -752,6 +785,7 @@ class Modis:
 
         elif product_name == "MOD15A2":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 8
                 self.initDateProgram = datetime.datetime.strptime("2000-02-18",
                         "%Y-%m-%d")
@@ -768,6 +802,7 @@ class Modis:
             self.temporalColect = 8
 
             if product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-02-18",
                         "%Y-%m-%d")
                 self.endDateProgram = None
@@ -777,6 +812,7 @@ class Modis:
                 self.layers["Psn_QC_1km"] = "255"
 
             if product_version == "055":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2010-12-27",
@@ -788,6 +824,7 @@ class Modis:
 
         elif product_name == "MOD17A3.055":
             if product_version == "055":
+                self.exist = True
                 self.temporalColect = 365
                 self.initDateProgram = datetime.datetime.strptime("2000-01-01",
                         "%Y-%m-%d")
@@ -800,6 +837,7 @@ class Modis:
 
         elif product_name == "MOD44A":
             if product_version == "004":
+                self.exist = True
                 self.temporalColect = 96
                 self.initDateProgram = datetime.datetime.strptime("2002-01-01",
                         "%Y-%m-%d")
@@ -815,6 +853,7 @@ class Modis:
             self.temporalColect = 365
 
             if product_version == "005":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-03-05",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2010-03-06",
@@ -826,6 +865,7 @@ class Modis:
                 self.layers["Cloud"] = None
 
             elif product_version == "051":
+                self.exist = True
                 self.initDateProgram = datetime.datetime.strptime("2000-01-01",
                         "%Y-%m-%d")
                 self.endDateProgram = datetime.datetime.strptime("2013-12-31",
@@ -841,6 +881,7 @@ class Modis:
 
         elif product_name == "MOD44W":
             if product_version == "005":
+                self.exist = True
                 self.temporalColect = 1
                 self.initDateProgram = datetime.datetime.strptime("2000-02-24",
                         "%Y-%m-%d")

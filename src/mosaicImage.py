@@ -25,18 +25,13 @@ class MosaicImage:
         self.archive_list = bands_archive_list
         self.startDate = startDate
         self.endDate = endDate
+
         self.default_path = default_path
-        self.converted_path = self.__makeConvertedPath(default_path)
-        self.target_path = self.__makeTargetPath(default_path)
+        self.reproject_path = path.join(self.default_path, "reproject")
+        self.target_path = path.join(self.default_path, "mosaic")
 
         # make a connection with redis server
         self.conn = createConnection()
-
-    def __makeConvertedPath(self, tpath):
-        return path.join(tpath, "converted")
-
-    def __makeTargetPath(self, tpath):
-        return path.join(tpath, "mosaic")
 
     def __finishMosaic(self, out_files):
         baseKey = "MOSAIC_" + self.program.upper() + "_" \
@@ -56,12 +51,16 @@ class MosaicImage:
     def run(self):
         if self.program and self.product and self.archive_list \
                 and self.startDate and self.endDate and self.target_path \
-                and self.converted_path:
-            createPath(self.target_path)
+                and self.reproject_path:
 
-            if not path.exists(self.converted_path):
+            if not createPath(self.target_path):
                 exit("[MOSAIC MODULE   ] |-> Error: Directory %s does "
-                        % self.converted_path + "not exist.")
+                        % self.target_path + "not exist.")
+
+
+            if not path.exists(self.reproject_path):
+                exit("[MOSAIC MODULE   ] |-> Error: Directory %s does "
+                        % self.reproject_path + "not exist.")
 
             if self.program.upper() == "MODIS":
                 product = Modis(self.product)
@@ -80,7 +79,7 @@ class MosaicImage:
                     out_file = path.join(self.target_path, file)
 
                     for archive in self.archive_list["bands"][band]:
-                        filename = path.join(self.converted_path, archive)
+                        filename = path.join(self.reproject_path, archive)
 
                         if path.exists(filename):
                             filenames.append(filename)

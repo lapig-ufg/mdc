@@ -33,7 +33,7 @@ def clip(region, targetPath = createDefaultPath()):
                 # get the content of the first key
                 jsonTxt = conn.get(key)
             except Exception as e:
-                exit("[CLIP MODULE     ] |-> Proble with redis connection: " \
+                exit("[CLIP MODULE     ] |-> Problem with redis connection: " \
                         + e)
 
             try:

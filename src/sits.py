@@ -24,6 +24,7 @@ Usage: %s [OPTIONS]
     -e      end date of images that will be download
     -i      index formula to apply
     [-t]    path to directory where the files will be stored
+    [-m]    mrt path
 """ % argv[0]
 
 def main():
@@ -46,6 +47,9 @@ def main():
             repParams.append(argDict["-t"])
             mosParams.append(argDict["-t"])
             clipParams.append(argDict["-t"])
+
+        if "-m" in argDict:
+            repParams.append(argDict["-m"])
 
         pDown = Process(target=download, args=downParams)
         pDown.start()
