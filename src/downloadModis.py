@@ -192,6 +192,9 @@ class DownloadModis:
                             print "[DOWNLOAD MODULE ] |-> Error: Problem " \
                                     + "with the connection!"
                     except IOError:
+                        print "[DOWNLOAD MODULE ] |-> Problem with python " \
+                                + "version. Retry download..."
+
                         # create a download modis object
                         modisObj = downmodis.downModis(
                                 url="http://e4ftl01.cr.usgs.gov",
