@@ -191,9 +191,28 @@ class DownloadModis:
                         else:
                             print "[DOWNLOAD MODULE ] |-> Error: Problem " \
                                     + "with the connection!"
-                    except:
-                        print "[DOWNLOAD MODULE ] |-> Error: Problem with " \
-                                + "download..."
+                    except IOError:
+                        # create a download modis object
+                        modisObj = downmodis.downModis(
+                                url="http://e4ftl01.cr.usgs.gov",
+                                user="anonymous", password=None, path="MOLT",
+                                delta=10, timeout=30,
+                                destinationFolder=down_path, jpg=False,
+                                debug=False, tiles=tiles,
+                                today=date["end"], enddate=date["start"],
+                                product=self.product)
+
+                        modisObj.connect()
+
+                        if modisObj.nconnection <= 20:
+                            print "[DOWNLOAD MODULE ] |-> Start download..."
+                            modisObj.downloadsAllDay(clean=True, allDays=False)
+
+                            self.__finishDownload(down_path, date["start"],
+                                    date["end"])
+                        else:
+                            print "[DOWNLOAD MODULE ] |-> Error: Problem " \
+                                    + "with the connection!"
 
                     if path.exists(down_path):
                         try:
