@@ -7,6 +7,7 @@
 # (c) Copyright Lapig UFG 2015
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
+import json
 from common import createDefaultPath
 from dbServer import createConnection
 

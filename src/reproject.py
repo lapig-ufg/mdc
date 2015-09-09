@@ -13,7 +13,7 @@ from sys import exit
 from time import sleep
 from dbServer import createConnection
 from modis import Modis
-from convert import convert
+from reprojectImage import reprojectImage
 from common import mapDict
 from common import createDefaultPath
 
@@ -72,7 +72,7 @@ def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
             endDate = key.split('_')[-1]
 
             # create a object of specific product and list of archives
-            convertPrt = convert(product=archDict["product"],
+            convertPrt = reprojectImage(product=archDict["product"],
                     archive_list=archDict["archives"], start_date=startDate,
                     end_date=endDate, default_path=default_path,
                     mrt_path=mrt_path)

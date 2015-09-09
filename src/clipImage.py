@@ -96,8 +96,6 @@ class ClipImage:
                                     + self.endDate + "_" + archive[0] + "_" \
                                     + self.region + ".tif"
 
-                            out_files.append(out_file)
-
                             shapefile = self.region + ".shp"
 
                             in_path = path.join(self.mosaic_path, archive[1])
@@ -124,9 +122,16 @@ class ClipImage:
 
                             print("[CLIP MODULE     ]  |-> Start clip of %s"
                                     % out_file)
-                            subprocess.call(args, stdout=subprocess.PIPE)
-                            print("[CLIP MODULE     ]   |-> Finish clip of %s"
-                                    % out_file)
+                            try:
+                                subprocess.call(args, stdout=subprocess.PIPE)
+                                print("[CLIP MODULE     ]   |-> Finish clip " \
+                                        + "of %s" % out_file)
+                                out_files.append({ "band" : archive[0],
+                                    "file" : out_file })
+
+                            except:
+                                print("[CLIP MODULE     ]   |-> Error: was " \
+                                        + "not possible to clip %s" % out_file)
 
                         self.__finishClip(out_files)
 

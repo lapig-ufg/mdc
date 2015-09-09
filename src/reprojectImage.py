@@ -19,7 +19,7 @@ from modis import Modis
 from common import createPath
 from dbServer import createConnection
 
-class convert:
+class reprojectImage:
     """ Class which receive a list of hdf archives and convert to tif
       " format
       """
