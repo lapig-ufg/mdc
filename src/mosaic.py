@@ -18,9 +18,9 @@ def mosaic(targetPath = createDefaultPath()):
 
     print("[MOSAIC MODULE   ]--> Start reading redis database...")
 
-    while True:
-        conn = createConnection()
+    conn = createConnection()
 
+    while True:
         lKeys = conn.keys(pattern = baseKey)
         lKeys.sort()
 

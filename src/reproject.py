@@ -31,10 +31,10 @@ def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
 
     print("[REPROJECT MODULE]--> Start reading redis database...")
 
+    conn = createConnection()
+
     # repeat this
     while(True):
-        conn = createConnection()
-
         # search the database by pattern key
         lKeys = conn.keys(pattern=baseKey)
         # sort list keys
