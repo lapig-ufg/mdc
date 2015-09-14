@@ -18,13 +18,14 @@ from common import ifExistRemoveFile
 from dbServer import createConnection
 
 class ClipImage:
-    def __init__(self, program, product, archives_list, startDate, endDate,
-            region, default_path):
+    def __init__(self, program, product, region, archives_list, startDate,
+            endDate, formula, default_path):
         self.program = program
         self.product = product
         self.archives_list = archives_list
         self.startDate = startDate
         self.endDate = endDate
+        self.formula = formula
         self.region = region.upper()
 
         self.default_path = default_path
@@ -57,7 +58,11 @@ class ClipImage:
                 + self.product.upper() + "_" + self.startDate \
                 + "_" + self.endDate
 
-        archDict = { "archives" : out_files }
+        archDict = { "archives" : out_files,
+                "program" : self.program, "product" : self.product,
+                "region" : self.region, "startDate" : self.startDate,
+                "endDate" : self.endDate, "formula" : self.formula,
+                "defaultPath" : self.default_path }
 
         jsonTxt = json.dumps(archDict)
 
@@ -88,7 +93,7 @@ class ClipImage:
                 if path.exists(self.shapefiles_path):
                     if self.__shapefileVerify(self.region):
 
-                        out_files = []
+                        out_files = {}
 
                         for archive in self.archives_list:
                             out_file = self.program + "_" + self.product \
@@ -126,8 +131,7 @@ class ClipImage:
                                 subprocess.call(args, stdout=subprocess.PIPE)
                                 print("[CLIP MODULE     ]   |-> Finish clip " \
                                         + "of %s" % out_file)
-                                out_files.append({ "band" : archive[0],
-                                    "file" : out_file })
+                                out_files[archive[0]] = out_file
 
                             except:
                                 print("[CLIP MODULE     ]   |-> Error: was " \

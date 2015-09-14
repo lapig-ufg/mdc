@@ -18,13 +18,15 @@ from modis import Modis
 from dbServer import createConnection
 
 class MosaicImage:
-    def __init__(self, program, product, bands_archive_list, startDate, endDate,
-            default_path):
+    def __init__(self, program, product, region, bands_archive_list, startDate, endDate,
+            formula, default_path):
         self.program = program
         self.product = product
+        self.region = region
         self.archive_list = bands_archive_list
         self.startDate = startDate
         self.endDate = endDate
+        self.formula = formula
 
         self.default_path = default_path
         self.reproject_path = path.join(self.default_path, "reproject")
@@ -38,7 +40,10 @@ class MosaicImage:
                 + self.product.upper() + "_" + self.startDate \
                 + "_" + self.endDate
 
-        archDict = { "archives" : out_files }
+        archDict = { "archives" : out_files, "program" : self.program,
+                "product" : self.product, "region": self.region,
+                "startDate" : self.startDate, "endDate" : self.endDate,
+                "formula" : self.formula, "defaultPath" : self.default_path }
 
         jsonTxt = json.dumps(archDict)
 
@@ -65,11 +70,10 @@ class MosaicImage:
             if self.program.upper() == "MODIS":
                 product = Modis(self.product)
 
-
             if product.exist:
                 out_files = []
 
-                for band in self.archive_list["bands"]:
+                for band in self.bands_archive_list:
                     filenames = []
 
                     file = self.program + "_" + self.product + "_" \
@@ -78,7 +82,7 @@ class MosaicImage:
 
                     out_file = path.join(self.target_path, file)
 
-                    for archive in self.archive_list["bands"][band]:
+                    for archive in self.archive_list[band]:
                         filename = path.join(self.reproject_path, archive)
 
                         if path.exists(filename):

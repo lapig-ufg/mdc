@@ -23,12 +23,14 @@ from common import createPath
 class DownloadModis:
     """ A class to download the specific product, region and date modis data """
 
-    def __init__(self, product, region, start, end, default_path):
+    def __init__(self, product, region, start, end, formula, default_path):
         """ Initialize function """
 
         self.product = product
+        self.formula = formula
         self.start = start
         self.end = end
+        self.region_name = region
 
         self.default_path = default_path
         self.target_path = path.join(self.default_path, "download")
@@ -53,7 +55,11 @@ class DownloadModis:
 
         # if one of this paths not exist exit
         if path.exists(down_path) and path.exists(self.target_path):
-            archDict = { "archives" : [], "product" : self.product }
+            archDict = { "archives" : [], "program" : "MODIS",
+                    "product" : self.product, "region" : self.region_name,
+                    "startDate" : self.start, "endDate" : self.end,
+                    "formula" : self.formula,
+                    "defaultPath" : self.default_path }
 
             # move HDFs archives in path_one to path_two
             for archive in listArchives:
@@ -72,6 +78,7 @@ class DownloadModis:
             baseKey = "DOWNLOAD_MODIS_" + self.product.upper() + "_" \
                     + initDate + "_" + endDate
 
+            print archDict
             jsonTxt = json.dumps(archDict)
 
             try:
@@ -192,8 +199,10 @@ class DownloadModis:
                             print "[DOWNLOAD MODULE ] |-> Error: Problem " \
                                     + "with the connection!"
                     except IOError:
-                        print "[DOWNLOAD MODULE ] |-> Problem with python " \
-                                + "version. Retry download..."
+                        print "[DOWNLOAD MODULE ] |-> Your python version " \
+                                + "are less than 2.7.10, this download will" \
+                                + " retry, but try to update your python " \
+                                + "version"
 
                         # create a download modis object
                         modisObj = downmodis.downModis(
@@ -205,17 +214,22 @@ class DownloadModis:
                                 today=date["end"], enddate=date["start"],
                                 product=self.product)
 
-                        modisObj.connect()
+                        try:
+                            modisObj.connect()
 
-                        if modisObj.nconnection <= 20:
-                            print "[DOWNLOAD MODULE ] |-> Start download..."
-                            modisObj.downloadsAllDay(clean=True, allDays=False)
+                            if modisObj.nconnection <= 20:
+                                print "[DOWNLOAD MODULE ] |-> Start download..."
+                                modisObj.downloadsAllDay(clean=True,
+                                        allDays=False)
 
-                            self.__finishDownload(down_path, date["start"],
-                                    date["end"])
-                        else:
-                            print "[DOWNLOAD MODULE ] |-> Error: Problem " \
-                                    + "with the connection!"
+                                self.__finishDownload(down_path, date["start"],
+                                        date["end"])
+                            else:
+                                print "[DOWNLOAD MODULE ] |-> Error: Problem " \
+                                        + "with the connection!"
+                        except:
+                            exit("[DOWNLOAD MODULE] |-> Error: Impossible to " \
+                                    "make this download")
 
                     if path.exists(down_path):
                         try:

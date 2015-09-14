@@ -34,7 +34,7 @@ def main():
             and "-s" in argDict and "-e" in argDict and "-i" in argDict:
 
         downParams = [argDict["-d"], argDict["-p"], argDict["-r"],
-                argDict["-s"], argDict["-e"]]
+                argDict["-s"], argDict["-e"], argDict["-i"]]
 
         repParams = []
 

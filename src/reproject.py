@@ -37,12 +37,13 @@ def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
     while(True):
         # search the database by pattern key
         lKeys = conn.keys(pattern=baseKey)
-        # sort list keys
-        lKeys.sort()
 
         archDict = None
         # if have one or more key
         if len(lKeys):
+            # sort list keys
+            lKeys.sort()
+
             key = lKeys[0]
 
             try:
@@ -68,14 +69,14 @@ def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
         if archDict != None:
             print("[REPROJECT MODULE] |-> Convert requisition founded...")
 
-            startDate = key.split('_')[-2]
-            endDate = key.split('_')[-1]
-
             # create a object of specific product and list of archives
-            convertPrt = reprojectImage(product=archDict["product"],
-                    archive_list=archDict["archives"], start_date=startDate,
-                    end_date=endDate, default_path=default_path,
-                    mrt_path=mrt_path)
+            convertPrt = reprojectImage(pogram=archDict["program"],
+                    product=archDict["product"], region=archDict["region"],
+                    start_date=archDict["startDate"],
+                    end_date=archDict["endDate"],
+                    default_path=archDict["defaultPath"],
+                    archive_list=archDict["archives"],
+                    formula=archDict["formula"], mrt_path=mrt_path)
 
             # convert all archives of specific list
             if convertPrt.run():

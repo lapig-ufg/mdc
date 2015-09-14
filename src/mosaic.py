@@ -22,10 +22,11 @@ def mosaic(targetPath = createDefaultPath()):
 
     while True:
         lKeys = conn.keys(pattern = baseKey)
-        lKeys.sort()
 
         archDict = None
         if len(lKeys):
+            lKeys.sort()
+
             key = lKeys[0]
 
             try:
@@ -50,15 +51,13 @@ def mosaic(targetPath = createDefaultPath()):
         if archDict is not None:
             print("[MOSAIC MODULE   ] |-> Mosaic requisition founded...")
 
-            keyAux = key.split('_')
-            program = keyAux[1]
-            product = keyAux[2]
-            startDate = keyAux[3]
-            endDate = keyAux[4]
-
-            mosaic = MosaicImage(program=program, product=product,
-                    bands_archive_list=archDict, startDate=startDate,
-                    endDate=endDate, default_path=targetPath)
+            mosaic = MosaicImage(program=archDict["program"],
+                    product=archDict["product"], region=archDict["region"],
+                    startDate=archDict["startDate"],
+                    endDate=archDict["endDate"],
+                    bands_archive_list=archDict["bands"],
+                    formula=archDict["formula"],
+                    default_path=archDict["defaultPath"])
 
             if mosaic.run():
                 print "[MOSAIC MODULE   ] |-> Finish mosaic conversation"

@@ -23,10 +23,10 @@ def clip(region, targetPath = createDefaultPath()):
 
     while True:
         lKeys = conn.keys(pattern = baseKey)
-        lKeys.sort()
 
         archDict = None
         if len(lKeys):
+            lKeys.sort()
             key = lKeys[0]
 
             try:
@@ -53,14 +53,13 @@ def clip(region, targetPath = createDefaultPath()):
         if archDict is not None:
             print("[CLIP MODULE     ] |-> Clip requisition founded...")
 
-            keyAux = key.split('_')
-            program = keyAux[1]
-            product = keyAux[2]
-            startDate = keyAux[3]
-            endDate = keyAux[4]
-
-            clip = ClipImage(program, product, archDict["archives"], startDate,
-                    endDate, region, targetPath)
+            clip = ClipImage(product=archDict["product"],
+                    program=archDict["program"], region=archDict["region"],
+                    archive_list=archDict["archives"],
+                    startDate=archDict["startDate"],
+                    endDate=archDict["endDate"],
+                    formula=archDict["formula"],
+                    default_path=archDict["defaultPath"])
 
             if clip.run():
                 print("[CLIP MODULE     ] |-> Finish clip image")

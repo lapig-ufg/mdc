@@ -20,10 +20,10 @@ def index(formula, targetPath = createDefaultPath()):
 
     while True:
         lKeys = conn.keys(pattern = baseKey)
-        lKeys.sort()
 
         archDict = None
         if len(lKeys):
+            lKeys.sort()
             key = lKeys[0]
 
             try:
@@ -50,8 +50,16 @@ def index(formula, targetPath = createDefaultPath()):
         if archDict is not None:
             print("[INDEX MODULE     ] |-> Clip requisition founded...")
 
-            keyAux = key.split('_')
-            program = keyAux[1]
-            product = keyAux[2]
-            startDate = keyAux[3]
-            endDate = keyAux[4]
+            index = indexImage(program=archDict["program"],
+                    product=archDict["product"],
+                    archives_list=archDict["archives"],
+                    formula=archDict["formula"],
+                    default_path=archDict["defaultPath"])
+
+            if index.run():
+                print "[INDEX MODULE     ] |-> Finish index process"
+            else:
+                print "[INDEX MODULE     ] |-> Impossible to apply index " \
+                        + "process"
+
+        sleep(3)

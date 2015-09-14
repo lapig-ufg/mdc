@@ -24,12 +24,15 @@ class reprojectImage:
       " format
       """
 
-    def __init__(self, product, archive_list, start_date, end_date,
-            default_path, mrt_path):
+    def __init__(self, program, product, region, archive_list, start_date,
+            end_date, default_path, formual, mrt_path):
         """ Constructor method """
 
+        self.program = program
         self.product = product
+        self.region = region
         self.archive_list = archive_list
+        self.formula = formula
         self.startDate = start_date
         self.endDate = end_date
 
@@ -68,7 +71,11 @@ class reprojectImage:
             # read all files in converting_path
             listArchives = listdir(self.reprojecting_path)
 
-            archDict = { "bands" : { } }
+            archDict = { "bands" : {}, "program" : self.program,
+                    "product" : self.product, "region" : self.region,
+                    "startDate" : self.startDate, "endDate" : self.endDate,
+                    "formula" : self.formula,
+                    "defaultPath" : self.default_path }
 
             """ move all archives in converting path to converted path
               " and apend into archDict
