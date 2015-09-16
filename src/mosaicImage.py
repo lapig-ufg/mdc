@@ -56,7 +56,7 @@ class MosaicImage:
         try:
             self.conn.set(baseKey, jsonTxt)
         except:
-            print("[MOSAIC MODULE   ] |-> Error: Problem with redis database " \
+            print("[MOSAIC MODULE] |-> Error: Problem with redis database " \
                     + "connection...")
 
     def run(self):
@@ -65,12 +65,12 @@ class MosaicImage:
                 and self.reproject_path:
 
             if not createPath(self.target_path):
-                exit("[MOSAIC MODULE   ] |-> Error: Directory %s does "
+                exit("[MOSAIC MODULE] |-> Error: Directory %s does "
                         % self.target_path + "not exist.")
 
 
             if not path.exists(self.reproject_path):
-                exit("[MOSAIC MODULE   ] |-> Error: Directory %s does "
+                exit("[MOSAIC MODULE] |-> Error: Directory %s does "
                         % self.reproject_path + "not exist.")
 
             if self.program.upper() == "MODIS":
@@ -114,10 +114,10 @@ class MosaicImage:
 
                         args += filenames
 
-                        print("[MOSAIC MODULE   ]  |-> Start mosaic of %s"
+                        print("[MOSAIC MODULE]  |-> Start mosaic of %s"
                                 % band)
                         subprocess.call(args, stdout=subprocess.PIPE)
-                        print("[MOSAIC MODULE   ]   |-> End mosaic of %s"
+                        print("[MOSAIC MODULE]   |-> End mosaic of %s"
                                 % band)
 
                         out_files.append([band, file])
@@ -125,7 +125,7 @@ class MosaicImage:
                 if len(out_files) > 0:
                     self.__finishMosaic(out_files)
             else:
-                print "[MOSAIC MODULE   ] |-> Error: %s product does not " \
+                print "[MOSAIC MODULE] |-> Error: %s product does not " \
                         + "supported" % self.product
                 return False
         else:

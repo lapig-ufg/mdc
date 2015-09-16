@@ -91,7 +91,7 @@ def procExists(module):
     return False
 
 def main():
-    print "[SITS]--> Starting satellite image time series..."
+    print "[SITS]--------------> Starting satellite image time series..."
 
     argDict = mapDict(argv, usage)
     basePath = path.dirname(path.abspath(__file__))
@@ -124,26 +124,45 @@ def main():
         else:
             print "[SITS] |-> Download module aready running"
 
-#        if not procExists("reproject"):
-#            try:
-#                reproject_path = path.join(basePath, "reproject.py")
-#                p = Popen(["python", reproject_path])
-#                writePidToRedis("reproject", p.pid)
-#            except OSError:
-#                print "[SITS] |-> %s does not exist." % reproject_path
-#        else:
-#            print "[SITS] |-> Reproject module aready running"
+        if not procExists("reproject"):
+            try:
+                reproject_path = path.join(basePath, "reproject.py")
+                p = Popen(["python", reproject_path])
+                writePidToRedis("reproject", p.pid)
+            except OSError:
+                print "[SITS] |-> %s does not exist." % reproject_path
+        else:
+            print "[SITS] |-> Reproject module aready running"
 
+        if not procExists("mosaic"):
+            try:
+                mosaic_path = path.join(basePath, "mosaic.py")
+                p = Popen(["python", mosaic_path])
+                writePidToRedis("mosaic", p.pid)
+            except OSError:
+                print "[SITS] |-> %s does not exist." % mosaic_path
+        else:
+            print "[SITS] |-> Mosaic module aready running"
 
-#        pMos = Process(target=mosaic, args=[])
-#        pMos.start()
+        if not procExists("clip"):
+            try:
+                clip_path = path.join(basePath, "clip.py")
+                p = Popen(["python", clip_path])
+                writePidToRedis("clip", p.pid)
+            except OSError:
+                print "[SITS] |-> %s does not exist." % clip_path
+        else:
+            print "[SITS] |-> Clip module aready running"
 
-#        pCli = Process(target=clip, args=[])
-#        pCli.start()
-
-#        pInd = Process(target=index, args=[])
-#        pInd.start()
-
+        if not procExists("index"):
+            try:
+                index_path = path.join(basePath, "index.py")
+                p = Popen(["python", index_path])
+                writePidToRedis("index", p.pid)
+            except OSError:
+                print "[SITS] |-> %s does not exist." % reproject_path
+        else:
+            print "[SITS] |-> Index module aready running"
     else:
         exit(usage)
 

@@ -126,7 +126,7 @@ class reprojectImage:
         print("[REPROJECT MODULE]--> Start the reprojection...")
 
         if not createPath(self.reprojecting_path):
-            exit("[REPROJECT MODULE ] |-> Error: Directory %s does not exist "
+            exit("[REPROJECT MODULE] |-> Error: Directory %s does not exist "
                     % self.reprojecting_path + "and it is impossible to create")
 
         if not path.exists(self.download_path):

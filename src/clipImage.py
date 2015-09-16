@@ -69,7 +69,7 @@ class ClipImage:
         try:
             self.conn.set(baseKey, jsonTxt)
         except:
-            print("[CLIP MODULE   ] |-> Error: Problem with redis database " \
+            print("[CLIP MODULE] |-> Error: Problem with redis database " \
                     + "connection...")
 
     def run(self):
@@ -79,11 +79,11 @@ class ClipImage:
             createPath(self.target_path)
 
             if not path.exists(self.mosaic_path):
-                exit("[CLIP MODULE     ] |-> Error: Directory %s does "
+                exit("[CLIP MODULE] |-> Error: Directory %s does "
                     % self.mosaic_path + "not exist")
 
             if not path.exists(self.shapefiles_path):
-                exit("[CLIP MODULE     ] |-> Error: Directory %s does "
+                exit("[CLIP MODULE] |-> Error: Directory %s does "
                     % self.shapefiles_path + "not exist")
 
             if self.program.upper() == "MODIS":
@@ -125,30 +125,30 @@ class ClipImage:
 
                             args += [in_path, out_path]
 
-                            print("[CLIP MODULE     ]  |-> Start clip of %s"
+                            print("[CLIP MODULE]  |-> Start clip of %s"
                                     % out_file)
                             try:
                                 subprocess.call(args, stdout=subprocess.PIPE)
-                                print("[CLIP MODULE     ]   |-> Finish clip " \
+                                print("[CLIP MODULE]   |-> Finish clip " \
                                         + "of %s" % out_file)
                                 out_files[archive[0]] = out_file
 
                             except:
-                                print("[CLIP MODULE     ]   |-> Error: was " \
+                                print("[CLIP MODULE]   |-> Error: was " \
                                         + "not possible to clip %s" % out_file)
 
                         self.__finishClip(out_files)
 
                         return True
                     else:
-                        print("[CLIP MODULE     ] |-> Error: %s shapefile does"
+                        print("[CLIP MODULE] |-> Error: %s shapefile does"
                                 % (self.region + ".shp") + " not exist")
                         return False
                 else:
-                    print("[CLIP MODULE     ] |-> Error: %s path does not exist"
+                    print("[CLIP MODULE] |-> Error: %s path does not exist"
                             % self.shapefiles_path)
                     return False
             else:
-                print("[CLIP MODULE     ] |-> Error: %s product does not "
+                print("[CLIP MODULE] |-> Error: %s product does not "
                     % self.product + "supported")
                 return False

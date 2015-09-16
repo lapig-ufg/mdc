@@ -17,7 +17,7 @@ def main():
     # make the pattern key to search in redis
     baseKey = "SITS_ARGS_*"
 
-    print("[DOWNLOAD MODULE]--> Start reading redis database...")
+    print "[DOWNLOAD MODULE]---> Start reading redis database..."
 
     conn = createConnection()
 

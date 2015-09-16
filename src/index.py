@@ -12,17 +12,17 @@ from time import sleep
 from common import createDefaultPath
 from dbServer import createConnection
 
-def index():
+def main():
     baseKey = "CLIP_*"
 
-    print "[INDEX MODULE]--> Start reading redis database..."
+    print "[INDEX MODULE]------> Start reading redis database..."
 
     conn = createConnection()
 
     while True:
         lKeys = conn.keys(pattern = baseKey)
 
-        archDict = None
+        contentDict = None
         if len(lKeys):
             lKeys.sort()
             key = lKeys[0]
@@ -31,36 +31,39 @@ def index():
                 # get the content of the first key
                 jsonTxt = conn.get(key)
             except Exception as e:
-                exit("[INDEX MODULE     ] |-> Problem with redis connection: " \
+                exit("[INDEX MODULE] |-> Problem with redis connection: " \
                         + e)
 
             try:
 #                # delete the first key
                 conn.delete(key)
             except Exception as e:
-                exit("[INDEX MODULE     ] |-> Problem with redis connection: " \
+                exit("[INDEX MODULE] |-> Problem with redis connection: " \
                         + e)
 
             try:
                 # convert json text to python dictionary
-                archDict = json.loads(jsonTxt)
+                contentDict = json.loads(jsonTxt)
             except Exception as e:
-                print("[INDEX MODULE     ] |-> The value of key %s " % key \
+                print("[INDEX MODULE] |-> The value of key %s " % key \
                     + " have a bad format: " + e)
 
-        if archDict is not None:
-            print("[INDEX MODULE     ] |-> Clip requisition founded...")
+        if contentDict is not None:
+            print("[INDEX MODULE] |-> Clip requisition founded...")
 
-            index = indexImage(program=archDict["program"],
-                    product=archDict["product"],
-                    archives_list=archDict["archives"],
-                    formula=archDict["formula"],
-                    default_path=archDict["defaultPath"])
+            index = indexImage(program=contentDict["program"],
+                    product=contentDict["product"],
+                    archives_list=contentDict["archives"],
+                    formula=contentDict["formula"],
+                    default_path=contentDict["defaultPath"])
 
             if index.run():
-                print "[INDEX MODULE     ] |-> Finish index process"
+                print "[INDEX MODULE] |-> Finish index process"
             else:
-                print "[INDEX MODULE     ] |-> Impossible to apply index " \
+                print "[INDEX MODULE] |-> Impossible to apply index " \
                         + "process"
 
         sleep(3)
+
+if __name__ == "__main__":
+    main()

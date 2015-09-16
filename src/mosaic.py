@@ -16,7 +16,7 @@ from dbServer import createConnection
 def main():
     baseKey = "REPROJECT_*"
 
-    print("[MOSAIC MODULE   ]--> Start reading redis database...")
+    print "[MOSAIC MODULE]-----> Start reading redis database..."
 
     conn = createConnection()
 
@@ -33,23 +33,23 @@ def main():
                 # get the content of the first key
                 jsonTxt = conn.get(key)
             except:
-                exit("[MOSAIC MODULE   ] |-> Problem with redis connection")
+                exit("[MOSAIC MODULE] |-> Problem with redis connection")
 
             try:
                 # delete the first key
                 conn.delete(key)
             except:
-                exit("[MOSAIC MODULE   ] |-> Problem with redis connection")
+                exit("[MOSAIC MODULE] |-> Problem with redis connection")
 
             try:
                 # convert json text to python dictionary
                 contentDict = json.loads(jsonTxt)
             except:
-                print("[MOSAIC MODULE   ] |-> The value of key %s" % key \
+                print("[MOSAIC MODULE] |-> The value of key %s" % key \
                         + " have a bad format")
 
         if contentDict is not None:
-            print("[MOSAIC MODULE   ] |-> Mosaic requisition founded...")
+            print("[MOSAIC MODULE] |-> Mosaic requisition founded...")
 
             mosaic = MosaicImage(program=contentDict["program"],
                     product=contentDict["product"],
@@ -61,9 +61,9 @@ def main():
                     default_path=contentDict["defaultPath"])
 
             if mosaic.run():
-                print "[MOSAIC MODULE   ] |-> Finish mosaic conversation"
+                print "[MOSAIC MODULE] |-> Finish mosaic conversation"
             else:
-                print "[MOSAIC MODULE   ] |-> Impossible to create the mosaic"
+                print "[MOSAIC MODULE] |-> Impossible to create the mosaic"
 
         sleep(3)
 
