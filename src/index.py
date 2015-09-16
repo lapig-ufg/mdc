@@ -8,10 +8,11 @@
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
 import json
+from time import sleep
 from common import createDefaultPath
 from dbServer import createConnection
 
-def index(formula, targetPath = createDefaultPath()):
+def index():
     baseKey = "CLIP_*"
 
     print "[INDEX MODULE]--> Start reading redis database..."

@@ -14,7 +14,7 @@ from common import createDefaultPath
 from clipImage import ClipImage
 from dbServer import createConnection
 
-def clip(region, targetPath = createDefaultPath()):
+def clip():
     baseKey = "MOSAIC_*"
 
     print "[CLIP MODULE     ]--> Start reading redis database..."

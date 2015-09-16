@@ -7,7 +7,6 @@
 # (c) Copyright Lapig UFG 2015
 # http://www.lapig.iesa.ufg.br/
 # ------------------------------------------
-
 from sys import exit
 from os import path
 from os import makedirs
@@ -32,6 +31,13 @@ def createPath(tpath):
             return False
 
     return True
+
+def createMrtPath():
+    """ Function which create a string of $HOME/.mrt path """
+
+    home_path = path.expanduser("~")
+    mrt_path = path.join(home_path, ".mrt")
+    return mrt_path
 
 def ifExistRemoveFile(tpath):
     if path.exists(tpath):

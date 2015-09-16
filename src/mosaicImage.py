@@ -40,10 +40,16 @@ class MosaicImage:
                 + self.product.upper() + "_" + self.startDate \
                 + "_" + self.endDate
 
-        archDict = { "archives" : out_files, "program" : self.program,
-                "product" : self.product, "region": self.region,
-                "startDate" : self.startDate, "endDate" : self.endDate,
-                "formula" : self.formula, "defaultPath" : self.default_path }
+        archDict = {
+                "archives" : out_files,
+                "program" : self.program,
+                "product" : self.product,
+                "region": self.region,
+                "startDate" : self.startDate,
+                "endDate" : self.endDate,
+                "formula" : self.formula,
+                "defaultPath" : self.default_path
+                }
 
         jsonTxt = json.dumps(archDict)
 

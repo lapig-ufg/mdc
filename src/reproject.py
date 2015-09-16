@@ -17,15 +17,7 @@ from reprojectImage import reprojectImage
 from common import mapDict
 from common import createDefaultPath
 
-def createMrtPath():
-    """ Function which create a string of $HOME/.mrt path """
-
-    home_path = path.expanduser("~")
-    mrt_path = path.join(home_path, ".mrt")
-    return mrt_path
-
-
-def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
+def main():
     # make the pattern key to search in redis
     baseKey = "DOWNLOAD_MODIS_*"
 
@@ -38,7 +30,7 @@ def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
         # search the database by pattern key
         lKeys = conn.keys(pattern=baseKey)
 
-        archDict = None
+        contentDict = None
         # if have one or more key
         if len(lKeys):
             # sort list keys
@@ -60,23 +52,25 @@ def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
 
             try:
                 # convert json text to python dictionary
-                archDict = json.loads(jsonTxt)
+                contentDict = json.loads(jsonTxt)
             except:
                 print("[REPROJECT MODULE] |-> The value of key %s have a bad " \
                         + "format" % key)
 
         # if have content
-        if archDict != None:
+        if contentDict != None:
             print("[REPROJECT MODULE] |-> Convert requisition founded...")
 
             # create a object of specific product and list of archives
-            convertPrt = reprojectImage(pogram=archDict["program"],
-                    product=archDict["product"], region=archDict["region"],
-                    start_date=archDict["startDate"],
-                    end_date=archDict["endDate"],
-                    default_path=archDict["defaultPath"],
-                    archive_list=archDict["archives"],
-                    formula=archDict["formula"], mrt_path=mrt_path)
+            convertPrt = reprojectImage(program=contentDict["program"],
+                    product=contentDict["product"],
+                    region=contentDict["region"],
+                    start_date=contentDict["startDate"],
+                    end_date=contentDict["endDate"],
+                    default_path=contentDict["defaultPath"],
+                    archive_list=contentDict["archives"],
+                    formula=contentDict["formula"],
+                    mrt_path=contentDict["mrtPath"])
 
             # convert all archives of specific list
             if convertPrt.run():
@@ -86,3 +80,6 @@ def reproject(default_path = createDefaultPath(), mrt_path = createMrtPath()):
 
         # wait 3 seconds
         sleep(3)
+
+if __name__ == "__main__":
+    main()

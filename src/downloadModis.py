@@ -23,7 +23,8 @@ from common import createPath
 class DownloadModis:
     """ A class to download the specific product, region and date modis data """
 
-    def __init__(self, product, region, start, end, formula, default_path):
+    def __init__(self, product, region, start, end, formula, default_path,
+            mrt_path):
         """ Initialize function """
 
         self.product = product
@@ -35,6 +36,8 @@ class DownloadModis:
         self.default_path = default_path
         self.target_path = path.join(self.default_path, "download")
         self.downloading_path = path.join(self.target_path, "downloading")
+
+        self.mrt_path = mrt_path
 
         self.region = Region(region)
 
@@ -55,11 +58,17 @@ class DownloadModis:
 
         # if one of this paths not exist exit
         if path.exists(down_path) and path.exists(self.target_path):
-            archDict = { "archives" : [], "program" : "MODIS",
-                    "product" : self.product, "region" : self.region_name,
-                    "startDate" : self.start, "endDate" : self.end,
+            archDict = {
+                    "archives" : [],
+                    "program" : "MODIS",
+                    "product" : self.product,
+                    "region" : self.region_name,
+                    "startDate" : self.start,
+                    "endDate" : self.end,
                     "formula" : self.formula,
-                    "defaultPath" : self.default_path }
+                    "defaultPath" : self.default_path,
+                    "mrtPath" : self.mrt_path
+                    }
 
             # move HDFs archives in path_one to path_two
             for archive in listArchives:
@@ -69,7 +78,8 @@ class DownloadModis:
                                 os.path.join(self.target_path, archive))
 
                         if self.__isHdf(archive):
-                            archDict["archives"].append(archive)
+                            archDict["archives"].append(os.path.join(
+                                self.target_path, archive))
 
                     except IOError as msg:
                         print("[DOWNLOAD MODULE ] |-> Error: Was not possible" \
@@ -78,7 +88,6 @@ class DownloadModis:
             baseKey = "DOWNLOAD_MODIS_" + self.product.upper() + "_" \
                     + initDate + "_" + endDate
 
-            print archDict
             jsonTxt = json.dumps(archDict)
 
             try:
@@ -198,6 +207,10 @@ class DownloadModis:
                         else:
                             print "[DOWNLOAD MODULE ] |-> Error: Problem " \
                                     + "with the connection!"
+                    except AttributeError:
+                        print "[DOWNLOAD MODULE ] |-> Error: Problem with " \
+                                + "server connection, probably the server " \
+                                + "is down. Retry later"
                     except IOError:
                         print "[DOWNLOAD MODULE ] |-> Your python version " \
                                 + "are less than 2.7.10, this download will" \
@@ -227,6 +240,10 @@ class DownloadModis:
                             else:
                                 print "[DOWNLOAD MODULE ] |-> Error: Problem " \
                                         + "with the connection!"
+                        except AttributeError:
+                            print "[DOWNLOAD MODULE ] |-> Error: Problem " \
+                                + "with server connection, probably the " \
+                                + "server is down. Retry later"
                         except:
                             exit("[DOWNLOAD MODULE] |-> Error: Impossible to " \
                                     "make this download")

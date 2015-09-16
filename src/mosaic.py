@@ -13,7 +13,7 @@ from common import createDefaultPath
 from mosaicImage import MosaicImage
 from dbServer import createConnection
 
-def mosaic(targetPath = createDefaultPath()):
+def main():
     baseKey = "REPROJECT_*"
 
     print("[MOSAIC MODULE   ]--> Start reading redis database...")
@@ -23,7 +23,7 @@ def mosaic(targetPath = createDefaultPath()):
     while True:
         lKeys = conn.keys(pattern = baseKey)
 
-        archDict = None
+        contentDict = None
         if len(lKeys):
             lKeys.sort()
 
@@ -43,21 +43,22 @@ def mosaic(targetPath = createDefaultPath()):
 
             try:
                 # convert json text to python dictionary
-                archDict = json.loads(jsonTxt)
+                contentDict = json.loads(jsonTxt)
             except:
                 print("[MOSAIC MODULE   ] |-> The value of key %s" % key \
                         + " have a bad format")
 
-        if archDict is not None:
+        if contentDict is not None:
             print("[MOSAIC MODULE   ] |-> Mosaic requisition founded...")
 
-            mosaic = MosaicImage(program=archDict["program"],
-                    product=archDict["product"], region=archDict["region"],
-                    startDate=archDict["startDate"],
-                    endDate=archDict["endDate"],
-                    bands_archive_list=archDict["bands"],
-                    formula=archDict["formula"],
-                    default_path=archDict["defaultPath"])
+            mosaic = MosaicImage(program=contentDict["program"],
+                    product=contentDict["product"],
+                    region=contentDict["region"],
+                    startDate=contentDict["startDate"],
+                    endDate=contentDict["endDate"],
+                    bands_archive_list=contentDict["bands"],
+                    formula=contentDict["formula"],
+                    default_path=contentDict["defaultPath"])
 
             if mosaic.run():
                 print "[MOSAIC MODULE   ] |-> Finish mosaic conversation"
@@ -65,3 +66,6 @@ def mosaic(targetPath = createDefaultPath()):
                 print "[MOSAIC MODULE   ] |-> Impossible to create the mosaic"
 
         sleep(3)
+
+if __name__ == "__main__":
+    main()

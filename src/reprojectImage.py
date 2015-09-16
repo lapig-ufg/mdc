@@ -25,7 +25,7 @@ class reprojectImage:
       """
 
     def __init__(self, program, product, region, archive_list, start_date,
-            end_date, default_path, formual, mrt_path):
+            end_date, default_path, formula, mrt_path):
         """ Constructor method """
 
         self.program = program
@@ -71,11 +71,16 @@ class reprojectImage:
             # read all files in converting_path
             listArchives = listdir(self.reprojecting_path)
 
-            archDict = { "bands" : {}, "program" : self.program,
-                    "product" : self.product, "region" : self.region,
-                    "startDate" : self.startDate, "endDate" : self.endDate,
+            archDict = {
+                    "bands" : {},
+                    "program" : self.program,
+                    "product" : self.product,
+                    "region" : self.region,
+                    "startDate" : self.startDate,
+                    "endDate" : self.endDate,
                     "formula" : self.formula,
-                    "defaultPath" : self.default_path }
+                    "defaultPath" : self.default_path
+                    }
 
             """ move all archives in converting path to converted path
               " and apend into archDict
@@ -150,7 +155,8 @@ class reprojectImage:
                     baseStr.append(txt)
 
                 for archive in self.archive_list:
-                    archive_path = path.join(self.download_path, archive)
+#                    archive_path = path.join(self.download_path, archive)
+                    archive_path = archive
 
                     if path.exists(archive_path):
                         for base in baseStr:
