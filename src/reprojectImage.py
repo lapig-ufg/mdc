@@ -155,14 +155,17 @@ class reprojectImage:
                     baseStr.append(txt)
 
                 for archive in self.archive_list:
-#                    archive_path = path.join(self.download_path, archive)
-                    archive_path = archive
+                    archive_path = path.join(self.download_path, archive)
+
+#                    print archive_path
 
                     if path.exists(archive_path):
                         for base in baseStr:
 
                             output_path = path.join(self.reprojecting_path,
                                     self.__createTifName(archive))
+
+#                            print output_path
 
                             modisParse = parsemodis.parseModis(archive_path)
                             confname = modisParse.confResample(spectral=base,

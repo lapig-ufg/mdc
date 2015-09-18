@@ -132,7 +132,9 @@ class ClipImage:
                                 print("[CLIP MODULE]   |-> Finish clip " \
                                         + "of %s" % out_file)
                                 out_files[archive[0]] = out_file
-
+                            except OSError:
+                                print("[CLIP MODULE]   |-> Error: Install " \
+                                        + "gdal-bin in your environment")
                             except:
                                 print("[CLIP MODULE]   |-> Error: was " \
                                         + "not possible to clip %s" % out_file)

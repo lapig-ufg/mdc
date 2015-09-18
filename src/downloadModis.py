@@ -78,8 +78,7 @@ class DownloadModis:
                                 os.path.join(self.target_path, archive))
 
                         if self.__isHdf(archive):
-                            archDict["archives"].append(os.path.join(
-                                self.target_path, archive))
+                            archDict["archives"].append(archive)
 
                     except IOError as msg:
                         print("[DOWNLOAD MODULE] |-> Error: Was not possible" \

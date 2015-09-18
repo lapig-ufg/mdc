@@ -7,3 +7,4 @@
  - `mrt >= 4.1`
  - `pymodis >= 1.0`
  - `python-gdal >= 1.8`
+ - `gdal-bin` >= 1.10

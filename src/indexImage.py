@@ -15,13 +15,13 @@ from modis import Modis
 from common import createPath
 
 class indexImage:
-    def __init__(self, formula, program, product, startDate, endDate, region,
-            archives_list, default_path):
+    def __init__(self, program, product, archives_list, formula, startDate,
+            endDate, region, default_path):
         self.formula = formula
         self.program = program
         self.product = product
-        self.startDate = startDate
-        self.endDate = endDate
+        self.start_date = startDate
+        self.end_date = endDate
         self.region = region
         self.archives_list = archives_list
 
@@ -33,14 +33,14 @@ class indexImage:
         self.clip_path = path.join(self.default_path, "clip")
         self.target_path = path.join(self.default_path, "index")
 
-    def createQueueLetters():
+    def createQueueLetters(self):
         self.queue_letters = Queue.Queue()
 
         for letter in string.uppercase[:26]:
             self.queue_letters.put(letter)
 
-    def createFormula():
-        if self.program == "Modis":
+    def createFormula(self):
+        if self.program.upper() == "MODIS":
             product = Modis(self.product)
 #        else:
 #            product = Landsat(self.product)
@@ -50,7 +50,6 @@ class indexImage:
                 if ('{' + band + '}') in self.formula:
                     if not self.queue_letters.empty():
                         letter = self.queue_letters.get()
-
                         self.formula = self.formula.replace('{' + band + '}',
                                 letter)
 
@@ -60,7 +59,7 @@ class indexImage:
             exit("[INDEX MODULE] |-> Error: %s product does not "
                     % self.product + "supported")
 
-    def run():
+    def run(self):
         if self.formula and self.program and self.product \
                 and self.archives_list and self.start_date and self.end_date \
                 and self.default_path and self.clip_path and self.target_path:
@@ -81,18 +80,19 @@ class indexImage:
 
                 for band in self.elements_dict:
                     args += ['-' + self.elements_dict[band],
-                            self.archives_list[band]]
+                            path.join(self.clip_path, self.archives_list[band])]
 
                 out_file = self.program + '_' + self.product \
-                    + '_' + self.startDate + '_' \
-                    + self.endDate + '_' \
+                    + '_' + self.start_date + '_' \
+                    + self.end_date + '_' \
                     + self.region + '_' + self.formula + ".tif"
 
-                args += ["--outfile=" + self.target_path + out_file]
+                args += ["--outfile=" + path.join(self.target_path, out_file)]
                 args += ['--calc="' + self.formula + '"']
 
                 try:
-                    subprocess.call(args, stdout=subprocess.PIPE)
+                    print args
+                    #subprocess.call(args, stdout=subprocess.PIPE)
                     print("[INDEX MODULE]   |-> Finish index " \
                             + "of %s" % out_file)
                 except:

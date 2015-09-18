@@ -79,7 +79,7 @@ class MosaicImage:
             if product.exist:
                 out_files = []
 
-                for band in self.bands_archive_list:
+                for band in self.archive_list:
                     filenames = []
 
                     file = self.program + "_" + self.product + "_" \

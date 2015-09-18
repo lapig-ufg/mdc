@@ -117,7 +117,7 @@ def main():
         if not procExists("download"):
             try:
                 download_path = path.join(basePath, "download.py")
-                p = Popen(["python", download_path])
+                p = Popen(["python", download_path, ">", "../download.log"])
                 writePidToRedis("download", p.pid)
             except OSError:
                 print "[SITS] |-> %s does not exist." % download_path

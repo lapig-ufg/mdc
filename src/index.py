@@ -9,6 +9,7 @@
 # ------------------------------------------
 import json
 from time import sleep
+from indexImage import indexImage
 from common import createDefaultPath
 from dbServer import createConnection
 
@@ -19,51 +20,54 @@ def main():
 
     conn = createConnection()
 
-    while True:
-        lKeys = conn.keys(pattern = baseKey)
+#    while True:
+    lKeys = conn.keys(pattern = baseKey)
 
-        contentDict = None
-        if len(lKeys):
-            lKeys.sort()
-            key = lKeys[0]
+    contentDict = None
+    if len(lKeys):
+        lKeys.sort()
+        key = lKeys[0]
 
-            try:
-                # get the content of the first key
-                jsonTxt = conn.get(key)
-            except Exception as e:
-                exit("[INDEX MODULE] |-> Problem with redis connection: " \
-                        + e)
+        try:
+            # get the content of the first key
+            jsonTxt = conn.get(key)
+        except Exception as e:
+            exit("[INDEX MODULE] |-> Problem with redis connection: " \
+                    + e)
 
-            try:
+#        try:
 #                # delete the first key
-                conn.delete(key)
-            except Exception as e:
-                exit("[INDEX MODULE] |-> Problem with redis connection: " \
-                        + e)
+#            conn.delete(key)
+#        except Exception as e:
+#            exit("[INDEX MODULE] |-> Problem with redis connection: " \
+#                    + e)
 
-            try:
-                # convert json text to python dictionary
-                contentDict = json.loads(jsonTxt)
-            except Exception as e:
-                print("[INDEX MODULE] |-> The value of key %s " % key \
-                    + " have a bad format: " + e)
+        try:
+            # convert json text to python dictionary
+            contentDict = json.loads(jsonTxt)
+        except Exception as e:
+            print("[INDEX MODULE] |-> The value of key %s " % key \
+                + " have a bad format: " + e)
 
-        if contentDict is not None:
-            print("[INDEX MODULE] |-> Clip requisition founded...")
+    if contentDict is not None:
+        print("[INDEX MODULE] |-> Clip requisition founded...")
 
-            index = indexImage(program=contentDict["program"],
-                    product=contentDict["product"],
-                    archives_list=contentDict["archives"],
-                    formula=contentDict["formula"],
-                    default_path=contentDict["defaultPath"])
+        index = indexImage(program=contentDict["program"],
+                product=contentDict["product"],
+                archives_list=contentDict["archives"],
+                formula=contentDict["formula"],
+                startDate=contentDict["startDate"],
+                endDate=contentDict["endDate"],
+                region=contentDict["region"],
+                default_path=contentDict["defaultPath"])
 
-            if index.run():
-                print "[INDEX MODULE] |-> Finish index process"
-            else:
-                print "[INDEX MODULE] |-> Impossible to apply index " \
-                        + "process"
+        if index.run():
+            print "[INDEX MODULE] |-> Finish index process"
+        else:
+            print "[INDEX MODULE] |-> Impossible to apply index " \
+                    + "process"
 
-        sleep(3)
+    sleep(3)
 
 if __name__ == "__main__":
     main()

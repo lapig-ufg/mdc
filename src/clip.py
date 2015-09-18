@@ -37,7 +37,7 @@ def main():
                         + e)
 
             try:
-#                # delete the first key
+                # delete the first key
                 conn.delete(key)
             except Exception as e:
                 exit("[CLIP MODULE] |-> Problem with redis connection: " \
@@ -56,7 +56,7 @@ def main():
             clip = ClipImage(product=contentDict["product"],
                     program=contentDict["program"],
                     region=contentDict["region"],
-                    archive_list=contentDict["archives"],
+                    archives_list=contentDict["archives"],
                     startDate=contentDict["startDate"],
                     endDate=contentDict["endDate"],
                     formula=contentDict["formula"],

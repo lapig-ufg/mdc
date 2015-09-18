@@ -65,7 +65,7 @@ def main():
             else:
                 print "[MOSAIC MODULE] |-> Impossible to create the mosaic"
 
-        sleep(3)
+            sleep(3)
 
 if __name__ == "__main__":
     main()
