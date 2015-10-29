@@ -1,5 +1,8 @@
 # Satellite Image Time Series
 
+## Architecture
+![alt tag](https://raw.githubusercontent.com/lapig-ufg/satellite-image-time-series/master/proj/img/architecture.png)
+
 ## Dependencies:
  - `python >= 2.7`
  - `redis-server >= 2.8.1`
