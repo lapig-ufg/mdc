@@ -13,6 +13,8 @@ class Clip(Module):
 		end = message.get('end')
 		start = message.get('start')
 		layer = message.get('layer')
+		startDoy = message.get('startDoy')
+		startYear = message.get('startYear')
 		region = message.get('region')
 		pathShp = message.get('path_shp')
 		productName = message.get('productName').replace('.','_')
@@ -20,7 +22,7 @@ class Clip(Module):
 		inputFilepath = layer['file'];
 		inputFilename = os.path.basename(inputFilepath)
 
-		outputFilename = "_".join([productName, layer['name'], start, end, region]) + '.tif'
+		outputFilename = "_".join([productName, layer['name'], startDoy, startYear, region]) + '.tif'
 		outputFilepath = os.path.join(self.module_path, outputFilename)
 
 		utils.removeFileIfExist(outputFilepath)

@@ -29,10 +29,18 @@ class Datasource:
 			message.set('start', date['start']);
 			message.set('end', date['end']);
 			message.set('tmpFiles', [])
+			message.set('startDoy', self.__getDayOfYear(date['start']) );
+			message.set('startYear', self.__getYear(date['start']) );
 
 			messages.append(message)
 
 		return messages
+
+	def __getYear(self, strDate):
+		return str(self.__convertDate(strDate).timetuple().tm_year)
+
+	def __getDayOfYear(self, strDate):
+		return str(self.__convertDate(strDate).timetuple().tm_yday)
 
 	def __getTiles(self):
 		sql = "SELECT A.TILES FROM {grid} A, {region} B WHERE ST_Intersects(A.geometry, B.geometry)".format( grid=self.gridName, region=self.region.capitalize() )
@@ -66,21 +74,26 @@ class Datasource:
 
 		start = startDate
 		end = start
+		
+		temporalResolution = self.temporalResolution
+		if self.temporalResolution > 1:
+			temporalResolution -= 1
 
 		while end < endDate:
-				end = start + datetime.timedelta(days=(self.temporalResolution - 1) )
 
-				if end > endDate:
-						end = endDate
+			end = start + datetime.timedelta(days=temporalResolution )
 
-				dateList.append(
-						{
-								"start" : start.strftime("%Y-%m-%d"),
-								"end" : end.strftime("%Y-%m-%d")
-						}
-				)
+			if end > endDate:
+					end = endDate
 
-				start = end
+			dateList.append(
+					{
+							"start" : start.strftime("%Y-%m-%d"),
+							"end" : end.strftime("%Y-%m-%d")
+					}
+			)
+
+			start = end
 
 		return dateList
 

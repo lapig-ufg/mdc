@@ -12,11 +12,13 @@ class Mosaic(Module):
 		
 		end = message.get('end')
 		start = message.get('start')
+		startDoy = message.get('startDoy')
+		startYear = message.get('startYear')
 		layer = message.get('layer')
 		region = message.get('region')
 		productName = message.get('productName').replace('.','_')
 
-		outputFilename = "_".join([productName, layer['name'], start, end, region]) + '.tif'
+		outputFilename = "_".join([productName, layer['name'], startDoy, startYear, region]) + '.tif'
 		outputFilepath = os.path.join(self.module_path, outputFilename)
 
 		utils.removeFileIfExist(outputFilepath)

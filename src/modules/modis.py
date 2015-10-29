@@ -1,5 +1,6 @@
 import os
 import utils
+import time
 from tools import ModisAcess
 from _module import Module
 
@@ -15,6 +16,8 @@ class Modis(Module):
 		end = message.get('end')
 		start = message.get('start')
 		tiles = message.get('tiles')
+		startDoy = message.get('startDoy')
+		startYear = message.get('startYear')
 		pathMrt = message.get('path_mrt')
 		product = message.get('product');
 		productName = message.get('productName')
@@ -26,9 +29,10 @@ class Modis(Module):
 		if noTiles:
 			tiles = None
 
-		tmpDir = "_".join(['tmp', productName, start, end])
+		tmpDir = "_".join(['tmp', productName, startYear, startDoy])
 		tmpPath = os.path.join(self.module_path, tmpDir)
 		utils.createDir(tmpPath)
+		time.sleep(1)
 
 		self.__downloadAndReproject(productName=productName, tiles=tiles, 
 			start=start, end=end, layers=layers, 
