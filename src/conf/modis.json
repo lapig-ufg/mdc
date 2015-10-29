@@ -1,0 +1,756 @@
+{
+    "MOD09A1.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 8,
+        "bands": {
+            "sur_refl_b01": "-28672",
+            "sur_refl_b02": "-28672",
+            "sur_refl_b03": "-28672",
+            "sur_refl_b04": "-28672",
+            "sur_refl_b05": "-28672",
+            "sur_refl_b06": "-28672",
+            "sur_refl_b07": "-28672",
+            "sur_refl_qc_500m": "4294967295",
+            "sur_refl_szen": "0",
+            "sur_refl_vzen": "0",
+            "sur_refl_raz": "0",
+            "sur_refl_state_500m": "65535",
+            "sur_refl_day_of_year": "65535"
+        }
+    },
+    "MOD09CMG.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Coarse Resolution Surface Reflectance Band 1 (620–670 nm)": "-28672",
+            "Coarse Resolution Surface Reflectance Band 2 (841–876 nm)": "-28672",
+            "Coarse Resolution Surface Reflectance Band 3 (459–479 nm)": "-28672",
+            "Coarse Resolution Surface Reflectance Band 4 (545-565 nm)": "-28672",
+            "Coarse Resolution Surface Reflectance Band 5 (1230–1250 nm)": "-28672",
+            "Coarse Resolution Surface Reflectance Band 6 (1628–1652 nm)": "-28672",
+            "Coarse Resolution Surface Reflectance Band 7 (2105–2155 nm)": "-28672",
+            "Coarse Resolution Solar Zenith Angle": "0",
+            "Coarse Resolution View Zenith Angle": "0",
+            "Coarse Resolution Relative Azimuth Angle": "0",
+            "Coarse Resolution Ozone": "0",
+            "Coarse Resolution Brightness Temperature Band 20": "0",
+            "Coarse Resolution Brightness Temperature Band 21": "0",
+            "Coarse Resolution Brightness Temperature Band 31": "0",
+            "Coarse Resolution Brightness Temperature Band 32": "0",
+            "Coarse Resolution Granule Time": "0",
+            "Coarse Resolution Band 3 Path Radiance": "-28672",
+            "Coarse Resolution QA": "0",
+            "Coarse Resolution Internal CM": "0",
+            "Coarse Resolution State QA": "0",
+            "N pixels averaged": "0"
+        }
+    },
+    "MOD09GA.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 1,
+        "bands": {
+            "num_observations_1km": "-1",
+            "state_1km_1": "65535",
+            "SensorZenith_1": "-32767",
+            "SensorAzimuth_1": "-32767",
+            "Range_1": "65535",
+            "SolarZenith_1": "-32767",
+            "SolarAzimuth_1": "-32767",
+            "gflags_1": "255",
+            "orbit_pnt_1": "-1",
+            "num_observations_500m": "-1",
+            "sur_refl_b01_1": "-28672",
+            "sur_refl_b02_2": "-28672",
+            "sur_refl_b03_3": "-28672",
+            "sur_refl_b04_4": "-28672",
+            "sur_refl_b05_5": "-28672",
+            "sur_refl_b06_6": "-28672",
+            "sur_refl_b07_7": "-28672",
+            "QC_500m_1": "787410671",
+            "obscov_500m_1": "-1",
+            "iobs_res_1": "255",
+            "q_scan_1": "255"
+        }
+    },
+    "MOD09GQ.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 1,
+        "bands": {
+            "num_observations": "-1",
+            "sur_refl_b01_1": "-28672",
+            "sur_refl_b02_1": "-28672",
+            "QC_250m_1": "2995",
+            "obscov_1": "-1"
+        }
+    },
+    "MOD09Q1.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 8,
+        "bands": {
+            "sur_refl_b01": "-28672",
+            "sur_refl_b02": "-28672",
+            "sur_refl_qc_250m": "65535"
+        }
+    },
+    "MOD11A1.004": {
+        "start": "2000-03-05",
+        "end": "2007-01-03",
+        "temporalResolution": 1,
+        "bands": {
+            "LST_Day_1km": "0",
+            "QC_Day": "0",
+            "Day_view_time": "0",
+            "Day_view_angl": "255",
+            "LST_Night_1km": "0",
+            "QC_Night": "0",
+            "Night_view_time": "0",
+            "Night_view_angl": "255",
+            "Emis_31": "0",
+            "Emis_32": "0",
+            "Clear_day_cov": "0",
+            "Clear_night_cov": "0"
+        }
+    },
+    "MOD11A1.041": {
+        "start": "2007-01-01",
+        "end": null,
+        "temporalResolution": 1,
+        "bands": {
+            "LST_Day_1km": "0",
+            "QC_Day": "0",
+            "Day_view_time": "0",
+            "Day_view_angl": "255",
+            "LST_Night_1km": "0",
+            "QC_Night": "0",
+            "Night_view_time": "0",
+            "Night_view_angl": "255",
+            "Emis_31": "0",
+            "Emis_32": "0",
+            "Clear_day_cov": "0",
+            "Clear_night_cov": "0"
+        }
+    },
+    "MOD11A1.005": {
+        "start": "2000-03-05",
+        "end": null,
+        "temporalResolution": 1,
+        "bands": {
+            "LST_Day_1km": "0",
+            "QC_Day": null,
+            "Day_view_time": "0",
+            "Day_view_angl": "255",
+            "LST_Night_1km": "0",
+            "QC_Night": null,
+            "Night_view_time": "0",
+            "Night_view_angl": "255",
+            "Emis_31": "0",
+            "Emis_32": "0",
+            "Clear_day_cov": "0",
+            "Clear_night_cov": "0"
+        }
+    },
+    "MOD11A2.005": {
+        "start": "2000-03-05",
+        "end": null,
+        "temporalResolution": 8,
+        "bands": {
+            "LST_Day_1km": "0",
+            "QC_Day": "0",
+            "Day_view_time": "255",
+            "Day_view_angl": "255",
+            "LST_Night_1km": "0",
+            "QC_Night": "0",
+            "Night_view_time": "255",
+            "Night_view_angl": "255",
+            "Emis_31": "0",
+            "Emis_32": "0",
+            "Clear_sky_days": "0",
+            "Clear_sky_nights": "0"
+        }
+    },
+    "MOD11B1.004": {
+        "start": "2000-03-05",
+        "end": "2007-01-04",
+        "temporalResolution": 1,
+        "bands": {
+            "LST_Day_5km": "0",
+            "QC_Day": "0",
+            "Day_view_time": "0",
+            "Day_view_angl": "255",
+            "LST_Night_5km": "0",
+            "QC_Night": "0",
+            "Night_view_time": "0",
+            "Night_view_angl": "255",
+            "Emis_20": "0",
+            "Emis_22": "0",
+            "Emis_23": "0",
+            "Emis_29": "0",
+            "Emis_31": "0",
+            "Emis_32": "0",
+            "LST_Day_5km_Aggregated_from_1km": "0",
+            "LST_Night_5km_Aggregated_from_1km": "0",
+            "QC_Emis": "0"
+        }
+    },
+    "MOD11B1.041": {
+        "start": "2007-01-01",
+        "end": null,
+        "temporalResolution": 1,
+        "bands": {
+            "LST_Day_5km": "0",
+            "QC_Day": "0",
+            "Day_view_time": "0",
+            "Day_view_angl": "255",
+            "LST_Night_5km": "0",
+            "QC_Night": "0",
+            "Night_view_time": "0",
+            "Night_view_angl": "255",
+            "Emis_20": "0",
+            "Emis_22": "0",
+            "Emis_23": "0",
+            "Emis_29": "0",
+            "Emis_31": "0",
+            "Emis_32": "0",
+            "LST_Day_5km_Aggregated_from_1km": "0",
+            "LST_Night_5km_Aggregated_from_1km": "0",
+            "QC_Emis": "0"
+        }
+    },
+    "MOD11B1.005": {
+        "start": "2000-03-05",
+        "end": null,
+        "temporalResolution": 1,
+        "bands": {
+            "LST_Day_6km": "0",
+            "QC_Day": null,
+            "Day_view_time": "255",
+            "Day_view_angl": "255",
+            "LST_Night_6km": "0",
+            "QC_Night": null,
+            "Night_view_time": "255",
+            "Night_view_angl": "255",
+            "Emis_20": "0",
+            "Emis_22": "0",
+            "Emis_23": "0",
+            "Emis_29": "0",
+            "Emis_31": "0",
+            "Emis_32": "0",
+            "LST_Day_6km_Aggregated_from_1km": "0",
+            "LST_Night_6km_Aggregated_from_1km": "0",
+            "QC_Emis": null,
+            "Percent_land_in_grid": "0"
+        }
+    },
+    "MOD11C1.004": {
+        "start": "2000-03-05",
+        "end": "2007-01-03",
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": "0",
+            "Daytime LST observation time (UTC)": "0",
+            "Daytime LST view zenith angle": "255",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": "0",
+            "Nighttime LST observation time": "0",
+            "Nighttime LST view zenith angle": "255",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Daytime 5-Km LST aggregated from 1-Km": "0",
+            "Nighttime 5-Km LST aggregated from 1-Km": "0",
+            "Quality control for retrieved emissivities": "0"
+        }
+    },
+    "MOD11C1.041": {
+        "start": "2007-01-01",
+        "end": null,
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": "0",
+            "Daytime LST observation time (UTC)": "0",
+            "Daytime LST view zenith angle": "255",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": "0",
+            "Nighttime LST observation time": "0",
+            "Nighttime LST view zenith angle": "255",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Daytime 5-Km LST aggregated from 1-Km": "0",
+            "Nighttime 5-Km LST aggregated from 1-Km": "0",
+            "Quality control for retrieved emissivities": "0"
+        }
+    },
+    "MOD11C1.005": {
+        "start": "2000-03-05",
+        "end": null,
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": null,
+            "Daytime LST observation time (UTC)": "255",
+            "Daytime LST view zenith angle": "255",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": null,
+            "Nighttime LST observation time (UTC)": "255",
+            "Nighttime LST view zenith angle": "255",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Quality control for retrieved emissivities": null,
+            "Land percentage in the grid": "0"
+        }
+    },
+    "MOD11C2.004": {
+        "start": "2000-03-05",
+        "end": "2006-12-31",
+        "temporalResolution": 8,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": "0",
+            "Daytime LST observation time (UTC)": "0",
+            "Daytime LST view zenith angle": "255",
+            "Days with clear-sky conditions and validated LSTs": "0",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": "0",
+            "Nighttime LST view zenith angle": "255",
+            "Nights with clear-sky conditions and validated LSTs": "0",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0"
+        }
+    },
+    "MOD11C2.041": {
+        "start": "2007-01-01",
+        "end": null,
+        "temporalResolution": 8,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": "0",
+            "Daytime LST observation time (UTC)": "0",
+            "Daytime LST view zenith angle": "255",
+            "Days with clear-sky conditions and validated LSTs": "0",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": "0",
+            "Nighttime LST view zenith angle": "255",
+            "Nights with clear-sky conditions and validated LSTs": "0",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0"
+        }
+    },
+    "MOD11C2.005": {
+        "start": "2000-03-05",
+        "end": null,
+        "temporalResolution": 8,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": "0",
+            "Daytime LST observation time (UTC)": "0",
+            "Daytime LST view zenith angle": "255",
+            "Days with clear-sky conditions and validated LSTs": "0",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": "0",
+            "Nighttime LST view zenith angle": "255",
+            "Nights with clear-sky conditions and validated LSTs": "0",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Land percentage in the grid": "0"
+        }
+    },
+    "MOD11C3.004": {
+        "start": "2000-03-05",
+        "end": "2006-12-31",
+        "temporalResolution": 30,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": "0",
+            "Daytime LST observation time (UTC)": "0",
+            "Daytime LST view zenith angle": "255",
+            "Days with clear-sky conditions and validated LSTs": "0",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": "0",
+            "Nighttime LST observation time": "0",
+            "Nighttime LST view zenith angle": "255",
+            "Nights with clear-sky conditions and validated LSTs": "0",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0"
+        }
+    },
+    "MOD11C3.041": {
+        "start": "2007-01-01",
+        "end": null,
+        "temporalResolution": 30,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": "0",
+            "Daytime LST observation time (UTC)": "0",
+            "Daytime LST view zenith angle": "255",
+            "Days with clear-sky conditions and validated LSTs": "0",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": "0",
+            "Nighttime LST observation time": "0",
+            "Nighttime LST view zenith angle": "255",
+            "Nights with clear-sky conditions and validated LSTs": "0",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0"
+        }
+    },
+    "MOD11C3.005": {
+        "start": "2000-03-05",
+        "end": null,
+        "temporalResolution": 30,
+        "noTiles": true,
+        "bands": {
+            "Daytime land surface temperature": "0",
+            "Daytime LSTE quality control": null,
+            "Daytime LST observation time (UTC)": "255",
+            "Daytime LST view zenith angle": "255",
+            "Days with clear-sky conditions and validated LSTs": "0",
+            "Nighttime land surface temperature": "0",
+            "Nighttime LSTE quality control": null,
+            "Nighttime LST observation time (UTC)": "255",
+            "Nighttime LST view zenith angle": "255",
+            "Nights with clear-sky conditions and validated LSTs": "0",
+            "Band 20 Emissivity": "0",
+            "Band 22 Emissivity": "0",
+            "Band 23 Emissivity": "0",
+            "Band 29 Emissivity": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Quality control for retrieved emissivities": null,
+            "Land percentage in the grid": 0
+        }
+    },
+    "MOD11_L2.004": {
+        "start": "2000-02-24",
+        "end": "2007-01-03",
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Land Surface Temperature": "0",
+            "Daytime LSTE QC": "0",
+            "LST Error": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Zenith angle of the pixel view": "0",
+            "LST Observation time": "0",
+            "Latitude (every 5 scan lines/pixels": "-999",
+            "Longitude (every 5 scan lines/pixels": "-999"
+        }
+    },
+    "MOD11_L2.041": {
+        "start": "2007-01-01",
+        "end": null,
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Land Surface Temperature": "0",
+            "Daytime LSTE QC": "0",
+            "LST Error": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Zenith angle of the pixel view": "0",
+            "LST Observation time": "0",
+            "Latitude (every 5 scan lines/pixels": "-999",
+            "Longitude (every 5 scan lines/pixels": "-999"
+        }
+    },
+    "MOD11_L2.005": {
+        "start": "2000-03-05",
+        "end": null,
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Land Surface Temperature": "0",
+            "Daytime LSTE QC": null,
+            "LST Error": "0",
+            "Band 31 Emissivity": "0",
+            "Band 32 Emissivity": "0",
+            "Zenith angle of the pixel view": "0",
+            "LST Observation time": "0",
+            "Latitude (every 5 scan lines/pixels": "-999",
+            "Longitude (every 5 scan lines/pixels": "-999"
+        }
+    },
+    "MOD13A1.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 16,
+        "bands": {
+            "500m_16_days_NDVI": "-3000",
+            "500m_16_days_EVI": "-3000",
+            "500m_16_days_VI_Quality": "65535",
+            "500m_16_days_red_reflectance": "-1000",
+            "500m_16_days_NIR_reflectance": "-1000",
+            "500m_16_days_blue_reflectance": "-1000",
+            "500m_16_days_MIR_reflectance": "-1000",
+            "500m_16_days_view_zenith_angle": "-10000",
+            "500m_16_days_sun_zenith_angle": "-10000",
+            "500m_16_days_relative_azimuth_angle": "-4000",
+            "500m_16_days_composite_day_of_the_year": "-1",
+            "500m_16_days_pixel_reliability": "-1"
+        }
+    },
+    "MOD13A2.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 16,
+        "bands": {
+            "1_km_16_days_NDVI": "-3000",
+            "1_km_16_days_EVI": "-3000",
+            "1_km_16_days_VI_Quality": "65535",
+            "1_km_16_days_red_reflectance": "-1000",
+            "1_km_16_days_NIR_reflectance": "-1000",
+            "1_km_16_days_blue_reflectance": "-1000",
+            "1_km_16_days_MIR_reflectance": "-1000",
+            "1_km_16_days_view_zenith_angle": "-10000",
+            "1_km_16_days_sun_zenith_angle": "-10000",
+            "1_km_16_days_relative_azimuth_angle": "-4000",
+            "1_km_16_days_composite_day_of_the_year": "-1",
+            "1_km_16_days_pixel_reliability": "-1"
+        }
+    },
+    "MOD13A3.005": {
+        "start": "2000-02-18",
+        "end": null,
+        "temporalResolution": 30,
+        "bands": {
+            "1_km_monthly_NDVI": "-3000",
+            "1_km_monthly_EVI": "-3000",
+            "1_km_monthly_VI_Quality": "65535",
+            "1_km_monthly_red_reflectance": "-1000",
+            "1_km_monthly_NIR_reflectance": "-1000",
+            "1_km_monthly_blue_reflectance": "-1000",
+            "1_km_monthly_MIR_reflectance": "-1000",
+            "1_km_monthly_view_zenith_angle": "-10000",
+            "1_km_monthly_sun_zenith_angle": "-10000",
+            "1_km_monthly_relative_azimuth_angle": "-4000",
+            "1_km_monthly_pixel_raliability": "-1"
+        }
+    },
+    "MOD13C1.005": {
+        "start": "2000-02-18",
+        "end": null,
+        "temporalResolution": 16,
+        "noTiles": true,
+        "bands": {
+            "CMG 0.05 Deg 16 days NDVI": "-3000",
+            "CMG 0.05 Deg 16 days EVI": "-3000",
+            "CMG 0.05 Deg 16 days VI Quality": "65535",
+            "CMG 0.05 Deg 16 days red reflectance (Band 1)": "-1000",
+            "CMG 0.05 Deg 16 days NIR reflectance (Band 2)": "-1000",
+            "CMG 0.05 Deg 16 days blue reflectance (Band 3)": "-1000",
+            "CMG 0.05 Deg 16 days MIR reflectance (Band 7)": "-1000",
+            "CMG 0.05 Deg 16 days Avg sun zenith angle": "-10000",
+            "CMG 0.05 Deg 16 days NDVI std dev": "-3000",
+            "CMG 0.05 Deg 16 days EVI std dev": "-3000",
+            "CMG 0.05 Deg 16 days #1km pix used": "255",
+            "CMG 0.05 Deg 16 days #1km pix +-30deg VZ": "255",
+            "CMG 0.05 Deg 16 days pixel reliability": "-1"
+        }
+    },
+    "MOD13C2.005": {
+        "start": "2000-02-18",
+        "end": null,
+        "temporalResolution": 30,
+        "noTiles": true,
+        "bands": {
+            "CMG 0.05 Deg Monthly NDVI": "-3000",
+            "CMG 0.05 Deg Monthly EVI": "-3000",
+            "CMG 0.05 Deg Monthly VI Quality": "65535",
+            "CMG 0.05 Deg Monthly red reflectance (Band 1)": "-1000",
+            "CMG 0.05 Deg Monthly NIR reflectance (Band 2)": "-1000",
+            "CMG 0.05 Deg Monthly blue reflectance (Band 3)": "-1000",
+            "CMG 0.05 Deg Monthly MIR reflectance (Band 7)": "-1000",
+            "CMG 0.05 Deg Monthly Avg sun zenith angle": "-1000",
+            "CMG 0.05 Deg Monthly NDVI std dev": "-3000",
+            "CMG 0.05 Deg Monthly EVI std dev": "-3000",
+            "CMG 0.05 Deg Monthly #1km pix used": "255",
+            "CMG 0.05 Deg Monthly #1km pix +-30deg VZ": "255",
+            "CMG 0.05 Deg Monthly pixel reliability": "-1"
+        }
+    },
+    "MOD13Q1.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 16,
+        "bands": {
+            "250m_16_days_NDVI": "-3000",
+            "250m_16_days_EVI": "-3000",
+            "250m_16_days_VI_Quality": "65535",
+            "250m_16_days_red_reflectance": "-1000",
+            "250m_16_days_NIR_reflectance": "-1000",
+            "250m_16_days_blue_reflectance": "-1000",
+            "250m_16_days_MIR_reflectance": "-1000",
+            "250m_16_days_view_zenith_angle": "-10000",
+            "250m_16_days_sun_zenith_angle": "-10000",
+            "250m_16_days_relative_azimuth_angle": "-4000",
+            "250m_16_days_composite_day_of_the_year": "-1",
+            "250m_16_days_pixel_reliability": "-1"
+        }
+    },
+    "MOD14.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 1,
+        "noTiles": true,
+        "bands": {
+            "Fire mask": "0",
+            "Algorithm QA": "294967295",
+            "Fire Pixel Table": null
+        }
+    },
+    "MOD14A1.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 1,
+        "bands": {
+            "Number_of_Days_01": "0",
+            "Number_of_Days_02": null,
+            "Number_of_Days_03": "0",
+            "Number_of_Days_04": null,
+            "Number_of_Days_05": null
+        }
+    },
+    "MOD14A2.005": {
+        "start": "2000-02-24",
+        "end": null,
+        "temporalResolution": 8,
+        "bands": {
+            "FireMask": "0",
+            "QA": null
+        }
+    },
+    "MOD15A2.005": {
+        "start": "2000-02-18",
+        "end": null,
+        "temporalResolution": 8,
+        "bands": {
+            "Fpar_1km": "249-255",
+            "Lai_1km": "249-255",
+            "FparLai_QC": "255",
+            "FparExtra_QC": "255",
+            "FparStdDev_1k": "248-255",
+            "LaiStdDev_1km": "248-255"
+        }
+    },
+    "MOD17A2.005": {
+        "start": "2000-02-18",
+        "end": null,
+        "temporalResolution": 8,
+        "bands": {
+            "Gpp_1km": "32761-32767",
+            "PsnNet_1km": "32761-32767",
+            "Psn_QC_1km": "255"
+        }
+    },
+    "MOD17A2.055": {
+        "start": "2000-01-01",
+        "end": "2010-12-27",
+        "temporalResolution": 8,
+        "bands": {
+            "Gpp_1km": "32761-32767",
+            "PsnNet_1km": "32761-32767",
+            "Psn_QC_1km": "255"
+        }
+    },
+    "MOD17A3.055": {
+        "start": "2000-01-01",
+        "end": "2010-12-31",
+        "temporalResolution": 365,
+        "bands": {
+            "Gpp_1km": "0–65500",
+            "Npp_1km": "65530–65535",
+            "Gpp_Npp_QC_1km": "250-255"
+        }
+    },
+    "MOD44A.004": {
+        "start": "2002-01-01",
+        "end": "2002-10-16",
+        "temporalResolution": 96,
+        "bands": {
+            "Metrics_01": "0",
+            "Metrics_02": "255",
+            "Metrics_03": "255",
+            "Metrics_04": "0"
+        }
+    },
+    "MOD44B.005": {
+        "start": "2000-03-05",
+        "end": "2010-03-06",
+        "temporalResolution": 365,
+        "bands": {
+            "Percent_Tree_Cover": "253",
+            "Quality": null,
+            "Percent_Tree_Cover_SD": "-100",
+            "Cloud": null
+        }
+    },
+    "MOD44B.051": {
+        "start": "2000-01-01",
+        "end": "2013-12-31",
+        "temporalResolution": 1,
+        "bands": {
+            "Percent_Tree_Cover": "253",
+            "Percent_NonTree_Vegetation": "253",
+            "Percent_NonVegetated": "253",
+            "Quality": null,
+            "Percent_Tree_Cover_SD": "-100",
+            "Percent_NonVegetated_SD": "-100",
+            "Cloud": null
+        }
+    },
+    "MOD44W.005": {
+        "start": "2000-02-24",
+        "end": "2000-02-25",
+        "temporalResolution": null,
+        "bands": {
+            "water_mask": "255",
+            "water_mask_QA": "255"
+        }
+    }
+}

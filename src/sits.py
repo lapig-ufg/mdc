@@ -1,69 +1,46 @@
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-# ------------------------------------------
-# Marcelo Perini Veloso
-# <marcelo.perini.veloso@gmail.com>
-#
-# (c) Copyright Lapig UFG 2015
-# http://www.lapig.iesa.ufg.br/
-# ------------------------------------------
-from multiprocessing import Process
+import loader
 from sys import argv
 from common import mapDict
-from download import download
-from reproject import reproject
-from mosaic import mosaic
-from clip import clip
+from multiprocessing import Process
+from communication import Message
 
 usage = """\
 Usage: %s [OPTIONS]
-    -d      name of satellite observation program
-    -p      product name
-    -r      download specifics tiles of this region
-    -s      start date of image that will be download
-    -e      end date of images that will be download
-    -i      index formula to apply
-    [-t]    path to directory where the files will be stored
-    [-m]    mrt path
+		-d      name of satellite observation program
+		-p      product name
+		-r      download specifics tiles of this region
+		-s      start date of image that will be download
+		-e      end date of images that will be download
+		[-i]    index formula to apply
 """ % argv[0]
 
 def main():
-    argDict = mapDict(argv, usage)
+	argDict = mapDict(argv, usage)
 
-    if "-d" in argDict and "-p" in argDict and "-r" in argDict \
-            and "-s" in argDict and "-e" in argDict and "-i" in argDict:
+	if "-d" in argDict and "-p" in argDict and "-r" in argDict \
+						and "-s" in argDict and "-e" in argDict:
 
-        downParams = [argDict["-d"], argDict["-p"], argDict["-r"],
-                argDict["-s"], argDict["-e"]]
+				datasourceName = argDict["-d"].capitalize()
+				productName = argDict["-p"]
+				region = argDict["-r"]
+				start = argDict["-s"]
+				end = argDict["-e"]
 
-        repParams = []
+				datasourceConfig = {
+						"productName": productName
+					,	"region": region
+					,	"start": start
+					,	"end": end
+				}
 
-        mosParams = []
+				bus = loader.getBus()
+				datasource = loader.getDatasource(datasourceName,datasourceConfig)
+				for message in datasource.generateMessages():
+					bus.publishMessage(datasourceName, message)
+					
 
-        clipParams = [argDict["-r"]]
-
-        if "-t" in argDict:
-            downParams.append(argDict["-t"])
-            repParams.append(argDict["-t"])
-            mosParams.append(argDict["-t"])
-            clipParams.append(argDict["-t"])
-
-        if "-m" in argDict:
-            repParams.append(argDict["-m"])
-
-        pDown = Process(target=download, args=downParams)
-        pDown.start()
-
-        pRepr = Process(target=reproject, args=repParams)
-        pRepr.start()
-
-        pMos = Process(target=mosaic, args=mosParams)
-        pMos.start()
-
-        pCli = Process(target=clip, args=clipParams)
-        pCli.start()
-    else:
-        exit(usage)
+	else:
+			exit(usage)
 
 if __name__ == "__main__":
-    main()
+	main()
