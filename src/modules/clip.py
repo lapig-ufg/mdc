@@ -22,7 +22,7 @@ class Clip(Module):
 		inputFilepath = layer['file'];
 		inputFilename = os.path.basename(inputFilepath)
 
-		outputFilename = "_".join([productName, layer['name'], startDoy, startYear, region]) + '.tif'
+		outputFilename = "_".join([productName, layer['name'], startYear + startDoy, region]) + '.tif'
 		outputFilepath = os.path.join(self.module_path, outputFilename)
 
 		utils.removeFileIfExist(outputFilepath)

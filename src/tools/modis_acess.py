@@ -2,6 +2,7 @@ import os
 import shutil
 import json
 import datetime
+import time
 import traceback
 from sys import exit
 from os import path
@@ -84,5 +85,6 @@ class ModisAcess:
 				continueLoop = False
 			except:
 				traceback.print_exc()
+				time.sleep(10)
 				print('try again')
 				pass

@@ -29,7 +29,7 @@ class Datasource:
 			message.set('start', date['start']);
 			message.set('end', date['end']);
 			message.set('tmpFiles', [])
-			message.set('startDoy', self.__getDayOfYear(date['start']) );
+			message.set('startDoy', self.__getDayOfYear(date['start']).zfill(3) );
 			message.set('startYear', self.__getYear(date['start']) );
 
 			messages.append(message)

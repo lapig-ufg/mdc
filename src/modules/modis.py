@@ -29,7 +29,7 @@ class Modis(Module):
 		if noTiles:
 			tiles = None
 
-		tmpDir = "_".join(['tmp', productName, startYear, startDoy])
+		tmpDir = "_".join(['tmp', productName, startYear + startDoy])
 		tmpPath = os.path.join(self.module_path, tmpDir)
 		utils.createDir(tmpPath)
 		time.sleep(1)
