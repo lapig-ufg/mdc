@@ -1,4 +1,4 @@
-# Satellite Image Time Series
+# Satellite Image Time-Series Tool
 
 ## Architecture
 ![alt tag](https://raw.githubusercontent.com/lapig-ufg/satellite-image-time-series/master/proj/img/architecture.png)
