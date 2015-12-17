@@ -53,5 +53,5 @@ def __setCreationOption(command, prefix, concat = False):
 	for copt in TIF_CREATION_OPTIONS:
 		if concat == True:
 			command += [ prefix + copt]
-		else
+		else:
 			command += [ prefix, copt ]

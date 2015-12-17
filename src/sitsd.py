@@ -1,6 +1,5 @@
 import loader
 from sys import argv
-from common import mapDict
 from multiprocessing import Process
 from communication import Message
 
