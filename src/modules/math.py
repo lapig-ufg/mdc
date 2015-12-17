@@ -10,34 +10,33 @@ class Math(Module):
 
 	def process(self, message):
 		
-		end = message.get('end')
-		start = message.get('start')
 		layer = message.get('layer')
-		startDoy = message.get('startDoy')
-		startYear = message.get('startYear')
-		region = message.get('region')
-		pathShp = message.get('path_shp')
-		productName = message.get('productName').replace('.','_')
+		math = message.get('math')
+		primaryMath = math['primary']
 
-		inputFilepath = layer['file'];
-		inputFilename = os.path.basename(inputFilepath)
+		if layer in primaryMath:
+			layerMath = primaryMath[layer]
+			expression = layerMath['expression']
+			dataType = layerMath['datatype']
+			
+			inputFilepath = layer['file'];
+			inputFilename = os.path.basename(inputFilepath)
 
-		outputFilename = "_".join([productName, layer['name'], startYear + startDoy, region]) + '.tif'
-		outputFilepath = os.path.join(self.module_path, outputFilename)
+			outputFilename = "_".join([productName, layer['name'], startYear + startDoy, region]) + '.tif'
+			outputFilepath = os.path.join(self.module_path, outputFilename)
 
-		utils.removeFileIfExist(outputFilepath)
+			expression = expression.replace('{' + layer['name'] + '}', '{0}')
 
-		shapeFilepath = os.path.join(pathShp, region.lower() + '.shp')
-		
-		utils.log(self.name, 'Generating', outputFilename, ' by region ', region)
-		gdal_utils.clip(inputFilepath, outputFilepath, shapeFilepath, layer['nodata'])
+			utils.removeFileIfExist(outputFilepath)
+			utils.log(self.name, 'Expression calculation', outputFilename, expression)
+			gdal_utils.calc([inputFilepath], outputFilepath, expression, dataType)
 
-		tmpFiles = message.get('tmpFiles')
-		tmpFiles.append(layer['file'])
-		message.set('tmpFiles', tmpFiles)
+			tmpFiles = message.get('tmpFiles')
+			tmpFiles.append(layer['file'])
+			message.set('tmpFiles', tmpFiles)
 
-		layer['file'] = outputFilepath
-		message.set('layer', layer)
+			layer['file'] = outputFilepath
+			message.set('layer', layer)
 
-		utils.log(self.name, 'Forward message (', outputFilename, ')')
-		self.publish(message)
+			utils.log(self.name, 'Forward message (', outputFilename, ')')
+			self.publish(message)

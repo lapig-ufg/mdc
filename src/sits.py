@@ -1,6 +1,6 @@
 import loader
 from sys import argv
-from common import mapDict
+from utils import mapDict
 from multiprocessing import Process
 from communication import Message
 
@@ -35,8 +35,9 @@ def main():
 
 				bus = loader.getBus()
 				datasource = loader.getDatasource(datasourceName,datasourceConfig)
-				for message in datasource.generateMessages():
-					bus.publishMessage(datasourceName, message)
+				datasource.generateMessages()
+				#for message in datasource.generateMessages():
+					#bus.publishMessage(datasourceName, message)
 					
 
 	else:

@@ -69,8 +69,7 @@ class ModisAcess:
 		modisObj = downmodis.downModis(
 			url="http://e4ftl01.cr.usgs.gov",
 			user="anonymous", password=None, path="MOLT",
-			delta=10, timeout=30,
-			destinationFolder=self.targetPath, jpg=False,
+			timeout=3600, destinationFolder=self.targetPath, jpg=False,
 			debug=True, tiles=self.tiles,
 			today=self.start, enddate=self.end,
 			product=self.productName)

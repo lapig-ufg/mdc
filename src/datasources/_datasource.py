@@ -81,7 +81,10 @@ class Datasource:
 
 		while end < endDate:
 
-			end = start + datetime.timedelta(days=temporalResolution )
+			end = start + datetime.timedelta(days=temporalResolution)
+
+			if start.year != end.year:
+				end = start + datetime.timedelta(days=(31 - start.day))
 
 			if end > endDate:
 					end = endDate
@@ -94,6 +97,7 @@ class Datasource:
 			)
 
 			start = end
+			start = start + datetime.timedelta(days=1)
 
 		return dateList
 

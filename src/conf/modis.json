@@ -671,7 +671,73 @@
                     "name": "250m_16_days_EVI2",
                     "expression": "2,5 * (({250m_16_days_NIR_reflectance} - {250m_16_days_red_reflectance}) / ({250m_16_days_NIR_reflectance} + 2,4 * {250m_16_days_red_reflectance} + 1))",
                     "datatype": "Float32"
+                }
+            ]
+        },
+        "bands": {
+            "250m_16_days_NDVI": "-3000",
+            "250m_16_days_EVI": "-3000",
+            "250m_16_days_VI_Quality": "65535",
+            "250m_16_days_red_reflectance": "-1000",
+            "250m_16_days_NIR_reflectance": "-1000",
+            "250m_16_days_blue_reflectance": "-1000",
+            "250m_16_days_MIR_reflectance": "-1000",
+            "250m_16_days_view_zenith_angle": "-10000",
+            "250m_16_days_sun_zenith_angle": "-10000",
+            "250m_16_days_relative_azimuth_angle": "-4000",
+            "250m_16_days_composite_day_of_the_year": "-1",
+            "250m_16_days_pixel_reliability": "-1"
+        }
+    },
+    "MOD13Q1.006": {
+        "start": "2000-02-18",
+        "end": null,
+        "temporalResolution": 16,
+        "math": {
+            "primary": {
+                "250m_16_days_NDVI": {
+                    "expression": "{250m_16_days_NDVI} * 0.0001",
+                    "datatype": "Float32"
                 },
+                "250m_16_days_EVI": {
+                    "expression": "{250m_16_days_EVI} * 0.0001",
+                    "datatype": "Float32"
+                },
+                "250m_16_days_red_reflectance": {
+                    "expression": "{250m_16_days_red_reflectance} * 0.0001",
+                    "datatype": "Float32"
+                },
+                "250m_16_days_NIR_reflectance": {
+                    "expression": "{250m_16_days_NIR_reflectance} * 0.0001",
+                    "datatype": "Float32"
+                },
+                "250m_16_days_blue_reflectance": {
+                    "expression": "{250m_16_days_blue_reflectance} * 0.0001",
+                    "datatype": "Float32"
+                },
+                "250m_16_days_MIR_reflectance": {
+                    "expression": "{250m_16_days_MIR_reflectance} * 0.0001",
+                    "datatype": "Float32"
+                },
+                "250m_16_days_view_zenith_angle": {
+                    "expression": "{250m_16_days_view_zenith_angle} * 0.01",
+                    "datatype": "Float32"
+                },
+                "250m_16_days_sun_zenith_angle": {
+                    "expression": "{250m_16_days_sun_zenith_angle} * 0.01",
+                    "datatype": "Float32"
+                },
+                "250m_16_days_relative_azimuth_angle": {
+                    "expression": "{250m_16_days_relative_azimuth_angle} * 0.01",
+                    "datatype": "Float32"
+                }
+            },
+            "secondary": [
+                {
+                    "name": "250m_16_days_EVI2",
+                    "expression": "2,5 * (({250m_16_days_NIR_reflectance} - {250m_16_days_red_reflectance}) / ({250m_16_days_NIR_reflectance} + 2,4 * {250m_16_days_red_reflectance} + 1))",
+                    "datatype": "Float32"
+                }
             ]
         },
         "bands": {
