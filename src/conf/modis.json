@@ -731,14 +731,7 @@
                     "expression": "{250m_16_days_relative_azimuth_angle} * 0.01",
                     "datatype": "Float32"
                 }
-            },
-            "secondary": [
-                {
-                    "name": "250m_16_days_EVI2",
-                    "expression": "2,5 * (({250m_16_days_NIR_reflectance} - {250m_16_days_red_reflectance}) / ({250m_16_days_NIR_reflectance} + 2,4 * {250m_16_days_red_reflectance} + 1))",
-                    "datatype": "Float32"
-                }
-            ]
+            }
         },
         "bands": {
             "250m_16_days_NDVI": "-3000",

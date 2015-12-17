@@ -71,7 +71,7 @@ class ModisAcess:
 			user="anonymous", password=None, path="MOLT",
 			timeout=3600, destinationFolder=self.targetPath, jpg=False,
 			debug=True, tiles=self.tiles,
-			today=self.start, enddate=self.end,
+			today=self.end, enddate=self.start,
 			product=self.productName)
 
 		continueLoop = True
