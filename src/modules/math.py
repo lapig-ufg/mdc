@@ -10,26 +10,30 @@ class Math(Module):
 
 	def process(self, message):
 		
-		layer = message.get('layer')
 		math = message.get('math')
+		layer = message.get('layer')
 		primaryMath = math['primary']
 
-		if layer in primaryMath:
-			layerMath = primaryMath[layer]
-			expression = layerMath['expression']
+		layerName = layer['name']
+
+		if layerName in primaryMath:
+			noData = layer['nodata']
+			layerMath = primaryMath[layerName]
+			
 			dataType = layerMath['datatype']
+			expression = layerMath['expression']
 			
 			inputFilepath = layer['file'];
 			inputFilename = os.path.basename(inputFilepath)
 
-			outputFilename = "_".join([productName, layer['name'], startYear + startDoy, region]) + '.tif'
+			outputFilename = inputFilename
 			outputFilepath = os.path.join(self.module_path, outputFilename)
 
-			expression = expression.replace('{' + layer['name'] + '}', '{0}')
+			expression = expression.replace('{' + layerName + '}', '{0}')
 
 			utils.removeFileIfExist(outputFilepath)
 			utils.log(self.name, 'Expression calculation', outputFilename, expression)
-			gdal_utils.calc([inputFilepath], outputFilepath, expression, dataType)
+			gdal_utils.calc([inputFilepath], outputFilepath, expression, dataType, noData)
 
 			tmpFiles = message.get('tmpFiles')
 			tmpFiles.append(layer['file'])
@@ -38,5 +42,5 @@ class Math(Module):
 			layer['file'] = outputFilepath
 			message.set('layer', layer)
 
-			utils.log(self.name, 'Forward message (', outputFilename, ')')
-			self.publish(message)
+		utils.log(self.name, 'Forward message (', layerName, ')')
+		self.publish(message)

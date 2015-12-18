@@ -33,7 +33,7 @@ class Modis(Module):
 		tmpPath = os.path.join(self.module_path, tmpDir)
 		utils.createDir(tmpPath)
 		time.sleep(1)
-
+		
 		self.__downloadAndReproject(productName=productName, tiles=tiles, 
 			start=start, end=end, layers=layers, 
 			tmpPath=tmpPath, pathMrt=pathMrt);

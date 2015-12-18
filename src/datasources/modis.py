@@ -12,3 +12,4 @@ class Modis(Datasource):
       self.temporalResolution = self.product['temporalResolution']
       self.productStart = self.product['start']
       self.productEnd = self.product['end']
+      self.math = self.product['math']
