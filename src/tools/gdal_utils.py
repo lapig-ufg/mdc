@@ -40,7 +40,7 @@ def mosaic(inputFiles, outputFile, nodata = None):
 	subprocess.call(command, stdout=subprocess.PIPE)
 
 def clip(imageFile, outputFile, shapeFile, nodata = None):
-	command = ["gdalwarp", "-cutline", shapeFile]
+	command = ["gdalwarp", "-crop_to_cutline", "-cutline", shapeFile]
 
 	__setCreationOption(command, '-co')
 
