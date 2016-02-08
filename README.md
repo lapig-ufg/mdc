@@ -10,3 +10,17 @@
  - `mrt >= 4.1`
  - `pymodis >= 1.0`
  - `python-gdal >= 1.8`
+
+## Running:
+ 1. Start Redis-server
+ ```
+ redis-server
+ ```
+ 2. Start Sitsd
+ ```
+ python sitsd.py
+ ```
+ 3. Send a processing 
+ ```
+ python sits.py -d modis -p MOD13Q1.006 -r brasil -s 2014-01-01 -e 2016-01-01
+ ```
