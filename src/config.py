@@ -3,6 +3,9 @@ from ConfigParser import SafeConfigParser
 
 sitsPath, filename = os.path.split(os.path.abspath(__file__))
 
+def getIntegrationsPath():
+	return [ os.path.join(sitsPath,'integration','sh') ]
+
 def getSections(fileName, sectionName):
 	cp = __loadConfigParser(fileName)
 	return cp.sections()

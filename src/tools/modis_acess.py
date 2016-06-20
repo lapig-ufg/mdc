@@ -4,20 +4,22 @@ import json
 import datetime
 import time
 import traceback
+import parsemodis2
+import convertmodis2
 from sys import exit
 from os import path
 from pymodis import downmodis
-from pymodis import parsemodis
-from pymodis import convertmodis
+from subprocess import Popen, PIPE
 import utils
 
 class ModisAcess:
 
-	def __init__(self, productName, layers, tiles, start, end, targetPath, mrtPath):
+	def __init__(self, productName, layers, tiles, start, end, targetPath, mrtPath, extentCmd):
 
 		self.tiles = tiles
 		self.layers = layers
 		self.mrtPath = mrtPath
+		self.extentCmd = extentCmd;
 		self.end = end.encode("ascii")
 		self.start = start.encode("ascii")
 		self.targetPath = targetPath.encode("ascii")
@@ -54,11 +56,13 @@ class ModisAcess:
 					hdfFile = path.join(self.targetPath, filename)
 					tifFile = path.join(self.targetPath, self.__createTifName(filename))
 
-					modisParse = parsemodis.parseModis(hdfFile)
-					confname = modisParse.confResample(spectral=spectralBase,
-						output=tifFile)
+					extent = self.getModisTileExtent(hdfFile)
 
-					modisCover = convertmodis.convertModis(
+					modisParse = parsemodis2.parseModis(hdfFile)
+					confname = modisParse.confResample(spectral=spectralBase,
+						output=tifFile, bound=extent)
+
+					modisCover = convertmodis2.convertModis(
 						hdfname=hdfFile, confile=confname,
 						mrtpath=self.mrtPath)
 
@@ -87,3 +91,24 @@ class ModisAcess:
 				time.sleep(10)
 				print('try again')
 				pass
+
+	def getModisTileExtent(self, filepath):
+		command = [self.extentCmd, self.mrtPath, filepath]
+
+		print command
+		process = Popen(command, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+		extent, err = process.communicate()
+
+		if err == '':
+			print("######################", extent)
+			coordArray = extent.rstrip('\n').split(' ')
+
+			return {
+				'min_lat': coordArray[2],
+				'min_lon': coordArray[1],
+				'max_lat': coordArray[0],
+				'max_lon': coordArray[3]
+			}
+		else:
+			print err
+			return None

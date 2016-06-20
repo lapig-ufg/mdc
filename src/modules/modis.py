@@ -39,7 +39,7 @@ class Modis(Module):
 			tmpPath=tmpPath, pathMrt=pathMrt);
 
 		layerFiles = self.__moveLayerFiles(tmpPath, self.module_path)
-		utils.removeDir(tmpPath)
+		#utils.removeDir(tmpPath)
 
 		for layer in self.__getLayers(layers, layerFiles):
 			message.set('layer', layer)
@@ -50,7 +50,7 @@ class Modis(Module):
 
 		modisAcess = ModisAcess(productName=productName, tiles=tiles, 
 			start=start, end=end, layers=layers, 
-			targetPath=tmpPath, mrtPath=pathMrt)
+			targetPath=tmpPath, mrtPath=pathMrt, extentCmd=self.extent_cmd)
 		
 		utils.log(self.name, 'Downloading', productName, start, end, tiles)
 		modisAcess.download()

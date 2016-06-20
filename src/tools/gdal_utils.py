@@ -23,20 +23,27 @@ def calc(inputFiles, outputFile, expression, dataType, noData):
 
 	print(command)
 	subprocess.call(command, stdout=subprocess.PIPE)
-	print('finalizou')
 
-def mosaic(inputFiles, outputFile, nodata = None):
+def mosaic(inputFiles, outputFile, nodata = None, pixelSize = None):
 	command = ["gdal_merge.py"]
 
 	if nodata is not None:
 		command += ["-n", str(nodata)]
 		command += ["-a_nodata", str(nodata)]
 
+	if pixelSize is not None:
+		command += ["-ps", str(pixelSize), str(pixelSize)]
+
 	command += ["-o", outputFile]
 	__setCreationOption(command, '-co')
 
-	command += inputFiles
+	print(inputFiles)
 
+	inputFiles.sort()
+	
+	command += inputFiles
+	
+	print(command)
 	subprocess.call(command, stdout=subprocess.PIPE)
 
 def clip(imageFile, outputFile, shapeFile, nodata = None):
@@ -50,6 +57,16 @@ def clip(imageFile, outputFile, shapeFile, nodata = None):
 
 	command += [imageFile, outputFile]
 
+	print(command)
+	subprocess.call(command, stdout=subprocess.PIPE)
+
+def clipCmd(pathClipCmd, imageFile, outputFile, shapeFile, nodata = None):
+	command = [pathClipCmd, shapeFile, imageFile, outputFile]
+
+	if nodata is not None:
+		command += [str(nodata)]
+
+	print(command)
 	subprocess.call(command, stdout=subprocess.PIPE)
 
 def __setCreationOption(command, prefix, concat = False):

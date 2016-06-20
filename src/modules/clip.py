@@ -30,7 +30,7 @@ class Clip(Module):
 		shapeFilepath = os.path.join(pathShp, region.lower() + '.shp')
 		
 		utils.log(self.name, 'Generating', outputFilename, ' by region ', region)
-		gdal_utils.clip(inputFilepath, outputFilepath, shapeFilepath, layer['nodata'])
+		gdal_utils.clipCmd(self.clip_cmd, inputFilepath, outputFilepath, shapeFilepath, layer['nodata'])
 
 		tmpFiles = message.get('tmpFiles')
 		tmpFiles.append(layer['file'])
