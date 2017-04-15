@@ -71,8 +71,8 @@ class ModisAcess:
 	def download(self):
 
 		modisObj = downmodis.downModis(
-			url="http://e4ftl01.cr.usgs.gov",
-			user="anonymous", password=None, path="MOLT",
+			url="https://e4ftl01.cr.usgs.gov",
+			user="tvilapig", password='TV1lapig', path="MOLT",
 			timeout=3600, destinationFolder=self.targetPath, jpg=False,
 			debug=True, tiles=self.tiles,
 			today=self.end, enddate=self.start,
