@@ -1,7 +1,7 @@
 # Satellite Image Time-Series Tool
 
 ## Architecture
-![alt tag](https://raw.githubusercontent.com/lapig-ufg/satellite-image-time-series/master/proj/img/architecture.png)
+![alt tag](https://raw.githubusercontent.com/lapig-ufg/satellite-image-time-series/master/proj/img/architecture-modis.png)
 
 ## Dependencies:
  - `python >= 2.7`
