@@ -1,4 +1,9 @@
-# Satellite Image Time-Series Tool
+# MODIS Data Cube
+
+This software organize 
+This software is responsible for downloading and processing various MODIS products. (see ![modis.json](https://github.com/lapig-ufg/mdc/blob/master/src/conf/modis.json)). See the final results:
+ - ![MOD13Q1 - NDVI](https://maps.lapig.iesa.ufg.br/?layers=pa_br_ndvi_250_lapig)
+ - ![MOD11B1 - LSTM](https://maps.lapig.iesa.ufg.br/?layers=pa_br_lst_day_250_lapig)
 
 ## Architecture
 ![alt tag](https://raw.githubusercontent.com/lapig-ufg/satellite-image-time-series/master/proj/img/architecture-modis.png)
