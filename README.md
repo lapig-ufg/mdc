@@ -12,7 +12,7 @@ This software is responsible for downloading and processing various MODIS produc
 
 - `Docker >= 19.03`
 - `Docker-Compose >= 1.25.0`
-- `Git >= 2.25.`
+- `Git >= 2.25`
 
 ## Dependencies:
  - `python >= 2.7`
