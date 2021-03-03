@@ -8,6 +8,12 @@ This software is responsible for downloading and processing various MODIS produc
 ## Architecture
 ![alt tag](https://raw.githubusercontent.com/lapig-ufg/satellite-image-time-series/master/proj/img/architecture-modis.png)
 
+## Prequisites
+
+- `Docker >= 19.03`
+- `Docker-Compose >= 1.25.0`
+- `Git >= 2.25.`
+
 ## Dependencies:
  - `python >= 2.7`
  - `redis-server >= 2.8.1`
