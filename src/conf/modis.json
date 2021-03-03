@@ -781,6 +781,38 @@
             "LaiStdDev_1km": "248-255"
         }
     },
+    "MOD16A2.006": {
+        "start": "2001-01-01",
+        "end": null,
+        "temporalResolution": 8,
+        "math": {
+            "primary": {
+                "ET_500m": {
+                    "expression": "{ET_500m}*0.1",
+                    "datatype": "Float32"
+                },
+                "LE_500m": {
+                    "expression": "{LE_500m}*10000",
+                    "datatype": "Float32"
+                },
+                "PET_500m": {
+                    "expression": "{PET_500m}*0.1",
+                    "datatype": "Float32"
+                },
+                "PLE_500m": {
+                    "expression": "{PLE_500m}*10000",
+                    "datatype": "Float32"
+                }
+            }
+        },
+        "bands": {
+            "ET_500m": "32700",
+            "LE_500m": "32700",
+            "PET_500m": "32700",
+            "PLE_500m": "32700",
+            "ET_QC_500m": "255"
+        }
+    },
     "MOD17A2.005": {
         "start": "2000-02-18",
         "end": null,
