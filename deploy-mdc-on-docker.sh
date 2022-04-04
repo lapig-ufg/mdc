@@ -105,11 +105,11 @@ mv mdc/ MRT/
 
 cd /tmp/
 
-git clone https://github.com/circulosmeos/gdown.pl.git
+pip install gdown
 
-cd /tmp/gdown.pl
+mkdir -p /tmp/gdown && cd /tmp/gdown
 
-if [ -f "/tmp/gdown.pl/mdc_lapig_1.1.tar.gz" ]; then
+if [ -f "/tmp/gdown/mdc_lapig_1.1.tar.gz" ]; then
     clear
     echo "MDC_LAPIG_1.1.tar.gz existe!"
     sleep 2
@@ -120,9 +120,9 @@ else
     clear
     echo -e "Baixando do drive MDC_LAPIG_1.1.tar.gz! \n\n"
     sleep 2
-    cd /tmp/gdown.pl
+    cd /tmp/gdown
     #Download CONTAINER MDC
-    ./gdown.pl https://drive.google.com/file/d/1xD9cLubLH2-NmEdTq1DswyOO0b5wNC81/view?usp=sharing mdc_lapig_1.1.tar.gz
+    gdown https://drive.google.com/u/0/uc?id=1xD9cLubLH2-NmEdTq1DswyOO0b5wNC81
 fi
 
 command01=$(docker images | grep "mdc_lapig_1.1")
