@@ -20,7 +20,7 @@ This software is responsible for downloading and processing various MODIS produc
  - `python-redis >= 2.10.3`
  - `mrt >= 4.1`
  - `pymodis >= 1.0`
- - `python-gdal >= 1.8`
+ - `GDAL >= 1.8`
 
 ## Running:
  1. Start Redis-server
