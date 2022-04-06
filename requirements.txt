@@ -1,0 +1,3 @@
+redis==3.5.3
+python-redis==0.3.0
+pyModis==2.3.0
