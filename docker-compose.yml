@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  
+  mdc-lapig:
+    build: .
+    container_name: mdc-lapig
+    command: bash -c "/APP/start.sh && /bin/bash"
+    stdin_open: true
+    tty: true
+    volumes:
+          - mdc-data:/home/lapig/sits-workdir
+          - '/etc/localtime:/etc/localtime'   
+
+volumes:
+  mdc-data:
