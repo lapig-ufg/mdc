@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install   -y apt-transport-https ca-certificates w
                                         add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && \
                                         apt-get update && apt-get install -y adoptopenjdk-8-hotspot && \
                                         mkdir -p /APP && cd /APP && git clone -b ${BRANCH} ${URL_TO_APPLICATION_GITHUB}
-ADD ./redis.conf /etc/redis
-ADD ./start.sh   /APP 
+ADD ./dockerfiles/redis.conf /etc/redis
+ADD ./dockerfiles/start.sh   /APP 
 
 RUN chown redis:redis /etc/redis/redis.conf && \
     pip install -r /tmp/requirements.txt && \
