@@ -9,7 +9,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-          - mdc-data:/home/lapig/sits-workdir
+          - 'mdc-data:/home/lapig/sits-workdir'
           - '/etc/localtime:/etc/localtime'   
 
 volumes:
