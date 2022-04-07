@@ -17,7 +17,7 @@ This software is responsible for downloading and processing various MODIS produc
 ## Dependencies:
  - `python >= 2.7`
  - `redis-server >= 2.8.1`
- - `python-redis >= 2.10.3`
+ - `redis == 3.5.3`
  - `mrt >= 4.1`
  - `pymodis >= 1.0`
  - `GDAL == 2.4.0`
