@@ -8,12 +8,8 @@ ENV BRANCH="master"
 WORKDIR /APP/mdc
 
 COPY ./requirements.txt /tmp 
-RUN apt-get update && apt-get install   -y apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common \
-                                        sudo unzip python2 procps python-gdal python-pip gdal-bin net-tools vim redis-server git && \
+RUN apt-get update && apt-get install -y unzip python2 procps python-gdal python-pip gdal-bin net-tools vim redis-server git && \
                                         pip install -U pip setuptools && \
-                                        wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add - && \
-                                        add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && \
-                                        apt-get update && apt-get install -y adoptopenjdk-8-hotspot && \
                                         mkdir -p /APP && cd /APP && git clone -b ${BRANCH} ${URL_TO_APPLICATION_GITHUB}
 ADD ./docker-files/redis.conf /etc/redis
 ADD ./docker-files/start.sh   /APP 
